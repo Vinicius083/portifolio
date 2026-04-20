@@ -1,0 +1,605 @@
+<!DOCTYPE html><html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Vinícius Almeida | The Kinetic Architect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#ebbbb4",
+                        "outline": "#b18780",
+                        "background": "#131313",
+                        "tertiary-container": "#909191",
+                        "surface-container": "#1f1f1f",
+                        "secondary": "#c8c6c5",
+                        "surface-container-low": "#1b1b1b",
+                        "on-secondary-container": "#bab8b7",
+                        "primary-fixed": "#ffdad4",
+                        "on-primary": "#690100",
+                        "tertiary": "#c6c6c7",
+                        "on-error-container": "#ffdad6",
+                        "surface-dim": "#131313",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "primary": "#ffb4a8",
+                        "secondary-fixed": "#e5e2e1",
+                        "error": "#ffb4ab",
+                        "on-surface": "#e2e2e2",
+                        "on-primary-fixed": "#410000",
+                        "inverse-on-surface": "#303030",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "on-primary-container": "#5c0000",
+                        "on-tertiary-container": "#282a2a",
+                        "on-secondary-fixed-variant": "#474646",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "secondary-container": "#4a4949",
+                        "error-container": "#93000a",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container-highest": "#353535",
+                        "inverse-primary": "#c00100",
+                        "surface": "#131313",
+                        "inverse-surface": "#e2e2e2",
+                        "surface-tint": "#ffb4a8",
+                        "surface-bright": "#393939",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "outline-variant": "#603e39",
+                        "surface-container-high": "#2a2a2a",
+                        "on-tertiary": "#2f3131",
+                        "surface-variant": "#353535",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-secondary": "#313030",
+                        "on-error": "#690005",
+                        "on-primary-fixed-variant": "#930100",
+                        "on-background": "#e2e2e2",
+                        "primary-container": "#ff5540"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: #131313; color: #e2e2e2; }
+        h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .glass-panel { background: rgba(31, 31, 31, 0.6); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+        .red-gradient-text { background: linear-gradient(45deg, #ffb4a8, #FF0000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .red-gradient-bg { background: linear-gradient(45deg, #ffb4a8, #FF0000); }
+        .ghost-border { outline: 1px solid rgba(96, 62, 57, 0.15); }
+        .hover-ghost-border:hover { outline: 1px solid #FF0000; }
+        .data-wave-bg {
+            background-image: radial-gradient(circle at 100% 0%, rgba(255, 0, 0, 0.05) 0%, transparent 50%), 
+                              linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px), 
+                              linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+        }
+
+        /* Essential Nav Styles */
+        .nav-link {
+            color: #9ca3af; /* text-neutral-400 */
+            transition: all 0.3s ease;
+            padding-bottom: 0.25rem;
+            border-bottom: 2px solid transparent;
+            position: relative;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            font-weight: 700;
+        }
+        .nav-link:hover {
+            color: #ffffff;
+            border-bottom-color: rgba(255, 255, 255, 0.2);
+        }
+        .nav-link.active {
+            color: #ffffff;
+            border-bottom-color: #FF0000;
+        }
+        .logo-link {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .logo-link:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Mobile Sidebar Styles */
+        #mobile-sidebar {
+            position: fixed !important;
+            top: 0 !important;
+            right: -100% !important;
+            width: 80% !important;
+            max-width: 320px !important;
+            height: 100vh !important;
+            background-color: #131313 !important;
+            z-index: 9999 !important;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            padding: 3rem !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 2rem !important;
+            box-shadow: -20px 0 50px rgba(0,0,0,0.8) !important;
+            border-left: 1px solid rgba(255,255,255,0.05);
+        }
+        #mobile-sidebar.open {
+            right: 0 !important;
+        }
+        #sidebar-overlay {
+            position: fixed !important;
+            inset: 0 !important;
+            background-color: rgba(0,0,0,0.8) !important;
+            backdrop-filter: blur(8px) !important;
+            z-index: 9998 !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            transition: opacity 0.4s ease !important;
+        }
+        #sidebar-overlay.visible {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-x-hidden selection:bg-primary-container selection:text-white">
+<!-- Mobile Sidebar -->
+<div id="sidebar-overlay"></div>
+<aside id="mobile-sidebar">
+    <div class="flex justify-between items-center mb-4">
+        <div class="text-xl font-black text-white font-['Space_Grotesk'] uppercase tracking-widest">Menu</div>
+        <button id="close-sidebar" class="text-white hover:text-[#FF0000] p-2 focus:outline-none">
+            <span class="material-symbols-outlined scale-150">close</span>
+        </button>
+    </div>
+    <div class="flex flex-col gap-10 font-['Space_Grotesk'] tracking-tight uppercase text-xl font-extrabold">
+        <a class="nav-link w-fit" href="#about">Resume</a>
+        <a class="nav-link w-fit" href="#stack">Stack</a>
+        <a class="nav-link w-fit" href="#journey">Journey</a>
+        <a class="nav-link w-fit" href="#work">Work</a>
+        <a class="nav-link w-fit" href="#contact">Contact</a>
+    </div>
+</aside>
+
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-4 md:px-12 bg-[#131313]/80 backdrop-blur-md border-b border-white/5">
+<a href="#" id="logo-scroll" class="logo-link text-2xl font-black tracking-tighter text-white font-['Space_Grotesk'] uppercase">V.ALMEIDA</a>
+<div class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] tracking-tight uppercase text-sm font-bold nav-container">
+    <a class="nav-link" href="#about">Resume</a>
+    <a class="nav-link" href="#stack">Stack</a>
+    <a class="nav-link" href="#journey">Journey</a>
+    <a class="nav-link" href="#work">Work</a>
+<a class="nav-link" href="#contact">Contact</a>
+</div>
+<div class="md:hidden">
+    <button id="open-sidebar" class="text-white flex items-center">
+        <span class="material-symbols-outlined">menu</span>
+    </button>
+</div>
+</nav>
+<!-- Hero Section -->
+<header id="home" class="relative min-h-screen flex items-center justify-center pt-24 px-6 md:px-12 overflow-hidden data-wave-bg">
+<div class="relative z-10 max-w-5xl mx-auto text-center md:text-left flex flex-col md:flex-row items-center gap-12">
+<div class="flex-1 space-y-6">
+<p class="font-label text-[10px] uppercase tracking-[0.2em] text-primary" style="">Junior Full Stack Developer</p>
+<h1 class="text-5xl md:text-7xl font-headline font-black tracking-tighter leading-none" style="">
+                    Vinícius Almeida <br>
+<span class="text-surface-container-highest" style="">Desenvolvedor</span><br>
+<span class="red-gradient-text" style="">Full Stack Júnior</span>
+</h1>
+<p class="text-lg md:text-xl font-body leading-relaxed text-on-surface-variant max-w-2xl" style="">
+                    Desenvolvendo soluções escaláveis e integradas com paixão e tecnologia. A interseção entre lógica rígida e experiência fluida.
+                </p>
+<div class="pt-8">
+<button class="px-8 py-4 rounded-md ghost-border text-white hover:bg-surface-container-high hover:outline-[#FF0000] transition-all duration-300 font-label text-sm uppercase tracking-wider flex items-center gap-2 mx-auto md:mx-0" style="">
+                        Ver Currículo
+                        <span class="material-symbols-outlined text-primary" style="">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Decorative Elements -->
+<div class="absolute top-1/4 right-0 w-96 h-96 bg-primary opacity-5 blur-[120px] rounded-full pointer-events-none"></div>
+</header>
+<main>
+<!-- About Me Section -->
+<section class="py-24 px-6 md:px-12 relative border-t border-white/5 bg-surface-container-low" id="about">
+<div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16">
+<div class="w-64 h-64 md:w-80 md:h-80 relative flex-shrink-0">
+<div class="absolute inset-0 rounded-full border-2 border-[#FF0000]/30 border-dashed animate-[spin_20s_linear_infinite]"></div>
+<div class="absolute inset-2 rounded-full border-2 border-[#FF0000]/50"></div>
+<div class="absolute inset-4 rounded-full overflow-hidden bg-surface-container-high grayscale hover:grayscale-0 transition-all duration-700">
+<img alt="Vinícius Almeida Portrait" class="w-full h-full object-cover mix-blend-luminosity hover:mix-blend-normal transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl4dY-IfbSwRkKqGMe4SHwC46NHN1SqpntK260Pn7Mv_oZi5DVWu_9T3YHlelymOjvNutMX0FgYZKRHaCvF_kGLw7rlharAgh-SCoFUbhm61yS4pJb8cGSdxGm3v49VB0763dBqIdUcMjqSqLhM4JXtca072YRu-rCl8_KCaAHYV8JEhsZ_2nN5Hcl8WDzOaKvd7PbrdlV4di-MVpGFnu_5r-S7eF2b88hDyr2F186SecwgEiAZoLTOAISSpNr2Gsm3MxborJuWOuS" style="">
+</div>
+</div>
+<div class="flex-1 space-y-6 text-center md:text-left">
+<h2 class="text-3xl md:text-5xl font-headline font-black tracking-tighter text-white" style="">
+                    Sobre <span class="text-[#FF0000]" style="">Mim</span>
+</h2>
+<p class="text-lg font-body leading-relaxed text-on-surface-variant" style="">
+                    Sou um desenvolvedor Full Stack apaixonado por arquitetar sistemas eficientes e criar interfaces intuitivas. Atualmente formado em Análise e Desenvolvimento na&nbsp;<strong class="text-white">UNIPÊ</strong>, busco constantemente unir a teoria acadêmica com as melhores práticas de mercado.
+                </p>
+<p class="text-lg font-body leading-relaxed text-on-surface-variant" style="">
+                    Minha abordagem de desenvolvimento é focada na escalabilidade, manutenção e, acima de tudo, na experiência do usuário final. Acredito que o código não é apenas uma ferramenta de engenharia, mas um meio de comunicação com as pessoas.
+                </p>
+</div>
+</div>
+</section>
+<!-- Technical Skills Section -->
+<section class="py-24 px-6 md:px-12 relative border-t border-white/5" id="stack">
+<div class="max-w-6xl mx-auto space-y-16">
+<div class="text-center space-y-4">
+<h2 class="text-3xl md:text-5xl font-headline font-black tracking-tighter text-white" style="">
+                    Technical <span class="text-[#FF0000]" style="">Stack</span>
+</h2>
+<p class="font-label text-sm uppercase tracking-widest text-neutral-500" style="">O arsenal do arquiteto</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Languages/Frameworks -->
+<div class="glass-panel p-8 rounded-xl ghost-border hover-ghost-border transition-all duration-300">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[#FF0000]" style="">code</span>
+</div>
+<h3 class="text-xl font-headline font-bold text-white mb-4" style="">Lang/Frameworks</h3>
+<ul class="space-y-3 font-body text-sm text-on-surface-variant">
+<li class="flex items-center gap-2" style=""><span class="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> TypeScript / JavaScript</li>
+<li class="flex items-center gap-2" style=""><span class="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> React / Next.js</li>
+<li class="flex items-center gap-2" style=""><span class="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span>Express / Nest.js</li>
+<li class="flex items-center gap-2" style=""><span class="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> HTML5 / CSS3 / Tailwind</li>
+</ul>
+</div>
+<!-- DB/ORM -->
+<div class="glass-panel p-8 rounded-xl ghost-border hover-ghost-border transition-all duration-300">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[#FF0000]" style="">database</span>
+</div>
+<h3 class="text-xl font-headline font-bold text-white mb-4" style="">Database &amp; ORM</h3>
+<ul class="space-y-3 font-body text-sm text-on-surface-variant">
+<li class="flex items-center gap-2" style=""><span class="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> PostgreSQL</li>
+<li class="flex items-center gap-2" style=""><span class="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> MongoDB</li>
+<li class="flex items-center gap-2" style=""><span class="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> Prisma ORM</li>
+<li class="flex items-center gap-2" style=""><span class="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> Redis</li>
+</ul>
+</div>
+<!-- Tools -->
+<div class="glass-panel p-8 rounded-xl ghost-border hover-ghost-border transition-all duration-300">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[#FF0000]" style="">build</span>
+</div>
+<h3 class="text-xl font-headline font-bold text-white mb-4" style="">Ferramentas</h3>
+<ul class="space-y-3 font-body text-sm text-on-surface-variant">
+<li class="flex items-center gap-2" style=""><span class="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> Git / GitHub</li>
+<li class="flex items-center gap-2" style=""><span class="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> Docker</li>
+<li class="flex items-center gap-2" style=""><span class="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> Vercel</li>
+<li class="flex items-center gap-2" style=""><span class="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> Figma</li>
+</ul>
+</div>
+<!-- Practices -->
+<div class="glass-panel p-8 rounded-xl ghost-border hover-ghost-border transition-all duration-300">
+<div class="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[#FF0000]" style="">architecture</span>
+</div>
+<h3 class="text-xl font-headline font-bold text-white mb-4" style="">Práticas</h3>
+<ul class="space-y-3 font-body text-sm text-on-surface-variant">
+<li class="flex items-center gap-2" style=""><span class="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> Clean Code</li>
+<li class="flex items-center gap-2" style=""><span class="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> SOLID Principles</li>
+<li class="flex items-center gap-2" style=""><span class="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> Agile / Scrum</li>
+<li class="flex items-center gap-2" style=""><span class="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> UI/UX Design</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Professional Journey Section -->
+<section class="py-24 px-6 md:px-12 relative border-t border-white/5 bg-surface-container-low" id="journey">
+<div class="max-w-4xl mx-auto space-y-16">
+<div class="text-center space-y-4">
+<h2 class="text-3xl md:text-5xl font-headline font-black tracking-tighter text-white" style="">
+                    Professional <span class="text-[#FF0000]" style="">Journey</span>
+</h2>
+<p class="font-label text-sm uppercase tracking-widest text-neutral-500" style="">A evolução contínua</p>
+</div>
+<div class="relative border-l border-[#FF0000]/30 ml-4 md:ml-12 space-y-12">
+<!-- Meets Tecnologia -->
+<div class="relative pl-8 md:pl-12">
+<div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-[#FF0000] border-4 border-background"></div>
+<div class="space-y-2">
+<span class="font-label text-xs uppercase tracking-widest text-primary" style="">Setembro 2025 - Presente</span>
+<h3 class="text-2xl font-headline font-bold text-white" style="">Desenvolvedor Full Stack Júnior</h3>
+<h4 class="text-lg font-body text-neutral-400" style="">Meets Tecnologia</h4>
+<p class="text-on-surface-variant font-body leading-relaxed pt-2" style="">
+                            Desenvolvimento e manutenção de aplicações web escaláveis. Colaboração em equipes ágeis, implementação de novas features focadas na experiência do usuário e otimização de performance no backend.
+                        </p>
+</div>
+</div>
+<!-- UBTech Office -->
+<div class="relative pl-8 md:pl-12">
+<div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-surface-variant border-4 border-background"></div>
+<div class="space-y-2">
+<span class="font-label text-xs uppercase tracking-widest text-neutral-500" style="">Setembro 2024 - junho 2025</span>
+<h3 class="text-2xl font-headline font-bold text-white" style="">Estagiário de Desenvolvimento</h3>
+<h4 class="text-lg font-body text-neutral-400" style="">UBTech Office</h4>
+<p class="text-on-surface-variant font-body leading-relaxed pt-2" style="">
+                            Apoio no desenvolvimento de sistemas internos, criação de interfaces de usuário com React e rotinas de backend. Aprendizado intenso sobre o ciclo de vida do software corporativo.
+                        </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Projects Section -->
+<section class="py-24 px-6 md:px-12 relative border-t border-white/5" id="work">
+<div class="max-w-6xl mx-auto space-y-16">
+<div class="text-center space-y-4">
+<h2 class="text-3xl md:text-5xl font-headline font-black tracking-tighter text-white" style="">
+                    Featured <span class="text-[#FF0000]" style="">Projects</span>
+</h2>
+<p class="font-label text-sm uppercase tracking-widest text-neutral-500" style="">A prova de conceito</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- BPet -->
+<div class="glass-panel group rounded-xl overflow-hidden ghost-border hover-ghost-border transition-all duration-500 flex flex-col">
+<div class="h-48 bg-surface-container relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-[#131313] to-transparent z-10"></div>
+<img alt="BPet Project" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60 group-hover:opacity-100 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWSGL-vaJQS_NJlA23YRxIKwUNYZVu7aNMwzqTECG-3E00ttn_qxI-83jjKccA5NicAGbkdMDGV6KE5yShFOJfJ4DyG-NCcuh6vt4aOHPxsmn0rHWZsaOu0VEoH43aXau9QH9LraVc0iMlHV56CncDry5Qbke-nZiEszlD61P1XqD8zDEPbKUY2SLAyqLWbRN3B9NvnSTmiaQRbF5Z4sEPxEbPiFAiM7bykXDKFIlfnXGco_z_njWWhP5E8oQLRxnwk402Wfp_iZC7" style="">
+</div>
+<div class="p-8 flex-1 flex flex-col">
+<h3 class="text-2xl font-headline font-bold text-white mb-2 group-hover:text-[#FF0000] transition-colors" style="">BPet</h3>
+<p class="text-sm font-body text-on-surface-variant mb-6 flex-1" style="">
+                            Plataforma de gestão para clínicas veterinárias. Sistema completo com controle de prontuários, agendamentos e faturamento financeiro integrado.
+                        </p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300" style="">Next.js</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300" style="">Node.js</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300" style="">PostgreSQL</span>
+</div>
+</div>
+</div>
+<!-- ESP-PB -->
+<div class="glass-panel group rounded-xl overflow-hidden ghost-border hover-ghost-border transition-all duration-500 flex flex-col">
+<div class="h-48 bg-surface-container relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-[#131313] to-transparent z-10"></div>
+<img alt="ESP-PB Project" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60 group-hover:opacity-100 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEBNu2ayzd7ONHHEVbQQTJXVIkFxcK-hhhzqZS_iLYL_FpNoqLHYInsaitmS4tYo6574HOJQPriEYWUcnGIoxw_HQUHovL5Wi8THmU0GcC0ER1A0NjEFyz_zXlLRcZuavA-goHPlXf0gh4IWhip5d_isvLhcxWMdTAqbHLgt_SHvMbEeEZW6gbJqnLUo6-kdEpwe86OvITKSxQtTCA2_hdEmPejMu-2Df5_jKhNhQYdgjvobtpHfNfdbFtW4-DdG_G1-Psjk5dBE0j" style="">
+</div>
+<div class="p-8 flex-1 flex flex-col">
+<h3 class="text-2xl font-headline font-bold text-white mb-2 group-hover:text-[#FF0000] transition-colors" style="">ESP-PB</h3>
+<p class="text-sm font-body text-on-surface-variant mb-6 flex-1" style="">
+                            Portal educacional para a Escola de Saúde Pública da Paraíba. Sistema de gestão de cursos, inscrições e certificação digital com alta disponibilidade.
+                        </p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300" style="">React</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300" style="">Express</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300" style="">MongoDB</span>
+</div>
+</div>
+</div>
+<!-- PM-PB -->
+<div class="glass-panel group rounded-xl overflow-hidden ghost-border hover-ghost-border transition-all duration-500 flex flex-col">
+<div class="h-48 bg-surface-container relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-[#131313] to-transparent z-10"></div>
+<img alt="PM-PB Project" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60 group-hover:opacity-100 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYOIdYta8dVvU8X5e_xu0Box-IaHuxiMiwDTqh3AFQR7hMkK5oF1F5AmXjLntS5ljmFjGZrpYE_ZtNw3XTJTIQvQtjzri8cPMYIP0aBqS0mQ6DZLUl_AJoz05USvwKCig43zLajzoSUitUfsLXoJ1e7SqfLiZakUBUHL2ljA-sbTFsQ0JUtNeunH9TRSs8kh0TagmyHeBRDbQiNGh93kQ8p23YWJkTFSRwr8GSwNNIZY6gt0WRFIKBbBfeq7pKjUYSaDH1uXpq1KSK" style="">
+</div>
+<div class="p-8 flex-1 flex flex-col">
+<h3 class="text-2xl font-headline font-bold text-white mb-2 group-hover:text-[#FF0000] transition-colors" style="">PM-PB</h3>
+<p class="text-sm font-body text-on-surface-variant mb-6 flex-1" style="">
+                            Sistema administrativo para a Polícia Militar da Paraíba. Foco estrito em segurança, controle de acesso granular e auditoria de dados sensíveis.
+                        </p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300" style="">TypeScript</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300" style="">NestJS</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300" style="">Docker</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Soft Skills & Goals and Languages Section -->
+<section class="py-24 px-6 md:px-12 relative border-t border-white/5 bg-surface-container-low">
+<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+<!-- Soft Skills -->
+<div class="space-y-10">
+<div class="space-y-2">
+<h2 class="text-3xl font-headline font-black tracking-tighter text-white" style="">Soft <span class="text-[#FF0000]" style="">Skills</span> &amp; Goals</h2>
+<p class="font-body text-sm text-neutral-500" style="">Além do código</p>
+</div>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between font-label text-sm mb-2">
+<span class="text-white" style="">Resolução de Problemas</span>
+<span class="text-primary" style="">95%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-[#FF0000] w-[95%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label text-sm mb-2">
+<span class="text-white" style="">Trabalho em Equipe</span>
+<span class="text-primary" style="">90%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-[#FF0000] w-[90%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label text-sm mb-2">
+<span class="text-white" style="">Comunicação Técnica</span>
+<span class="text-primary" style="">85%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-[#FF0000] w-[85%]"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label text-sm mb-2">
+<span class="text-white" style="">Adaptabilidade</span>
+<span class="text-primary" style="">92%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-[#FF0000] w-[92%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Languages -->
+<div class="space-y-10">
+<div class="space-y-2">
+<h2 class="text-3xl font-headline font-black tracking-tighter text-white" style="">Idiomas</h2>
+<p class="font-body text-sm text-neutral-500" style="">Comunicação global</p>
+</div>
+<div class="space-y-8">
+<div class="flex items-center gap-6 glass-panel p-6 rounded-xl ghost-border">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-2xl border border-white/10 grayscale" style="">
+                            🇧🇷
+                        </div>
+<div>
+<h4 class="text-lg font-headline font-bold text-white" style="">Português</h4>
+<p class="text-sm font-label text-primary" style="">Nativo</p>
+</div>
+</div>
+<div class="flex items-center gap-6 glass-panel p-6 rounded-xl ghost-border">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-2xl border border-white/10 grayscale" style="">
+                            🇺🇸
+                        </div>
+<div>
+<h4 class="text-lg font-headline font-bold text-white" style="">Inglês</h4>
+<p class="text-sm font-label text-primary" style="">Avançado (Técnico e Conversação)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-24 px-6 md:px-12 relative border-t border-white/5 data-wave-bg" id="contact">
+<div class="max-w-3xl mx-auto text-center space-y-12">
+<div class="space-y-4">
+<h2 class="text-4xl md:text-6xl font-headline font-black tracking-tighter text-white" style="">
+                    Vamos <span class="text-[#FF0000]" style="">Conversar.</span>
+</h2>
+<p class="text-lg font-body text-on-surface-variant" style="">Pronto para construir o próximo projeto incrível? Entre em contato e vamos transformar sua ideia em realidade digital.</p>
+</div>
+<form class="space-y-6 text-left glass-panel p-8 md:p-12 rounded-2xl ghost-border">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label text-xs uppercase tracking-widest text-neutral-400" for="name" style="">Nome</label>
+<input class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 text-white placeholder-neutral-600 focus:ring-2 focus:ring-[#FF0000] transition-all font-body" id="name" placeholder="John Doe" type="text">
+</div>
+<div class="space-y-2">
+<label class="font-label text-xs uppercase tracking-widest text-neutral-400" for="email" style="">Email</label>
+<input class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 text-white placeholder-neutral-600 focus:ring-2 focus:ring-[#FF0000] transition-all font-body" id="email" placeholder="john@example.com" type="email">
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label text-xs uppercase tracking-widest text-neutral-400" for="message" style="">Mensagem</label>
+<textarea class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 text-white placeholder-neutral-600 focus:ring-2 focus:ring-[#FF0000] transition-all font-body resize-none" id="message" placeholder="Olá, gostaria de falar sobre..." rows="4"></textarea>
+</div>
+<button class="w-full px-8 py-4 rounded-md red-gradient-bg text-white hover:opacity-90 transition-opacity font-label text-sm uppercase tracking-wider font-bold" style="">
+                    Enviar Mensagem
+                </button>
+</form>
+<p class="font-headline text-2xl md:text-3xl font-bold text-surface-container-highest tracking-tight pt-8" style="">
+                Thank you for visiting.
+            </p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 bg-[#0e0e0e] border-t border-white/5">
+<div class="font-['Space_Grotesk'] font-bold text-white uppercase text-xl" style="">V.ALMEIDA</div>
+<div class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-neutral-500" style="">
+            © 2026 VINÍCIUS ALMEIDA</div>
+<div class="flex items-center gap-6 font-label text-xs uppercase tracking-widest text-neutral-600">
+<a class="hover:text-[#FF0000] transition-colors" href="#" style="">GitHub</a>
+<a class="hover:text-[#FF0000] transition-colors" href="#" style="">LinkedIn</a>
+<a class="hover:text-[#FF0000] transition-colors" href="#" style="">Email</a>
+<a class="hover:text-[#FF0000] transition-colors" href="#" style="">Source</a>
+</div>
+</footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('header, section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const logo = document.getElementById('logo-scroll');
+        const openBtn = document.getElementById('open-sidebar');
+        const closeBtn = document.getElementById('close-sidebar');
+        const sidebar = document.getElementById('mobile-sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        // Sidebar logic
+        const toggleSidebar = () => {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('visible');
+            document.body.classList.toggle('overflow-hidden');
+        };
+
+        if (openBtn) openBtn.addEventListener('click', toggleSidebar);
+        if (closeBtn) closeBtn.addEventListener('click', toggleSidebar);
+        if (overlay) overlay.addEventListener('click', toggleSidebar);
+
+        // Logo click -> top
+        if (logo) {
+            logo.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-30% 0px -60% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+
+                    // Highlight 'top'/logo if we are back in the hero area
+                    if (id === 'home') {
+                         navLinks.forEach(link => link.classList.remove('active'));
+                    }
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            if (section.id) observer.observe(section);
+        });
+
+        // Click handler for immediate feedback and closing sidebar
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                // Auto close mobile sidebar
+                if (sidebar.classList.contains('open')) {
+                    toggleSidebar();
+                }
+            });
+        });
+    });
+</script>
+</body></html>

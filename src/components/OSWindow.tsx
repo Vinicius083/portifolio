@@ -43,14 +43,19 @@ export default function OSWindow({
   const windowRef = useRef<HTMLDivElement>(null);
   const dragInstance = useRef<Draggable[] | null>(null);
 
+  const onFocusRef = useRef(onFocus);
   useEffect(() => {
-    if (windowRef.current && !dragInstance.current) {
+    onFocusRef.current = onFocus;
+  }, [onFocus]);
+
+  useEffect(() => {
+    if (isOpen && windowRef.current && !dragInstance.current) {
       // Initialize GSAP Draggable
       dragInstance.current = Draggable.create(windowRef.current, {
         type: 'x,y',
         bounds: 'body',
         handle: '.window-drag-handle',
-        onPress: onFocus,
+        onPress: () => onFocusRef.current(),
       });
       
       // Set initial position
@@ -58,12 +63,12 @@ export default function OSWindow({
     }
 
     return () => {
-      if (dragInstance.current) {
+      if (!isOpen && dragInstance.current) {
         dragInstance.current[0].kill();
         dragInstance.current = null;
       }
     };
-  }, [initialX, initialY, onFocus]);
+  }, [isOpen, initialX, initialY]);
 
   // Handle Maximize toggle
   useEffect(() => {

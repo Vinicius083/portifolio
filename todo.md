@@ -1,19 +1,22 @@
 [x] arrumar os botões de fechar, maximizar e minimizar
-[ ] Tela ligando
+[x] Tela ligando
 [x] design de aplicativos
     [x] navegador - bio
     [x] terminal - bootScreen 
     [x] file explorer - projetos
     [x] chat - contato
-[ ] responsividade mobile
+[x] responsividade mobile
+[ ] abrir e fechar janelas no mobile pelo scroll
+[ ] janela de rede social
+    [ ] adicionar linkedin, github, discord e instagram 
 [x] icones do site
     [x] browser
     [x] terminal
     [x] file explorer
     [x] chat
     [x] logo
-[ ] bug das janelas
-[ ] arrumar os textos
+[x] bug das janelas
+[x] arrumar os textos
 [ ] portugues e ingles
     [ ] bootScreen
     [ ] OS normal 

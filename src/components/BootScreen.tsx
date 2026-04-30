@@ -11,6 +11,9 @@ export default function BootScreen({ onBoot }: { onBoot: () => void }) {
       '> LOADING DRIVERS...',
       '> MOUNTING VFS...',
       '> ESTABLISHING UPLINK...',
+      '> INITIATING SECURITY PROTOCOLS...',
+      '> AUTHENTICATING VINÍCIUS ALMEIDA...',
+      '> AUTHENTICATION SUCCESSFUL',
       '> SYSTEM READY.'
     ];
     let i = 0;

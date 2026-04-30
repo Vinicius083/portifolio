@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import BootScreen from '@/components/BootScreen';
 import OSWindow from '@/components/OSWindow';
 import CodeStreamBackground from '@/components/CodeStreamBackground';
+import MobileView from '@/components/MobileView';
 import Image from 'next/image';
 
 type WindowState = {
@@ -81,13 +82,20 @@ export default function Home() {
 
   return (
     <>
-      {/* Global CRT Overlay */}
-      <div className="crt-overlay pointer-events-none"></div>
+      {/* Mobile View */}
+      <div className="block md:hidden">
+        <MobileView />
+      </div>
 
-      {!isBooted && <BootScreen onBoot={handleBoot} />}
+      {/* Desktop OS View */}
+      <div className="hidden md:block w-full h-screen overflow-hidden">
+        {/* Global CRT Overlay */}
+        <div className="crt-overlay pointer-events-none fixed inset-0 z-[9999]"></div>
 
-      {isBooted && (
-        <div className="w-full h-screen overflow-hidden relative">
+        {!isBooted && <BootScreen onBoot={handleBoot} />}
+
+        {isBooted && (
+          <div className="w-full h-screen overflow-hidden relative">
           
           {/* Top Navigation (MISSION_CONTROL_v1.0) */}
           <nav className="fixed top-0 left-0 w-full z-[9999] flex justify-between items-center px-2 bg-blue-700 dark:bg-blue-800 font-label-caps text-label-caps tracking-tighter uppercase h-8 border-b-2 border-black/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_2px_0_0_rgba(0,0,0,1)] text-white select-none">
@@ -178,31 +186,60 @@ export default function Home() {
                       <div className="mt-2 text-center text-gray-700 text-sm font-bold">Vinícius Almeida</div>
                     </div>
                     <div className="text-gray-800 space-y-4 w-full text-sm leading-relaxed">
-                      <h2 className="text-2xl text-[#000080] font-bold border-b border-gray-300 pb-2">About Me</h2>
-                      <p>I am a Creative Developer specializing in bridging the gap between robust system architecture and immersive, high-fidelity user experiences. With a foundation built on full-stack technologies, I construct digital environments that are as functional as they are visually compelling.</p>
+                      <h2 className="text-2xl text-[#000080] font-bold border-b border-gray-300 pb-2">Sobre Mim</h2>
+                      <p>Desenvolvedor Full Stack com experiência prática em ambientes reais de desenvolvimento de software, atuando tanto no back-end quanto no front-end. Minha trajetória é marcada por evolução constante, aprendizado contínuo e participação ativa em projetos com impacto direto em usuários e clientes.</p>
                       
                       {!getWindow('bio')?.isMaximized ? (
                         <>
-                          <p>Operating primarily within the React ecosystem, I engineer interfaces that evoke emotion while maintaining strict performance standards.</p>
                           <div className="mt-4 p-4 border border-blue-200 bg-blue-50">
                             <ul className="space-y-2">
-                              <li><strong>Role:</strong> Frontend Engineer</li>
-                              <li><strong>Focus:</strong> UI/UX Architecture</li>
-                              <li><strong>Status:</strong> Available for work</li>
+                              <li><strong>Especialização:</strong> Desenvolvedor Full Stack</li>
+                              <li><strong>Localidade:</strong> João Pessoa, PB, Brasil</li>
+                              <li><strong>Status:</strong> Empregado / Ativo</li>
                             </ul>
                           </div>
                         </>
                       ) : (
                         <div className="animate-in fade-in duration-500 space-y-6">
-                          <p>My approach blends modern technical capabilities with distinct, narrative-driven aesthetics—often drawing inspiration from retro-computing, sci-fi interfaces, and industrial design.</p>
-                          <div className="grid grid-cols-2 gap-4">
+                          <p>Valorizo o desenvolvimento contínuo e a construção de soluções com impacto real. Meu perfil combina uma base técnica sólida, experiência prática em produção e maturidade profissional para atuar em ambientes desafiadores, desde a análise de requisitos até a implementação e manutenção.</p>
+                          
+                          <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
                             <div className="p-4 border border-gray-300 bg-gray-50 shadow-sm">
-                              <h4 className="text-[#000080] mb-2 font-bold">Background</h4>
-                              <p className="text-xs text-gray-600">Started journey in web development focusing on raw performance and logic. Evolved into full-stack architecture with a passion for visually striking user interfaces.</p>
+                              <h4 className="text-[#000080] mb-3 font-bold flex items-center gap-2">
+                                <span className="material-symbols-outlined text-sm">work</span> Trajetória Profissional
+                              </h4>
+                              <div className="space-y-4">
+                                <div>
+                                  <div className="font-bold text-sm">Meets Tecnologia</div>
+                                  <div className="text-xs text-gray-600 mb-1">Dev Full Stack Júnior | Remoto | Atual</div>
+                                  <p className="text-xs text-gray-700">Desenvolvimento em PHP (Zend) no back/front (CRM), React (JS/TS) e NestJS. Destaque: Módulo de "Coexistência WhatsApp".</p>
+                                </div>
+                                <div>
+                                  <div className="font-bold text-sm">BPet System</div>
+                                  <div className="text-xs text-gray-600 mb-1">Dev Full Stack Freelancer | Nov 2025 - Atual</div>
+                                  <p className="text-xs text-gray-700">Back-end com NestJS (APIs e regras de negócio) e front-end com Next.js.</p>
+                                </div>
+                                <div>
+                                  <div className="font-bold text-sm">Fábrica de Software UBTech Office</div>
+                                  <div className="text-xs text-gray-600 mb-1">Estagiário & Squad Leader (Back-end)</div>
+                                  <p className="text-xs text-gray-700">Liderança técnica. Projetos ESP-PB (Django REST, React) e PM-PB (Geoprocessamento).</p>
+                                </div>
+                              </div>
                             </div>
-                            <div className="p-4 border border-gray-300 bg-gray-50 shadow-sm">
-                              <h4 className="text-[#000080] mb-2 font-bold">Objective</h4>
-                              <p className="text-xs text-gray-600">To build scalable applications that do not compromise on the artistic and aesthetic experience. The web is a canvas, and code is the brush.</p>
+                            <div className="p-4 border border-gray-300 bg-gray-50 shadow-sm h-fit">
+                              <h4 className="text-[#000080] mb-3 font-bold flex items-center gap-2">
+                                <span className="material-symbols-outlined text-sm">school</span> Formação
+                              </h4>
+                              <div className="space-y-4">
+                                <div>
+                                  <div className="font-bold text-sm">UNIPÊ</div>
+                                  <div className="text-xs text-gray-600 mb-1">Análise e Desenvolvimento de Sistemas | Dez 2025</div>
+                                </div>
+                                <div>
+                                  <div className="font-bold text-sm">Cisco Maratona CiberEducação</div>
+                                  <div className="text-xs text-gray-600 mb-1">Treinamento Cibersegurança | Set 2025</div>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -316,17 +353,15 @@ export default function Home() {
 
                   {getWindow('skills')?.isMaximized && (
                     <div className="animate-in fade-in duration-500 pb-4">
-                      <h3 className="text-tertiary font-label-caps text-sm mb-4 border-b border-outline-variant pb-2 uppercase tracking-widest">&gt; SECONDARY_MODULES & PROTOCOLS</h3>
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      <h3 className="text-tertiary font-label-caps text-sm mb-4 border-b border-outline-variant pb-2 uppercase tracking-widest">&gt; LINGUAGENS_&_FRAMEWORKS.SYS</h3>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                         {[
-                          { name: 'NEXT.JS', type: 'FRAMEWORK', lvl: 'ADVANCED' },
-                          { name: 'TAILWIND CSS', type: 'STYLING', lvl: 'EXPERT' },
-                          { name: 'PRISMA ORM', type: 'DATABASE', lvl: 'INTERMEDIATE' },
-                          { name: 'POSTGRESQL', type: 'DATABASE', lvl: 'ADVANCED' },
-                          { name: 'DOCKER', type: 'DEVOPS', lvl: 'INTERMEDIATE' },
-                          { name: 'THREE.JS', type: '3D/WEBGL', lvl: 'EXPLORING' },
-                          { name: 'GSAP', type: 'ANIMATION', lvl: 'ADVANCED' },
-                          { name: 'GIT', type: 'VCS', lvl: 'EXPERT' },
+                          { name: 'NEXT.JS', type: 'FRONTEND', lvl: 'ADVANCED' },
+                          { name: 'NESTJS', type: 'BACKEND', lvl: 'ADVANCED' },
+                          { name: 'PHP / ZEND', type: 'BACKEND', lvl: 'INTERMEDIATE' },
+                          { name: 'PYTHON / DJANGO', type: 'BACKEND', lvl: 'INTERMEDIATE' },
+                          { name: 'TAILWIND CSS', type: 'FRONTEND', lvl: 'EXPERT' },
+                          { name: 'SHADCN/UI', type: 'FRONTEND', lvl: 'ADVANCED' },
                         ].map(tool => (
                           <div key={tool.name} className="border border-outline-variant bg-surface-dim p-3 flex flex-col justify-between h-24">
                             <span className="font-terminal-md text-white text-lg">{tool.name}</span>
@@ -336,6 +371,46 @@ export default function Home() {
                             </div>
                           </div>
                         ))}
+                      </div>
+
+                      <h3 className="text-tertiary font-label-caps text-sm mb-4 border-b border-outline-variant pb-2 uppercase tracking-widest">&gt; DB_&_DEVOPS_&_TOOLS.SYS</h3>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                        {[
+                          { name: 'POSTGRESQL', type: 'DATABASE', lvl: 'ADVANCED' },
+                          { name: 'MYSQL / MONGODB', type: 'DATABASE', lvl: 'INTERMEDIATE' },
+                          { name: 'PRISMA / TYPEORM', type: 'ORM', lvl: 'ADVANCED' },
+                          { name: 'DOCKER', type: 'DEVOPS', lvl: 'INTERMEDIATE' },
+                          { name: 'GIT / GITHUB', type: 'VCS', lvl: 'EXPERT' },
+                          { name: 'SCRUM / AGILE', type: 'METODOLOGIA', lvl: 'EXPERIÊNCIA PRÁTICA' },
+                        ].map(tool => (
+                          <div key={tool.name} className="border border-outline-variant bg-surface-dim p-3 flex flex-col justify-between h-24">
+                            <span className="font-terminal-md text-white text-lg">{tool.name}</span>
+                            <div className="flex justify-between items-end mt-auto">
+                              <span className="text-[10px] text-tertiary">{tool.type}</span>
+                              <span className="text-[10px] text-on-surface-variant border border-outline-variant px-1 bg-black">{tool.lvl}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                          <h3 className="text-secondary font-label-caps text-sm mb-4 border-b border-outline-variant pb-2 uppercase tracking-widest">&gt; SOFT_SKILLS.LOG</h3>
+                          <ul className="space-y-2 text-sm text-on-surface-variant">
+                            <li><strong className="text-secondary">Comunicação:</strong> Clara e objetiva (times técnicos e clientes).</li>
+                            <li><strong className="text-secondary">Liderança Técnica:</strong> Experiência prática como squad leader.</li>
+                            <li><strong className="text-secondary">Resolução de Problemas:</strong> Senso analítico forte / troubleshooting.</li>
+                            <li><strong className="text-secondary">Trabalho em Equipe:</strong> Colaboração em ambientes ágeis/remotos.</li>
+                            <li><strong className="text-secondary">Proatividade:</strong> Antecipação e proposição de soluções.</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h3 className="text-primary font-label-caps text-sm mb-4 border-b border-outline-variant pb-2 uppercase tracking-widest">&gt; IDIOMAS.DAT</h3>
+                          <ul className="space-y-2 text-sm text-on-surface-variant">
+                            <li className="flex items-center gap-2"><span className="material-symbols-outlined text-sm text-primary">language</span> <strong>Português:</strong> Nativo</li>
+                            <li className="flex items-center gap-2"><span className="material-symbols-outlined text-sm text-primary">language</span> <strong>Inglês:</strong> Intermediário (Leitura técnica avançada)</li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   )}
@@ -388,11 +463,16 @@ export default function Home() {
                     <div className={`bg-white p-4 flex-1 ${getWindow('projects')?.isMaximized ? 'overflow-y-auto' : 'overflow-x-auto'}`}>
                       <div className={`${getWindow('projects')?.isMaximized ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8' : 'flex gap-6 min-w-max pb-4 h-full'}`}>
                         {[
-                          { title: 'BPet System', type: 'React/Node', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAEfRL3dKTLEPHLQOxClkM4vqE827PoNOl-P2KmaQDAAKcalGOO9G5kca9bTe5FPDNR8HfF4s0nzZyRmD3D8u6xUQyikBCM3qrrNb0TPKJ2-trwEE5_qkK1MY8f83plYIKIF5o-CBq7vpP8U98XcjbuMouPCK3uDGVtQEunXlyw-T_sknLWDdMLEnWb-n9XyxWR5m8zXFfMJQs4GQ05oQ4glg1aMSYCBQisW6j0EB4-iDScyEfAQMa6V9e07PLkXvvtDolzx-QcdTVR', desc: 'Comprehensive veterinary management platform built with React and Node.js.', size: '4.2GB', extended: 'Includes complex state management for patient records, scheduling modules, and billing integration using Stripe. Built as a PWA for offline capabilities in rural veterinary clinics.' },
-                          { title: 'ESP-PB', type: 'IoT Dashboard', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAByM7v6r6qRB6lXLYjpozMCIFtw2hUkpF-k0BG39RX89rN8aKGRfsBqJevptAmh7jb5aHUe8zkbD61HT6iBuF11zUvTwowDOA5JtwASUTXDBAJpWh5AMmNUJ06sZKPJkduQBcqqJqHNqbpBOiYJXVZTg8LUcDhmwXVsxT5F4a-QQjiPMfbCQL6js8l7vt6h0kBF8VakGjMTul_6TvQ9hLnlwqfFxjEHo2mqVug2Lh5qVlu6VAhQTu8oN7BwdxYjYDqJ-T4Jukra7ij', desc: 'IoT dashboard for real-time monitoring of ESP8266 devices.', size: '1.1GB', extended: 'Utilizes WebSockets for instant data visualization and telemetry. Handles thousands of events per second with optimized React rendering. Backend powered by Node.js and MQTT brokers.' },
-                          { title: 'PM-PB', type: 'Next.js App', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCFPNKRoWbfSDeS0QGtf1Vblaf74rY0qIN1e-B4eTArve7SWUoYXA0DpFTIEmwG5TypJWxAnmvGphCyszNBYm3icYkvaXweWoUYH235TnRxC1wOM7DBYOeTryztnHpgDgx2Ch5T3cCNEiOQHObw-Jq51xNbAp1xupfgnZkkzMHSjxFt70mkOvk5wlE1q1VpiJZnn3PYkTWI3VLmK4CHtFxghTl9g8etYa7CHkGc5tTO4MMWUASiSWnT9zBAkfeWP_FBi5OCJsOspN0Y', desc: 'Project management tool designed for agile teams.', size: '2.8GB', extended: 'Custom drag-and-drop interface prioritizing keyboard navigation. Integrates deeply with Git providers for automated commit tracking. Built with Next.js App Router and Prisma.' }
+                          { title: 'Meets Tecnologia', type: 'Trabalho / CRM', img: '/projetos/meets.png', desc: 'Soluções de CRM e centrais de atendimento.', link: 'https://meets.com.br/pt-br', extended: 'Desenvolvimento e manutenção do CRM (PHP Zend) e front-end React. Implementação de Coexistência WhatsApp com Meta Graph API.' },
+                          { title: 'BPet System', type: 'Trabalho / SaaS', img: '/projetos/bpet.png', desc: 'Plataforma de gestão para petshops.', link: 'https://www.b-pet.app.br', extended: 'Back-end com NestJS e Front-end com Next.js. Gerenciamento de clientes, empresas e fornecedores.' },
+                          { title: 'ESP-PB', type: 'Trabalho / Governo', img: '/projetos/esppb.png', desc: 'Sistema de gestão de vagas de estágio.', link: 'Em Progresso', extended: 'Regras de negócio complexas usando Django REST Framework, React, Docker e PostgreSQL. Atuação como Squad Leader do back-end.' },
+                          { title: 'PM-PB', type: 'Trabalho / Governo', img: '/projetos/pmpb.png', desc: 'Projeto Sigiloso de geoprocessamento.', link: 'Em Progresso', extended: 'Visualização de dados espaciais com Django Template, GDAL e Leaflet.' },
+                          { title: 'Sentinela Elétrica', type: 'Projeto / IoT', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAEfRL3dKTLEPHLQOxClkM4vqE827PoNOl-P2KmaQDAAKcalGOO9G5kca9bTe5FPDNR8HfF4s0nzZyRmD3D8u6xUQyikBCM3qrrNb0TPKJ2-trwEE5_qkK1MY8f83plYIKIF5o-CBq7vpP8U98XcjbuMouPCK3uDGVtQEunXlyw-T_sknLWDdMLEnWb-n9XyxWR5m8zXFfMJQs4GQ05oQ4glg1aMSYCBQisW6j0EB4-iDScyEfAQMa6V9e07PLkXvvtDolzx-QcdTVR', desc: 'Dashboard IoT para redes de distribuição.', link: 'https://smart-lumen.vercel.app', extended: 'Monitoramento em tempo real, sistema de alertas inteligentes, análises preditivas e mapa interativo de sensores.' },
+                          { title: 'Dialoga', type: 'Projeto / Fórum', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAByM7v6r6qRB6lXLYjpozMCIFtw2hUkpF-k0BG39RX89rN8aKGRfsBqJevptAmh7jb5aHUe8zkbD61HT6iBuF11zUvTwowDOA5JtwASUTXDBAJpWh5AMmNUJ06sZKPJkduQBcqqJqHNqbpBOiYJXVZTg8LUcDhmwXVsxT5F4a-QQjiPMfbCQL6js8l7vt6h0kBF8VakGjMTul_6TvQ9hLnlwqfFxjEHo2mqVug2Lh5qVlu6VAhQTu8oN7BwdxYjYDqJ-T4Jukra7ij', desc: 'Plataforma interativa para conectar pessoas.', link: 'https://github.com/Vinicius083/Forum-project', extended: 'Fórum moderno focado em troca de ideias e engajamento dos usuários, com interface fluida e intuitiva.' },
+                          { title: 'DueCheck', type: 'Projeto / Saúde', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCFPNKRoWbfSDeS0QGtf1Vblaf74rY0qIN1e-B4eTArve7SWUoYXA0DpFTIEmwG5TypJWxAnmvGphCyszNBYm3icYkvaXweWoUYH235TnRxC1wOM7DBYOeTryztnHpgDgx2Ch5T3cCNEiOQHObw-Jq51xNbAp1xupfgnZkkzMHSjxFt70mkOvk5wlE1q1VpiJZnn3PYkTWI3VLmK4CHtFxghTl9g8etYa7CHkGc5tTO4MMWUASiSWnT9zBAkfeWP_FBi5OCJsOspN0Y', desc: 'Gerenciador de consultas médicas e pacientes.', link: 'https://github.com/Vinicius083/duecheck-project', extended: 'Node.js, TypeScript e Prisma (PostgreSQL). Operações robustas e escaláveis para médicos e pacientes.' },
+                          { title: 'BookCommerce', type: 'Projeto / E-commerce', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAEfRL3dKTLEPHLQOxClkM4vqE827PoNOl-P2KmaQDAAKcalGOO9G5kca9bTe5FPDNR8HfF4s0nzZyRmD3D8u6xUQyikBCM3qrrNb0TPKJ2-trwEE5_qkK1MY8f83plYIKIF5o-CBq7vpP8U98XcjbuMouPCK3uDGVtQEunXlyw-T_sknLWDdMLEnWb-n9XyxWR5m8zXFfMJQs4GQ05oQ4glg1aMSYCBQisW6j0EB4-iDScyEfAQMa6V9e07PLkXvvtDolzx-QcdTVR', desc: 'E-commerce completo para venda de livros.', link: 'https://github.com/douglasmeneses/book-commerce', extended: 'Node.js, TypeScript e Prisma. Suporte a carrinho de compras, cadastro de livros e gestão de vendas.' }
                         ].map((proj) => (
-                          <div key={proj.title} className={`${getWindow('projects')?.isMaximized ? 'w-full' : 'w-64'} bg-[#f0f0f0] border border-[#a0a0a0] flex flex-col shrink-0 transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group`}>
+                          <div key={proj.title} className={`${getWindow('projects')?.isMaximized ? 'w-full' : 'w-64'} bg-[#f0f0f0] border border-[#a0a0a0] flex flex-col shrink-0 transition-all duration-300 shadow-sm hover:shadow-md group`} >
                             <div className={`${getWindow('projects')?.isMaximized ? 'h-48' : 'h-32'} border-b border-[#a0a0a0] relative overflow-hidden bg-white transition-all duration-300`}>
                               <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src={proj.img} alt={proj.title} />
                             </div>
@@ -401,15 +481,16 @@ export default function Home() {
                                 <Image src="/file.svg" alt="File" width={16} height={16} />
                                 <h3 className={`font-bold text-gray-800 ${getWindow('projects')?.isMaximized ? 'text-lg' : 'text-md'}`}>{proj.title}</h3>
                               </div>
-                              <div className="text-xs text-gray-500 mb-2">{proj.type} • {proj.size}</div>
+                              <div className="text-xs text-gray-500 mb-2">{proj.type}</div>
                               <p className="text-sm text-gray-700 flex-1 mb-4">
                                 {proj.desc}
                                 {getWindow('projects')?.isMaximized && (
-                                  <span className="block mt-2 text-gray-600 border-l-2 border-blue-500 pl-2 animate-in fade-in">{proj.extended}</span>
+                                  <span className="block mt-2 text-gray-600 border-l-2 border-blue-500 pl-2 animate-in fade-in text-xs">{proj.extended}</span>
                                 )}
                               </p>
-                              <div className="mt-auto flex gap-2">
-                                <button className="bg-gradient-to-b from-[#f9f9f9] to-[#dfdfdf] border border-[#8f8f8f] hover:border-[#3399ff] px-3 py-1 text-xs rounded text-black shadow-sm">Open</button>
+                              <div className="mt-auto flex gap-2 justify-between items-center">
+                                <span className="text-[10px] text-gray-400 truncate max-w-[120px]">{proj.link}</span>
+                                <button onClick={() => window.open(proj.link !== 'Em Progresso' ? proj.link : '#', '_blank')} className="bg-gradient-to-b from-[#f9f9f9] to-[#dfdfdf] border border-[#8f8f8f] hover:border-[#3399ff] px-3 py-1 text-xs rounded text-black shadow-sm cursor-pointer">Abrir Link</button>
                               </div>
                             </div>
                           </div>
@@ -512,6 +593,7 @@ export default function Home() {
           </div>
         </div>
       )}
+      </div>
     </>
   );
 }

@@ -114,21 +114,21 @@ export default function OSWindow({
     <div
       ref={windowRef}
       onMouseDown={onFocus}
-      className={`absolute flex flex-col bg-surface-container window-bevel rounded-DEFAULT overflow-hidden shadow-2xl ${isMinimized ? 'hidden' : 'flex'} ${isMaximized ? '' : `max-w-[100vw] max-h-[100vh] ${defaultWidth}`}`}
+      className={`absolute top-0 left-0 flex flex-col bg-surface-container window-bevel rounded-DEFAULT overflow-hidden shadow-2xl ${isMinimized ? 'hidden' : 'flex'} ${isMaximized ? '' : `max-w-[100vw] max-h-[100vh] ${defaultWidth}`}`}
       style={{ zIndex }}
     >
       {/* Title Bar (Drag Handle) */}
       <div 
-        className="window-title-bg h-6 flex justify-between items-center px-1 border-b border-black window-drag-handle cursor-move select-none"
+        className="window-title-bg h-8 flex justify-between items-center px-2 border-b-2 border-black window-drag-handle cursor-move select-none"
         onDoubleClick={onMaximize}
       >
         <span className="font-window-title text-window-title text-white drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">
           {title}
         </span>
         <div className="flex gap-1" onMouseDown={(e) => e.stopPropagation()}>
-          <button onClick={onMinimize} className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold hover:bg-surface-bright">_</button>
-          <button onClick={onMaximize} className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold hover:bg-surface-bright">□</button>
-          <button onClick={onClose} className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold hover:bg-red-500">X</button>
+          <button onClick={onMinimize} className="w-6 h-6 bg-[#c0c0c0] border-2 border-t-white border-l-white border-b-gray-600 border-r-gray-600 flex items-center justify-center text-black text-sm font-bold shadow-[1px_1px_0_black] hover:bg-gray-300 hover:border-t-gray-400 hover:border-l-gray-400 hover:border-b-white hover:border-r-white transition-none">_</button>
+          <button onClick={onMaximize} className="w-6 h-6 bg-[#c0c0c0] border-2 border-t-white border-l-white border-b-gray-600 border-r-gray-600 flex items-center justify-center text-black text-sm font-bold shadow-[1px_1px_0_black] hover:bg-gray-300 hover:border-t-gray-400 hover:border-l-gray-400 hover:border-b-white hover:border-r-white transition-none">□</button>
+          <button onClick={onClose} className="w-6 h-6 bg-[#c0c0c0] border-2 border-t-white border-l-white border-b-gray-600 border-r-gray-600 flex items-center justify-center text-black text-sm font-bold shadow-[1px_1px_0_black] hover:bg-red-500 hover:text-white transition-none">X</button>
         </div>
       </div>
       

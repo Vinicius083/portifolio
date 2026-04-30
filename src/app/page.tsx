@@ -91,7 +91,7 @@ export default function Home() {
           
           {/* Top Navigation (MISSION_CONTROL_v1.0) */}
           <nav className="fixed top-0 left-0 w-full z-[9999] flex justify-between items-center px-2 bg-blue-700 dark:bg-blue-800 font-label-caps text-label-caps tracking-tighter uppercase h-8 border-b-2 border-black/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_2px_0_0_rgba(0,0,0,1)] text-white select-none">
-            <div className="text-sm font-black text-white italic">MISSION_CONTROL_v1.0</div>
+            <div className="text-sm font-black text-white italic"><img src="/logo.svg" alt="Logo" width={40} height={40} /></div>
             <div className="hidden md:flex gap-4 h-full">
               <button onClick={() => openWindow('hero')} className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors cursor-pointer">HOME</button>
               <button onClick={() => openWindow('bio')} className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors cursor-pointer">BIO.EXE</button>
@@ -152,49 +152,62 @@ export default function Home() {
                 initialY={150}
                 defaultWidth="w-[850px]"
               >
-                <div className="p-container-padding flex flex-col md:flex-row gap-6 items-start h-full">
-                  <div className="w-full md:w-1/3 border-2 border-outline-variant p-2 bg-black flex-shrink-0">
-                    <img className="w-full aspect-square object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500 pointer-events-none" src="/myPicture.webp" alt="Profile" />
-                    <div className="mt-2 text-center text-on-surface-variant text-sm font-label-caps">ID: V.ALMEIDA_77</div>
-                  </div>
-                  <div className="text-on-surface space-y-4 w-full">
-                    <p className="text-secondary blinking-cursor">&gt; DECRYPTING DATA STREAM...</p>
-                    <p>I am a Creative Developer specializing in bridging the gap between robust system architecture and immersive, high-fidelity user experiences. With a foundation built on full-stack technologies, I construct digital environments that are as functional as they are visually compelling.</p>
-                    
-                    {!getWindow('bio')?.isMaximized ? (
-                      <>
-                        <p>Operating primarily within the React ecosystem, I engineer interfaces that evoke emotion while maintaining strict performance standards.</p>
-                        <div className="mt-4 p-4 border border-outline-variant bg-surface-dim">
-                          <ul className="space-y-2 text-sm text-on-surface-variant">
-                            <li><span className="text-primary-fixed">CLASS:</span> FRONTEND ENGINEER</li>
-                            <li><span className="text-primary-fixed">SPECIALIZATION:</span> UI/UX ARCHITECTURE</li>
-                            <li><span className="text-primary-fixed">STATUS:</span> ONLINE_AND_SEARCHING</li>
-                          </ul>
-                        </div>
-                      </>
-                    ) : (
-                      <div className="animate-in fade-in duration-500 space-y-6">
-                        <p>My approach blends modern technical capabilities with distinct, narrative-driven aesthetics—often drawing inspiration from retro-computing, sci-fi interfaces, and industrial design.</p>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="p-4 border border-outline-variant bg-surface-dim">
-                            <h4 className="text-primary mb-2 font-display-header text-sm">ARCHIVE_LOG: ORIGIN</h4>
-                            <p className="text-xs text-on-surface-variant">Started journey in web development focusing on raw performance and logic. Evolved into full-stack architecture with a passion for visually striking user interfaces.</p>
-                          </div>
-                          <div className="p-4 border border-outline-variant bg-surface-dim">
-                            <h4 className="text-secondary mb-2 font-display-header text-sm">ARCHIVE_LOG: OBJECTIVE</h4>
-                            <p className="text-xs text-on-surface-variant">To build scalable applications that do not compromise on the artistic and aesthetic experience. The web is a canvas, and code is the brush.</p>
-                          </div>
-                        </div>
-                        <div className="p-4 border border-outline-variant bg-surface-dim mt-4">
-                          <ul className="space-y-2 text-sm text-on-surface-variant">
-                            <li><span className="text-primary-fixed">CLASS:</span> FRONTEND ENGINEER [LEVEL_99]</li>
-                            <li><span className="text-primary-fixed">SPECIALIZATION:</span> UI/UX ARCHITECTURE & FULL STACK</li>
-                            <li><span className="text-primary-fixed">AFFILIATION:</span> FREELANCE MERCENARY</li>
-                            <li><span className="text-primary-fixed">STATUS:</span> ONLINE_AND_SEARCHING</li>
-                          </ul>
-                        </div>
+                <div className="flex flex-col h-full bg-[#c0c0c0] font-sans text-black">
+                  {/* IE Toolbar */}
+                  <div className="border-b border-[#808080] pb-1">
+                    <div className="flex gap-4 px-2 py-1 text-sm bg-[#c0c0c0] shadow-[0_1px_0_white]">
+                      <span className="hover:bg-[#000080] hover:text-white px-1 cursor-default">File</span>
+                      <span className="hover:bg-[#000080] hover:text-white px-1 cursor-default">Edit</span>
+                      <span className="hover:bg-[#000080] hover:text-white px-1 cursor-default">View</span>
+                      <span className="hover:bg-[#000080] hover:text-white px-1 cursor-default">Favorites</span>
+                      <span className="hover:bg-[#000080] hover:text-white px-1 cursor-default">Help</span>
+                    </div>
+                    <div className="flex items-center gap-2 px-2 py-1 mt-1">
+                      <span className="text-sm text-gray-700">Address</span>
+                      <div className="flex-1 bg-white border-2 border-t-[#808080] border-l-[#808080] border-b-white border-r-white px-2 py-0.5 text-sm flex items-center">
+                        <Image src="/internet.svg" alt="IE" width={16} height={16} className="mr-2" />
+                        http://valmeida.net/about-me.html
                       </div>
-                    )}
+                    </div>
+                  </div>
+                  
+                  {/* Content Area */}
+                  <div className="flex-1 overflow-auto bg-white border-2 border-t-[#808080] border-l-[#808080] border-b-white border-r-white m-1 p-6 flex flex-col md:flex-row gap-6 items-start">
+                    <div className="w-full md:w-1/3 border border-gray-300 p-2 bg-gray-50 flex-shrink-0 shadow-md">
+                      <img className="w-full aspect-square object-cover opacity-90 transition-all duration-500 pointer-events-none" src="/myPicture.webp" alt="Profile" />
+                      <div className="mt-2 text-center text-gray-700 text-sm font-bold">Vinícius Almeida</div>
+                    </div>
+                    <div className="text-gray-800 space-y-4 w-full text-sm leading-relaxed">
+                      <h2 className="text-2xl text-[#000080] font-bold border-b border-gray-300 pb-2">About Me</h2>
+                      <p>I am a Creative Developer specializing in bridging the gap between robust system architecture and immersive, high-fidelity user experiences. With a foundation built on full-stack technologies, I construct digital environments that are as functional as they are visually compelling.</p>
+                      
+                      {!getWindow('bio')?.isMaximized ? (
+                        <>
+                          <p>Operating primarily within the React ecosystem, I engineer interfaces that evoke emotion while maintaining strict performance standards.</p>
+                          <div className="mt-4 p-4 border border-blue-200 bg-blue-50">
+                            <ul className="space-y-2">
+                              <li><strong>Role:</strong> Frontend Engineer</li>
+                              <li><strong>Focus:</strong> UI/UX Architecture</li>
+                              <li><strong>Status:</strong> Available for work</li>
+                            </ul>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="animate-in fade-in duration-500 space-y-6">
+                          <p>My approach blends modern technical capabilities with distinct, narrative-driven aesthetics—often drawing inspiration from retro-computing, sci-fi interfaces, and industrial design.</p>
+                          <div className="grid grid-cols-2 gap-4">
+                            <div className="p-4 border border-gray-300 bg-gray-50 shadow-sm">
+                              <h4 className="text-[#000080] mb-2 font-bold">Background</h4>
+                              <p className="text-xs text-gray-600">Started journey in web development focusing on raw performance and logic. Evolved into full-stack architecture with a passion for visually striking user interfaces.</p>
+                            </div>
+                            <div className="p-4 border border-gray-300 bg-gray-50 shadow-sm">
+                              <h4 className="text-[#000080] mb-2 font-bold">Objective</h4>
+                              <p className="text-xs text-gray-600">To build scalable applications that do not compromise on the artistic and aesthetic experience. The web is a canvas, and code is the brush.</p>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </OSWindow>
@@ -343,38 +356,66 @@ export default function Home() {
                 initialY={300}
                 defaultWidth="w-[960px]"
               >
-                <div className={`p-container-padding h-full ${getWindow('projects')?.isMaximized ? 'overflow-y-auto' : 'overflow-x-auto'}`}>
-                  <div className={`${getWindow('projects')?.isMaximized ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8' : 'flex gap-6 min-w-max pb-4 h-full'}`}>
-                    {[
-                      { title: 'BPet System', type: '.EXE', color: 'primary', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAEfRL3dKTLEPHLQOxClkM4vqE827PoNOl-P2KmaQDAAKcalGOO9G5kca9bTe5FPDNR8HfF4s0nzZyRmD3D8u6xUQyikBCM3qrrNb0TPKJ2-trwEE5_qkK1MY8f83plYIKIF5o-CBq7vpP8U98XcjbuMouPCK3uDGVtQEunXlyw-T_sknLWDdMLEnWb-n9XyxWR5m8zXFfMJQs4GQ05oQ4glg1aMSYCBQisW6j0EB4-iDScyEfAQMa6V9e07PLkXvvtDolzx-QcdTVR', desc: 'Comprehensive veterinary management platform built with React and Node.js.', size: '4.2GB', extended: 'Includes complex state management for patient records, scheduling modules, and billing integration using Stripe. Built as a PWA for offline capabilities in rural veterinary clinics.' },
-                      { title: 'ESP-PB', type: '.SYS', color: 'secondary', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAByM7v6r6qRB6lXLYjpozMCIFtw2hUkpF-k0BG39RX89rN8aKGRfsBqJevptAmh7jb5aHUe8zkbD61HT6iBuF11zUvTwowDOA5JtwASUTXDBAJpWh5AMmNUJ06sZKPJkduQBcqqJqHNqbpBOiYJXVZTg8LUcDhmwXVsxT5F4a-QQjiPMfbCQL6js8l7vt6h0kBF8VakGjMTul_6TvQ9hLnlwqfFxjEHo2mqVug2Lh5qVlu6VAhQTu8oN7BwdxYjYDqJ-T4Jukra7ij', desc: 'IoT dashboard for real-time monitoring of ESP8266 devices.', size: '1.1GB', extended: 'Utilizes WebSockets for instant data visualization and telemetry. Handles thousands of events per second with optimized React rendering. Backend powered by Node.js and MQTT brokers.' },
-                      { title: 'PM-PB', type: '.BAT', color: 'tertiary', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCFPNKRoWbfSDeS0QGtf1Vblaf74rY0qIN1e-B4eTArve7SWUoYXA0DpFTIEmwG5TypJWxAnmvGphCyszNBYm3icYkvaXweWoUYH235TnRxC1wOM7DBYOeTryztnHpgDgx2Ch5T3cCNEiOQHObw-Jq51xNbAp1xupfgnZkkzMHSjxFt70mkOvk5wlE1q1VpiJZnn3PYkTWI3VLmK4CHtFxghTl9g8etYa7CHkGc5tTO4MMWUASiSWnT9zBAkfeWP_FBi5OCJsOspN0Y', desc: 'Project management tool designed for agile teams.', size: '2.8GB', extended: 'Custom drag-and-drop interface prioritizing keyboard navigation. Integrates deeply with Git providers for automated commit tracking. Built with Next.js App Router and Prisma.' }
-                    ].map((proj) => (
-                      <div key={proj.title} className={`${getWindow('projects')?.isMaximized ? 'w-full' : 'w-80'} bg-surface border-2 border-outline-variant flex flex-col btn-bevel shrink-0 transition-all duration-300`}>
-                        <div className={`${getWindow('projects')?.isMaximized ? 'h-64' : 'h-40'} border-b-2 border-outline-variant relative overflow-hidden bg-black group transition-all duration-300`}>
-                          <img className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity pointer-events-none" src={proj.img} alt={proj.title} />
-                          <div className={`absolute top-2 left-2 bg-black/80 px-2 py-1 text-xs border border-${proj.color}-fixed text-${proj.color}-fixed`}>{proj.type}</div>
-                        </div>
-                        <div className="p-4 flex-1 flex flex-col">
-                          <h3 className={`font-display-header ${getWindow('projects')?.isMaximized ? 'text-2xl' : 'text-xl'} text-${proj.color} mb-2`}>{proj.title}</h3>
-                          <p className="text-sm text-on-surface-variant flex-1 mb-4">
-                            {proj.desc}
-                            {getWindow('projects')?.isMaximized && (
-                              <span className="block mt-2 text-white/70 border-l-2 border-outline-variant pl-2 animate-in fade-in">{proj.extended}</span>
-                            )}
-                          </p>
-                          <div className="flex justify-between items-center mt-auto border-t border-outline-variant pt-4">
-                            <span className="text-xs text-outline">SIZE: {proj.size}</span>
-                            <div className="flex gap-2">
-                              {getWindow('projects')?.isMaximized && (
-                                <button className="bg-black text-white px-4 py-1 btn-bevel text-sm hover:bg-surface-bright">SRC</button>
-                              )}
-                              <button className={`${proj.color === 'secondary' ? 'bg-secondary-container text-on-secondary-fixed' : proj.color === 'tertiary' ? 'bg-tertiary-container text-on-tertiary-container' : 'bg-primary-container text-on-primary-container'} px-4 py-1 btn-bevel text-sm hover:brightness-125`}>RUN</button>
+                <div className="flex flex-col h-full bg-[#c0c0c0] font-sans text-black">
+                  {/* File Explorer Toolbar */}
+                  <div className="border-b border-[#808080] pb-1">
+                    <div className="flex gap-4 px-2 py-1 text-sm bg-[#c0c0c0] shadow-[0_1px_0_white]">
+                      <span className="hover:bg-[#000080] hover:text-white px-1 cursor-default">File</span>
+                      <span className="hover:bg-[#000080] hover:text-white px-1 cursor-default">Edit</span>
+                      <span className="hover:bg-[#000080] hover:text-white px-1 cursor-default">View</span>
+                      <span className="hover:bg-[#000080] hover:text-white px-1 cursor-default">Help</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex flex-1 overflow-hidden m-1 border-2 border-t-[#808080] border-l-[#808080] border-b-white border-r-white">
+                    {/* Sidebar */}
+                    <div className="w-48 bg-white border-r border-[#808080] p-2 hidden md:block shrink-0">
+                      <div className="flex items-center gap-2 mb-2 cursor-pointer bg-[#000080] text-white px-1">
+                        <Image src="/file.svg" alt="Folder" width={16} height={16} />
+                        <span className="text-sm">My Projects</span>
+                      </div>
+                      <div className="flex items-center gap-2 mb-2 pl-4 cursor-pointer text-black hover:bg-[#000080] hover:text-white px-1">
+                        <Image src="/file.svg" alt="Folder" width={16} height={16} />
+                        <span className="text-sm">Client Work</span>
+                      </div>
+                      <div className="flex items-center gap-2 pl-4 cursor-pointer text-black hover:bg-[#000080] hover:text-white px-1">
+                        <Image src="/file.svg" alt="Folder" width={16} height={16} />
+                        <span className="text-sm">Experiments</span>
+                      </div>
+                    </div>
+                    
+                    {/* Main Content */}
+                    <div className={`bg-white p-4 flex-1 ${getWindow('projects')?.isMaximized ? 'overflow-y-auto' : 'overflow-x-auto'}`}>
+                      <div className={`${getWindow('projects')?.isMaximized ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8' : 'flex gap-6 min-w-max pb-4 h-full'}`}>
+                        {[
+                          { title: 'BPet System', type: 'React/Node', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAEfRL3dKTLEPHLQOxClkM4vqE827PoNOl-P2KmaQDAAKcalGOO9G5kca9bTe5FPDNR8HfF4s0nzZyRmD3D8u6xUQyikBCM3qrrNb0TPKJ2-trwEE5_qkK1MY8f83plYIKIF5o-CBq7vpP8U98XcjbuMouPCK3uDGVtQEunXlyw-T_sknLWDdMLEnWb-n9XyxWR5m8zXFfMJQs4GQ05oQ4glg1aMSYCBQisW6j0EB4-iDScyEfAQMa6V9e07PLkXvvtDolzx-QcdTVR', desc: 'Comprehensive veterinary management platform built with React and Node.js.', size: '4.2GB', extended: 'Includes complex state management for patient records, scheduling modules, and billing integration using Stripe. Built as a PWA for offline capabilities in rural veterinary clinics.' },
+                          { title: 'ESP-PB', type: 'IoT Dashboard', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAByM7v6r6qRB6lXLYjpozMCIFtw2hUkpF-k0BG39RX89rN8aKGRfsBqJevptAmh7jb5aHUe8zkbD61HT6iBuF11zUvTwowDOA5JtwASUTXDBAJpWh5AMmNUJ06sZKPJkduQBcqqJqHNqbpBOiYJXVZTg8LUcDhmwXVsxT5F4a-QQjiPMfbCQL6js8l7vt6h0kBF8VakGjMTul_6TvQ9hLnlwqfFxjEHo2mqVug2Lh5qVlu6VAhQTu8oN7BwdxYjYDqJ-T4Jukra7ij', desc: 'IoT dashboard for real-time monitoring of ESP8266 devices.', size: '1.1GB', extended: 'Utilizes WebSockets for instant data visualization and telemetry. Handles thousands of events per second with optimized React rendering. Backend powered by Node.js and MQTT brokers.' },
+                          { title: 'PM-PB', type: 'Next.js App', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCFPNKRoWbfSDeS0QGtf1Vblaf74rY0qIN1e-B4eTArve7SWUoYXA0DpFTIEmwG5TypJWxAnmvGphCyszNBYm3icYkvaXweWoUYH235TnRxC1wOM7DBYOeTryztnHpgDgx2Ch5T3cCNEiOQHObw-Jq51xNbAp1xupfgnZkkzMHSjxFt70mkOvk5wlE1q1VpiJZnn3PYkTWI3VLmK4CHtFxghTl9g8etYa7CHkGc5tTO4MMWUASiSWnT9zBAkfeWP_FBi5OCJsOspN0Y', desc: 'Project management tool designed for agile teams.', size: '2.8GB', extended: 'Custom drag-and-drop interface prioritizing keyboard navigation. Integrates deeply with Git providers for automated commit tracking. Built with Next.js App Router and Prisma.' }
+                        ].map((proj) => (
+                          <div key={proj.title} className={`${getWindow('projects')?.isMaximized ? 'w-full' : 'w-64'} bg-[#f0f0f0] border border-[#a0a0a0] flex flex-col shrink-0 transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer group`}>
+                            <div className={`${getWindow('projects')?.isMaximized ? 'h-48' : 'h-32'} border-b border-[#a0a0a0] relative overflow-hidden bg-white transition-all duration-300`}>
+                              <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src={proj.img} alt={proj.title} />
+                            </div>
+                            <div className="p-3 flex-1 flex flex-col">
+                              <div className="flex items-center gap-2 mb-1">
+                                <Image src="/file.svg" alt="File" width={16} height={16} />
+                                <h3 className={`font-bold text-gray-800 ${getWindow('projects')?.isMaximized ? 'text-lg' : 'text-md'}`}>{proj.title}</h3>
+                              </div>
+                              <div className="text-xs text-gray-500 mb-2">{proj.type} • {proj.size}</div>
+                              <p className="text-sm text-gray-700 flex-1 mb-4">
+                                {proj.desc}
+                                {getWindow('projects')?.isMaximized && (
+                                  <span className="block mt-2 text-gray-600 border-l-2 border-blue-500 pl-2 animate-in fade-in">{proj.extended}</span>
+                                )}
+                              </p>
+                              <div className="mt-auto flex gap-2">
+                                <button className="bg-gradient-to-b from-[#f9f9f9] to-[#dfdfdf] border border-[#8f8f8f] hover:border-[#3399ff] px-3 py-1 text-xs rounded text-black shadow-sm">Open</button>
+                              </div>
                             </div>
                           </div>
-                        </div>
+                        ))}
                       </div>
-                    ))}
+                    </div>
                   </div>
                 </div>
               </OSWindow>
@@ -390,33 +431,36 @@ export default function Home() {
                 onClose={() => closeWindow('contact')}
                 initialX={400}
                 initialY={200}
-                defaultWidth="w-[600px]"
+                defaultWidth="w-[450px]"
               >
-                <div className="p-container-padding bg-black border-[8px] border-surface-container-lowest h-full">
-                  <div className="text-secondary mb-6 border-b border-secondary-fixed/30 pb-2 font-terminal-md">
-                    &gt; ESTABLISHING SECURE CONNECTION...<br/>
-                    &gt; CONNECTION ESTABLISHED.<br/>
-                    &gt; ENTER MESSAGE BELOW:
+                <div className="flex flex-col h-full bg-[#ece9d8] font-sans text-black">
+                  {/* MSN Header */}
+                  <div className="bg-gradient-to-r from-[#0055e5] to-[#2a80ff] p-2 flex items-center gap-2 text-white">
+                    <Image src="/chat.svg" alt="Chat" width={24} height={24} />
+                    <span className="font-bold text-sm shadow-[1px_1px_0_rgba(0,0,0,0.5)]">Vinícius - Instant Messenger</span>
                   </div>
-                  <form className="space-y-4">
-                    <div className="flex flex-col">
-                      <label className="text-primary-fixed text-sm mb-1">ID [NAME]:</label>
-                      <input className="bg-black terminal-input text-secondary focus:ring-0 focus:border-secondary-fixed focus:outline-none p-2 font-terminal-md" placeholder="Enter identification..." type="text" />
+                  
+                  {/* Chat Area */}
+                  <div className="flex-1 p-2 flex flex-col gap-2 bg-[#ece9d8]">
+                    <div className="bg-white border border-[#7f9db9] flex-1 p-3 overflow-y-auto text-sm shadow-inner min-h-[150px]">
+                      <div className="text-gray-500 mb-2 text-center text-xs">--- Vinícius is Online ---</div>
+                      <div className="mb-2">
+                        <span className="font-bold text-blue-700">Vinícius says:</span>
+                        <div className="ml-2 text-gray-800">Hey! Looking to start a project? Or just want to connect? Send me a message below.</div>
+                      </div>
                     </div>
-                    <div className="flex flex-col">
-                      <label className="text-primary-fixed text-sm mb-1">ROUTING [EMAIL]:</label>
-                      <input className="bg-black terminal-input text-secondary focus:ring-0 focus:border-secondary-fixed focus:outline-none p-2 font-terminal-md" placeholder="Enter routing address..." type="email" />
-                    </div>
-                    <div className="flex flex-col">
-                      <label className="text-primary-fixed text-sm mb-1">PAYLOAD [MESSAGE]:</label>
-                      <textarea className="bg-black terminal-input text-secondary focus:ring-0 focus:border-secondary-fixed focus:outline-none p-2 font-terminal-md resize-none" placeholder="Transmit data..." rows={4}></textarea>
-                    </div>
-                    <div className="pt-4 flex justify-end">
-                      <button className="bg-black border border-secondary-fixed text-secondary-fixed px-8 py-2 hover:bg-secondary-fixed hover:text-black transition-colors blinking-cursor shadow-[0_0_10px_rgba(116,255,106,0.2)]" type="button">
-                        TRANSMIT
-                      </button>
-                    </div>
-                  </form>
+                    
+                    {/* Input Area */}
+                    <form className="flex flex-col gap-2">
+                      <textarea className="w-full border border-[#7f9db9] p-2 text-sm focus:outline-none focus:border-[#0055e5] resize-none shadow-inner" rows={3} placeholder="Type your message here..."></textarea>
+                      <div className="flex justify-between items-center gap-2">
+                        <input className="border border-[#7f9db9] p-1 text-sm flex-1 focus:outline-none focus:border-[#0055e5]" type="email" placeholder="Your email/contact" />
+                        <button type="button" className="px-6 py-1 bg-gradient-to-b from-[#f9f9f9] to-[#dfdfdf] border border-[#8f8f8f] hover:from-[#e3f0ff] hover:to-[#c3e1ff] hover:border-[#3399ff] rounded text-sm shadow-sm font-bold text-gray-700">
+                          Send
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </OSWindow>
             )}
@@ -435,20 +479,32 @@ export default function Home() {
             </div>
             
             <div className="flex h-full flex-1 overflow-x-auto no-scrollbar items-center gap-1 px-1">
-              {windows.filter(w => w.isOpen).map(w => (
-                <button 
-                  key={w.id}
-                  onClick={() => w.isMinimized ? openWindow(w.id) : minimizeWindow(w.id)}
-                  className={`flex items-center gap-2 px-3 h-8 border shrink-0 font-label-caps text-xs
-                    ${!w.isMinimized ? 'bg-surface-bright border-b-black border-r-black border-t-white/30 border-l-white/30 shadow-[inset_2px_2px_0_rgba(0,0,0,0.5)] text-primary-fixed' : 'bg-surface-container border-b-white/30 border-r-white/30 border-t-black border-l-black hover:bg-surface-bright text-on-surface'}
-                  `}
-                >
-                  <span className="material-symbols-outlined text-[14px]">
-                    {w.id === 'hero' ? 'terminal' : w.id === 'bio' ? 'account_circle' : w.id === 'projects' ? 'folder_open' : w.id === 'contact' ? 'chat' : w.id === 'skills' ? 'code' : 'memory'}
-                  </span>
-                  {w.title.split('\\').pop() || w.title}
-                </button>
-              ))}
+              {[
+                { id: 'hero', icon: '/terminal.svg' },
+                { id: 'bio', icon: '/internet.svg' },
+                { id: 'skills', icon: '/terminal.svg' },
+                { id: 'projects', icon: '/file.svg' },
+                { id: 'contact', icon: '/chat.svg' }
+              ].map(app => {
+                const w = getWindow(app.id);
+                if (!w) return null;
+                return (
+                  <button 
+                    key={app.id}
+                    onClick={() => {
+                      if (!w.isOpen) openWindow(w.id);
+                      else if (w.isMinimized) focusWindow(w.id);
+                      else minimizeWindow(w.id);
+                    }}
+                    className={`flex justify-center items-center w-12 h-10 border shrink-0 transition-all cursor-pointer
+                      ${w.isOpen && !w.isMinimized ? 'bg-surface-bright border-b-black border-r-black border-t-white/30 border-l-white/30 shadow-[inset_2px_2px_0_rgba(0,0,0,0.5)]' : 'bg-surface-container border-b-white/30 border-r-white/30 border-t-black border-l-black hover:bg-surface-bright'}
+                    `}
+                    title={w.title}
+                  >
+                    <Image src={app.icon} alt={app.id} width={28} height={28} className={!w.isOpen ? 'opacity-80' : 'opacity-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]'} />
+                  </button>
+                );
+              })}
             </div>
             <div className="px-4 border-l border-white/20 h-full flex items-center text-secondary text-sm font-label-caps bg-black/20">
                {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}

@@ -30,8 +30,11 @@ const vt323 = VT323({
 
 
 export const metadata: Metadata = {
-  title: 'Vinícius Almeida | The Kinetic Architect',
+  title: 'Vinícius Almeida | Portifolio',
   description: 'Portfólio de Vinícius Almeida - Desenvolvedor Full Stack Júnior',
+  icons: {
+    icon: '/logo.svg',
+  },  
 };
 
 export default function RootLayout({

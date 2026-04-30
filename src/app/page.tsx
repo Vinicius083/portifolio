@@ -166,7 +166,7 @@ export default function Home() {
                       <span className="text-sm text-gray-700">Address</span>
                       <div className="flex-1 bg-white border-2 border-t-[#808080] border-l-[#808080] border-b-white border-r-white px-2 py-0.5 text-sm flex items-center">
                         <Image src="/internet.svg" alt="IE" width={16} height={16} className="mr-2" />
-                        http://valmeida.net/about-me.html
+                        https://viniciusalmeida.cc/about-me
                       </div>
                     </div>
                   </div>

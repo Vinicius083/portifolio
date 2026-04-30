@@ -41,6 +41,7 @@ export default function OSWindow({
   defaultWidth = 'w-[800px]'
 }: OSWindowProps) {
   const windowRef = useRef<HTMLDivElement>(null);
+  const handleRef = useRef<HTMLDivElement>(null);
   const dragInstance = useRef<Draggable[] | null>(null);
 
   const onFocusRef = useRef(onFocus);
@@ -49,12 +50,12 @@ export default function OSWindow({
   }, [onFocus]);
 
   useEffect(() => {
-    if (isOpen && windowRef.current && !dragInstance.current) {
+    if (isOpen && windowRef.current && handleRef.current && !dragInstance.current) {
       // Initialize GSAP Draggable
       dragInstance.current = Draggable.create(windowRef.current, {
         type: 'x,y',
         bounds: 'body',
-        handle: '.window-drag-handle',
+        handle: handleRef.current,
         onPress: () => onFocusRef.current(),
       });
       
@@ -119,6 +120,7 @@ export default function OSWindow({
     >
       {/* Title Bar (Drag Handle) */}
       <div 
+        ref={handleRef}
         className="window-title-bg h-8 flex justify-between items-center px-2 border-b-2 border-black window-drag-handle cursor-move select-none"
         onDoubleClick={onMaximize}
       >

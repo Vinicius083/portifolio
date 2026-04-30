@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import BootScreen from '@/components/BootScreen';
 import OSWindow from '@/components/OSWindow';
+import CodeStreamBackground from '@/components/CodeStreamBackground';
 import Image from 'next/image';
 
 type WindowState = {
@@ -106,9 +107,10 @@ export default function Home() {
           {/* Desktop Canvas (Windows container) */}
           <main className="w-full h-[calc(100vh-40px)] pt-8 relative z-10 overflow-hidden">
             
-            {/* Background space image */}
-            <div className="absolute inset-0 opacity-40 pointer-events-none">
-                <img className="w-full h-full object-cover mix-blend-screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe5GQOOs2Ch3TG-84UEpjiPR_g2Z6LVCFDUfQsm5QnDNLdNd7ljrE2BB49hptFDOZwbmhG5voufuCDronxmm0WT8VOHEAe23jAMw9F7-_xrxgRpUEoG74b_-UmSPc20Zrus58I68OKRS-xm2mVjEdivtPl9aw__U5Z3XMj8VS1LsWhjitS-k5RPutsIc_4zKJZ7pVq1XyqHdH4mvwh1EU2mvsaxdKLR2HjyORpDCL0q7AkQPbqj9LqEhLbbHVTFeqmrxFn0z-714h5" alt="Space" />
+            {/* Background space image & Code Stream */}
+            <div className="absolute inset-0 pointer-events-none">
+                <img className="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-40" src="/background.png" alt="Space" />
+                <CodeStreamBackground />
             </div>
 
             {/* INITIALIZE.BAT (Hero) */}
@@ -152,7 +154,7 @@ export default function Home() {
               >
                 <div className="p-container-padding flex flex-col md:flex-row gap-6 items-start h-full">
                   <div className="w-full md:w-1/3 border-2 border-outline-variant p-2 bg-black flex-shrink-0">
-                    <img className="w-full aspect-square object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500 pointer-events-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz4275Pb2tIos89RgTqpKpclOoLMmR0rch0PbY-AmYM5rx_z3luBN8RspnnxtSBL3cBbwdmw-ZcIpEjdBLDyINn_zYUqJFDuNvy5Wg4dNe8n8UG-4oSGV0HsAdng_88hv-l-3mA1pHlyrfqQIENfEK8c7C-EyDjQzu9zEDc7xadLdgQk-Sc-H2Tuoi2CzCeZz_-EFX6PnqFH1vDcQx4lBrLk5CTP8wA_XMXYtwNsWBCxkomDcKpSoyPOI75x1RjwFMqRhCawhP6ktS" alt="Profile" />
+                    <img className="w-full aspect-square object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500 pointer-events-none" src="/myPicture.webp" alt="Profile" />
                     <div className="mt-2 text-center text-on-surface-variant text-sm font-label-caps">ID: V.ALMEIDA_77</div>
                   </div>
                   <div className="text-on-surface space-y-4 w-full">

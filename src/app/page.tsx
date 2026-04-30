@@ -155,17 +155,44 @@ export default function Home() {
                     <img className="w-full aspect-square object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500 pointer-events-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz4275Pb2tIos89RgTqpKpclOoLMmR0rch0PbY-AmYM5rx_z3luBN8RspnnxtSBL3cBbwdmw-ZcIpEjdBLDyINn_zYUqJFDuNvy5Wg4dNe8n8UG-4oSGV0HsAdng_88hv-l-3mA1pHlyrfqQIENfEK8c7C-EyDjQzu9zEDc7xadLdgQk-Sc-H2Tuoi2CzCeZz_-EFX6PnqFH1vDcQx4lBrLk5CTP8wA_XMXYtwNsWBCxkomDcKpSoyPOI75x1RjwFMqRhCawhP6ktS" alt="Profile" />
                     <div className="mt-2 text-center text-on-surface-variant text-sm font-label-caps">ID: V.ALMEIDA_77</div>
                   </div>
-                  <div className="text-on-surface space-y-4">
+                  <div className="text-on-surface space-y-4 w-full">
                     <p className="text-secondary blinking-cursor">&gt; DECRYPTING DATA STREAM...</p>
                     <p>I am a Creative Developer specializing in bridging the gap between robust system architecture and immersive, high-fidelity user experiences. With a foundation built on full-stack technologies, I construct digital environments that are as functional as they are visually compelling.</p>
-                    <p>Operating primarily within the React ecosystem, I engineer interfaces that evoke emotion while maintaining strict performance standards. My approach blends modern technical capabilities with distinct, narrative-driven aesthetics—often drawing inspiration from retro-computing, sci-fi interfaces, and industrial design.</p>
-                    <div className="mt-4 p-4 border border-outline-variant bg-surface-dim">
-                      <ul className="space-y-2 text-sm text-on-surface-variant">
-                        <li><span className="text-primary-fixed">CLASS:</span> FRONTEND ENGINEER</li>
-                        <li><span className="text-primary-fixed">SPECIALIZATION:</span> UI/UX ARCHITECTURE</li>
-                        <li><span className="text-primary-fixed">STATUS:</span> ONLINE_AND_SEARCHING</li>
-                      </ul>
-                    </div>
+                    
+                    {!getWindow('bio')?.isMaximized ? (
+                      <>
+                        <p>Operating primarily within the React ecosystem, I engineer interfaces that evoke emotion while maintaining strict performance standards.</p>
+                        <div className="mt-4 p-4 border border-outline-variant bg-surface-dim">
+                          <ul className="space-y-2 text-sm text-on-surface-variant">
+                            <li><span className="text-primary-fixed">CLASS:</span> FRONTEND ENGINEER</li>
+                            <li><span className="text-primary-fixed">SPECIALIZATION:</span> UI/UX ARCHITECTURE</li>
+                            <li><span className="text-primary-fixed">STATUS:</span> ONLINE_AND_SEARCHING</li>
+                          </ul>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="animate-in fade-in duration-500 space-y-6">
+                        <p>My approach blends modern technical capabilities with distinct, narrative-driven aesthetics—often drawing inspiration from retro-computing, sci-fi interfaces, and industrial design.</p>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="p-4 border border-outline-variant bg-surface-dim">
+                            <h4 className="text-primary mb-2 font-display-header text-sm">ARCHIVE_LOG: ORIGIN</h4>
+                            <p className="text-xs text-on-surface-variant">Started journey in web development focusing on raw performance and logic. Evolved into full-stack architecture with a passion for visually striking user interfaces.</p>
+                          </div>
+                          <div className="p-4 border border-outline-variant bg-surface-dim">
+                            <h4 className="text-secondary mb-2 font-display-header text-sm">ARCHIVE_LOG: OBJECTIVE</h4>
+                            <p className="text-xs text-on-surface-variant">To build scalable applications that do not compromise on the artistic and aesthetic experience. The web is a canvas, and code is the brush.</p>
+                          </div>
+                        </div>
+                        <div className="p-4 border border-outline-variant bg-surface-dim mt-4">
+                          <ul className="space-y-2 text-sm text-on-surface-variant">
+                            <li><span className="text-primary-fixed">CLASS:</span> FRONTEND ENGINEER [LEVEL_99]</li>
+                            <li><span className="text-primary-fixed">SPECIALIZATION:</span> UI/UX ARCHITECTURE & FULL STACK</li>
+                            <li><span className="text-primary-fixed">AFFILIATION:</span> FREELANCE MERCENARY</li>
+                            <li><span className="text-primary-fixed">STATUS:</span> ONLINE_AND_SEARCHING</li>
+                          </ul>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </OSWindow>
@@ -185,20 +212,46 @@ export default function Home() {
               >
                 <div className="p-4 bg-black h-full min-h-[200px] flex items-center justify-center relative">
                   <img className="w-full h-full object-cover opacity-50 absolute inset-0 mix-blend-screen pointer-events-none" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu4ILfoFkS54jFQvxSKX_PsgJPpkTjBOn-pUQroxpj1ZpCNX4TuZu9J7UvUtsQyflUMTw5u44jqC7kzfiWBV3xV6nNVSGU8Zo3-kN0K3UYwVQXM61mZk6oP0EP_MQAmSZtfztHwfW_dqpdF_FJRjvdPYpZeeV0BRD2wu_TC42Ip0PebvTWNUnlCIIGQTmsqbct9QWJKjGUFL413ds-brlRUcbQQOs7jDmsHHU8vgaZB95K-R9_fsS1igw_CK_2LqQVuKkK1tbFrcfi" alt="Hardware" />
-                  <div className="z-10 text-center border-2 border-secondary-fixed p-4 bg-surface-container-lowest/90 backdrop-blur w-full">
-                    <div className="text-secondary text-xl mb-2">SYSTEM: OPTIMAL</div>
-                    <div className="w-full bg-surface-variant h-4 border border-outline-variant mt-2">
-                      <div className="bg-secondary-container h-full w-[85%]"></div>
+                  <div className={`z-10 text-center border-2 border-secondary-fixed p-4 bg-surface-container-lowest/90 backdrop-blur w-full ${getWindow('hardware')?.isMaximized ? 'grid grid-cols-2 gap-8 text-left' : ''}`}>
+                    
+                    <div>
+                      <div className="text-secondary text-xl mb-2 text-center">SYSTEM: OPTIMAL</div>
+                      <div className="w-full bg-surface-variant h-4 border border-outline-variant mt-2">
+                        <div className="bg-secondary-container h-full w-[85%]"></div>
+                      </div>
+                      <div className="text-xs text-on-surface-variant mt-1 flex justify-between">
+                        <span>CPU LOAD:</span> <span>85%</span>
+                      </div>
+                      <div className="w-full bg-surface-variant h-4 border border-outline-variant mt-2">
+                        <div className="bg-primary-fixed h-full w-[40%]"></div>
+                      </div>
+                      <div className="text-xs text-on-surface-variant mt-1 flex justify-between">
+                        <span>MEM USE:</span> <span>40%</span>
+                      </div>
                     </div>
-                    <div className="text-xs text-on-surface-variant mt-1 flex justify-between">
-                      <span>CPU LOAD:</span> <span>85%</span>
-                    </div>
-                    <div className="w-full bg-surface-variant h-4 border border-outline-variant mt-2">
-                      <div className="bg-primary-fixed h-full w-[40%]"></div>
-                    </div>
-                    <div className="text-xs text-on-surface-variant mt-1 flex justify-between">
-                      <span>MEM USE:</span> <span>40%</span>
-                    </div>
+
+                    {getWindow('hardware')?.isMaximized && (
+                      <div className="animate-in fade-in duration-500">
+                        <div className="text-secondary text-xl mb-2 text-center">NETWORK_IO</div>
+                        <div className="w-full bg-surface-variant h-4 border border-outline-variant mt-2">
+                          <div className="bg-tertiary-container h-full w-[60%]"></div>
+                        </div>
+                        <div className="text-xs text-on-surface-variant mt-1 flex justify-between">
+                          <span>UPLINK:</span> <span>1.2 Gbps</span>
+                        </div>
+                        <div className="w-full bg-surface-variant h-4 border border-outline-variant mt-2">
+                          <div className="bg-tertiary-container h-full w-[90%]"></div>
+                        </div>
+                        <div className="text-xs text-on-surface-variant mt-1 flex justify-between">
+                          <span>DOWNLINK:</span> <span>3.4 Gbps</span>
+                        </div>
+                        <div className="mt-6 border border-outline-variant p-2 bg-surface text-xs text-secondary blinking-cursor font-terminal-md">
+                          &gt; PING: 12ms<br/>
+                          &gt; PACKETS LOST: 0%<br/>
+                          &gt; NODE: ACTIVE
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </OSWindow>
@@ -216,29 +269,62 @@ export default function Home() {
                 initialY={400}
                 defaultWidth="w-[900px]"
               >
-                <div className="p-container-padding grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 h-full">
-                  {[
-                    { name: 'JAVASCRIPT', icon: 'javascript', val: '90%', ver: 'v.ES6+', color: 'primary-fixed' },
-                    { name: 'TYPESCRIPT', icon: 'code', val: '85%', ver: 'v.5.0+', color: 'primary-fixed' },
-                    { name: 'REACT.JS', icon: 'api', val: '95%', ver: 'v.18.0', color: 'secondary-fixed' },
-                    { name: 'NODE.JS', icon: 'dns', val: '75%', ver: 'v.20.0', color: 'secondary-fixed' },
-                  ].map((skill) => (
-                    <div key={skill.name} className={`border border-outline-variant bg-surface p-4 transition-colors group cursor-default`}>
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className={`w-10 h-10 bg-black border border-${skill.color} flex items-center justify-center text-${skill.color}`}>
-                          <span className="material-symbols-outlined">{skill.icon}</span>
+                <div className="p-container-padding flex flex-col gap-8 h-full overflow-y-auto">
+                  
+                  <div>
+                    <h3 className="text-secondary font-label-caps text-sm mb-4 border-b border-outline-variant pb-2 uppercase tracking-widest">&gt; PRIMARY_DIRECTIVES</h3>
+                    <div className={`grid grid-cols-1 ${getWindow('skills')?.isMaximized ? 'md:grid-cols-4' : 'md:grid-cols-2 lg:grid-cols-4'} gap-4`}>
+                      {[
+                        { name: 'JAVASCRIPT', icon: 'javascript', val: '90%', ver: 'v.ES6+', color: 'primary-fixed' },
+                        { name: 'TYPESCRIPT', icon: 'code', val: '85%', ver: 'v.5.0+', color: 'primary-fixed' },
+                        { name: 'REACT.JS', icon: 'api', val: '95%', ver: 'v.18.0', color: 'secondary-fixed' },
+                        { name: 'NODE.JS', icon: 'dns', val: '75%', ver: 'v.20.0', color: 'secondary-fixed' },
+                      ].map((skill) => (
+                        <div key={skill.name} className={`border border-outline-variant bg-surface p-4 transition-colors group cursor-default`}>
+                          <div className="flex items-center gap-3 mb-4">
+                            <div className={`w-10 h-10 bg-black border border-${skill.color} flex items-center justify-center text-${skill.color}`}>
+                              <span className="material-symbols-outlined">{skill.icon}</span>
+                            </div>
+                            <div className={`font-label-caps text-label-caps text-${skill.color}`}>{skill.name}</div>
+                          </div>
+                          <div className="w-full bg-black terminal-input h-3">
+                            <div 
+                              className={`bg-${skill.color} h-full`} 
+                              style={{ width: skill.val, boxShadow: skill.color.includes('primary') ? '0 0 8px rgba(219,225,255,0.8)' : '0 0 8px rgba(116,255,106,0.8)' }}
+                            ></div>
+                          </div>
+                          <div className="text-right text-xs mt-1 text-on-surface-variant">{skill.ver} [{skill.val}]</div>
                         </div>
-                        <div className={`font-label-caps text-label-caps text-${skill.color}`}>{skill.name}</div>
-                      </div>
-                      <div className="w-full bg-black terminal-input h-3">
-                        <div 
-                          className={`bg-${skill.color} h-full`} 
-                          style={{ width: skill.val, boxShadow: skill.color.includes('primary') ? '0 0 8px rgba(219,225,255,0.8)' : '0 0 8px rgba(116,255,106,0.8)' }}
-                        ></div>
-                      </div>
-                      <div className="text-right text-xs mt-1 text-on-surface-variant">{skill.ver} [{skill.val}]</div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
+
+                  {getWindow('skills')?.isMaximized && (
+                    <div className="animate-in fade-in duration-500 pb-4">
+                      <h3 className="text-tertiary font-label-caps text-sm mb-4 border-b border-outline-variant pb-2 uppercase tracking-widest">&gt; SECONDARY_MODULES & PROTOCOLS</h3>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {[
+                          { name: 'NEXT.JS', type: 'FRAMEWORK', lvl: 'ADVANCED' },
+                          { name: 'TAILWIND CSS', type: 'STYLING', lvl: 'EXPERT' },
+                          { name: 'PRISMA ORM', type: 'DATABASE', lvl: 'INTERMEDIATE' },
+                          { name: 'POSTGRESQL', type: 'DATABASE', lvl: 'ADVANCED' },
+                          { name: 'DOCKER', type: 'DEVOPS', lvl: 'INTERMEDIATE' },
+                          { name: 'THREE.JS', type: '3D/WEBGL', lvl: 'EXPLORING' },
+                          { name: 'GSAP', type: 'ANIMATION', lvl: 'ADVANCED' },
+                          { name: 'GIT', type: 'VCS', lvl: 'EXPERT' },
+                        ].map(tool => (
+                          <div key={tool.name} className="border border-outline-variant bg-surface-dim p-3 flex flex-col justify-between h-24">
+                            <span className="font-terminal-md text-white text-lg">{tool.name}</span>
+                            <div className="flex justify-between items-end mt-auto">
+                              <span className="text-[10px] text-primary">{tool.type}</span>
+                              <span className="text-[10px] text-on-surface-variant border border-outline-variant px-1 bg-black">{tool.lvl}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                 </div>
               </OSWindow>
             )}
@@ -255,24 +341,34 @@ export default function Home() {
                 initialY={300}
                 defaultWidth="w-[960px]"
               >
-                <div className="p-container-padding overflow-x-auto h-full">
-                  <div className="flex gap-6 min-w-max pb-4 h-full">
+                <div className={`p-container-padding h-full ${getWindow('projects')?.isMaximized ? 'overflow-y-auto' : 'overflow-x-auto'}`}>
+                  <div className={`${getWindow('projects')?.isMaximized ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8' : 'flex gap-6 min-w-max pb-4 h-full'}`}>
                     {[
-                      { title: 'BPet System', type: '.EXE', color: 'primary', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAEfRL3dKTLEPHLQOxClkM4vqE827PoNOl-P2KmaQDAAKcalGOO9G5kca9bTe5FPDNR8HfF4s0nzZyRmD3D8u6xUQyikBCM3qrrNb0TPKJ2-trwEE5_qkK1MY8f83plYIKIF5o-CBq7vpP8U98XcjbuMouPCK3uDGVtQEunXlyw-T_sknLWDdMLEnWb-n9XyxWR5m8zXFfMJQs4GQ05oQ4glg1aMSYCBQisW6j0EB4-iDScyEfAQMa6V9e07PLkXvvtDolzx-QcdTVR', desc: 'Comprehensive veterinary management platform built with React and Node.js.', size: '4.2GB' },
-                      { title: 'ESP-PB', type: '.SYS', color: 'secondary', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAByM7v6r6qRB6lXLYjpozMCIFtw2hUkpF-k0BG39RX89rN8aKGRfsBqJevptAmh7jb5aHUe8zkbD61HT6iBuF11zUvTwowDOA5JtwASUTXDBAJpWh5AMmNUJ06sZKPJkduQBcqqJqHNqbpBOiYJXVZTg8LUcDhmwXVsxT5F4a-QQjiPMfbCQL6js8l7vt6h0kBF8VakGjMTul_6TvQ9hLnlwqfFxjEHo2mqVug2Lh5qVlu6VAhQTu8oN7BwdxYjYDqJ-T4Jukra7ij', desc: 'IoT dashboard for real-time monitoring of ESP8266 devices.', size: '1.1GB' },
-                      { title: 'PM-PB', type: '.BAT', color: 'tertiary', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCFPNKRoWbfSDeS0QGtf1Vblaf74rY0qIN1e-B4eTArve7SWUoYXA0DpFTIEmwG5TypJWxAnmvGphCyszNBYm3icYkvaXweWoUYH235TnRxC1wOM7DBYOeTryztnHpgDgx2Ch5T3cCNEiOQHObw-Jq51xNbAp1xupfgnZkkzMHSjxFt70mkOvk5wlE1q1VpiJZnn3PYkTWI3VLmK4CHtFxghTl9g8etYa7CHkGc5tTO4MMWUASiSWnT9zBAkfeWP_FBi5OCJsOspN0Y', desc: 'Project management tool designed for agile teams.', size: '2.8GB' }
+                      { title: 'BPet System', type: '.EXE', color: 'primary', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAEfRL3dKTLEPHLQOxClkM4vqE827PoNOl-P2KmaQDAAKcalGOO9G5kca9bTe5FPDNR8HfF4s0nzZyRmD3D8u6xUQyikBCM3qrrNb0TPKJ2-trwEE5_qkK1MY8f83plYIKIF5o-CBq7vpP8U98XcjbuMouPCK3uDGVtQEunXlyw-T_sknLWDdMLEnWb-n9XyxWR5m8zXFfMJQs4GQ05oQ4glg1aMSYCBQisW6j0EB4-iDScyEfAQMa6V9e07PLkXvvtDolzx-QcdTVR', desc: 'Comprehensive veterinary management platform built with React and Node.js.', size: '4.2GB', extended: 'Includes complex state management for patient records, scheduling modules, and billing integration using Stripe. Built as a PWA for offline capabilities in rural veterinary clinics.' },
+                      { title: 'ESP-PB', type: '.SYS', color: 'secondary', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAByM7v6r6qRB6lXLYjpozMCIFtw2hUkpF-k0BG39RX89rN8aKGRfsBqJevptAmh7jb5aHUe8zkbD61HT6iBuF11zUvTwowDOA5JtwASUTXDBAJpWh5AMmNUJ06sZKPJkduQBcqqJqHNqbpBOiYJXVZTg8LUcDhmwXVsxT5F4a-QQjiPMfbCQL6js8l7vt6h0kBF8VakGjMTul_6TvQ9hLnlwqfFxjEHo2mqVug2Lh5qVlu6VAhQTu8oN7BwdxYjYDqJ-T4Jukra7ij', desc: 'IoT dashboard for real-time monitoring of ESP8266 devices.', size: '1.1GB', extended: 'Utilizes WebSockets for instant data visualization and telemetry. Handles thousands of events per second with optimized React rendering. Backend powered by Node.js and MQTT brokers.' },
+                      { title: 'PM-PB', type: '.BAT', color: 'tertiary', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCFPNKRoWbfSDeS0QGtf1Vblaf74rY0qIN1e-B4eTArve7SWUoYXA0DpFTIEmwG5TypJWxAnmvGphCyszNBYm3icYkvaXweWoUYH235TnRxC1wOM7DBYOeTryztnHpgDgx2Ch5T3cCNEiOQHObw-Jq51xNbAp1xupfgnZkkzMHSjxFt70mkOvk5wlE1q1VpiJZnn3PYkTWI3VLmK4CHtFxghTl9g8etYa7CHkGc5tTO4MMWUASiSWnT9zBAkfeWP_FBi5OCJsOspN0Y', desc: 'Project management tool designed for agile teams.', size: '2.8GB', extended: 'Custom drag-and-drop interface prioritizing keyboard navigation. Integrates deeply with Git providers for automated commit tracking. Built with Next.js App Router and Prisma.' }
                     ].map((proj) => (
-                      <div key={proj.title} className="w-80 bg-surface border-2 border-outline-variant flex flex-col btn-bevel shrink-0">
-                        <div className="h-40 border-b-2 border-outline-variant relative overflow-hidden bg-black group">
+                      <div key={proj.title} className={`${getWindow('projects')?.isMaximized ? 'w-full' : 'w-80'} bg-surface border-2 border-outline-variant flex flex-col btn-bevel shrink-0 transition-all duration-300`}>
+                        <div className={`${getWindow('projects')?.isMaximized ? 'h-64' : 'h-40'} border-b-2 border-outline-variant relative overflow-hidden bg-black group transition-all duration-300`}>
                           <img className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity pointer-events-none" src={proj.img} alt={proj.title} />
                           <div className={`absolute top-2 left-2 bg-black/80 px-2 py-1 text-xs border border-${proj.color}-fixed text-${proj.color}-fixed`}>{proj.type}</div>
                         </div>
                         <div className="p-4 flex-1 flex flex-col">
-                          <h3 className={`font-display-header text-xl text-${proj.color} mb-2`}>{proj.title}</h3>
-                          <p className="text-sm text-on-surface-variant flex-1 mb-4">{proj.desc}</p>
+                          <h3 className={`font-display-header ${getWindow('projects')?.isMaximized ? 'text-2xl' : 'text-xl'} text-${proj.color} mb-2`}>{proj.title}</h3>
+                          <p className="text-sm text-on-surface-variant flex-1 mb-4">
+                            {proj.desc}
+                            {getWindow('projects')?.isMaximized && (
+                              <span className="block mt-2 text-white/70 border-l-2 border-outline-variant pl-2 animate-in fade-in">{proj.extended}</span>
+                            )}
+                          </p>
                           <div className="flex justify-between items-center mt-auto border-t border-outline-variant pt-4">
                             <span className="text-xs text-outline">SIZE: {proj.size}</span>
-                            <button className={`${proj.color === 'secondary' ? 'bg-secondary-container text-on-secondary-fixed' : proj.color === 'tertiary' ? 'bg-tertiary-container text-on-tertiary-container' : 'bg-primary-container text-on-primary-container'} px-4 py-1 btn-bevel text-sm hover:brightness-125`}>RUN</button>
+                            <div className="flex gap-2">
+                              {getWindow('projects')?.isMaximized && (
+                                <button className="bg-black text-white px-4 py-1 btn-bevel text-sm hover:bg-surface-bright">SRC</button>
+                              )}
+                              <button className={`${proj.color === 'secondary' ? 'bg-secondary-container text-on-secondary-fixed' : proj.color === 'tertiary' ? 'bg-tertiary-container text-on-tertiary-container' : 'bg-primary-container text-on-primary-container'} px-4 py-1 btn-bevel text-sm hover:brightness-125`}>RUN</button>
+                            </div>
                           </div>
                         </div>
                       </div>

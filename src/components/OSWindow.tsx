@@ -113,7 +113,10 @@ export default function OSWindow({
       style={{ zIndex }}
     >
       {/* Title Bar (Drag Handle) */}
-      <div className="window-title-bg h-6 flex justify-between items-center px-1 border-b border-black window-drag-handle cursor-move select-none">
+      <div 
+        className="window-title-bg h-6 flex justify-between items-center px-1 border-b border-black window-drag-handle cursor-move select-none"
+        onDoubleClick={onMaximize}
+      >
         <span className="font-window-title text-window-title text-white drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">
           {title}
         </span>

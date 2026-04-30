@@ -1,274 +1,252 @@
-import Navigation from '@/components/Navigation';
+'use client';
+
+import React from 'react';
 
 export default function Home() {
   return (
     <>
-      <Navigation />
+      {/* Global CRT Overlay */}
+      <div className="crt-overlay"></div>
 
-      <main>
-          {/* Hero Section */}
-          <header id="home" className="relative min-h-screen flex items-center justify-center pt-24 px-6 md:px-12 overflow-hidden data-wave-bg">
-              <div className="relative z-10 max-w-5xl mx-auto text-center md:text-left flex flex-col md:flex-row items-center gap-12">
-                  <div className="flex-1 space-y-6">
-                      <p className="font-label text-[10px] uppercase tracking-[0.2em] text-primary">Junior Full Stack Developer</p>
-                      <h1 className="text-5xl md:text-7xl font-headline font-black tracking-tighter leading-none">
-                          Vinícius Almeida <br />
-                          <span className="text-surface-container-highest">Desenvolvedor</span><br />
-                          <span className="red-gradient-text">Full Stack Júnior</span>
-                      </h1>
-                      <p className="text-lg md:text-xl font-body leading-relaxed text-on-surface-variant max-w-2xl">
-                          Desenvolvendo soluções escaláveis e integradas com paixão e tecnologia. A interseção entre lógica rígida e experiência fluida.
-                      </p>
-                      <div className="pt-8">
-                          <button className="px-8 py-4 rounded-md ghost-border text-white hover:bg-surface-container-high hover:outline-[#FF0000] transition-all duration-300 font-label text-sm uppercase tracking-wider flex items-center gap-2 mx-auto md:mx-0">
-                              Ver Currículo
-                              <span className="material-symbols-outlined text-primary">arrow_forward</span>
-                          </button>
-                      </div>
-                  </div>
-              </div>
-              {/* Decorative Glow */}
-              <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary opacity-5 blur-[120px] rounded-full pointer-events-none"></div>
-          </header>
+      {/* Top Navigation (MISSION_CONTROL_v1.0) */}
+      <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-2 bg-blue-700 dark:bg-blue-800 font-label-caps text-label-caps tracking-tighter uppercase h-8 border-b-2 border-black/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_2px_0_0_rgba(0,0,0,1)] text-white">
+        <div className="text-sm font-black text-white italic">MISSION_CONTROL_v1.0</div>
+        <div className="hidden md:flex gap-4 h-full">
+          <a className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors" href="#hero">INITIALIZE</a>
+          <a className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors" href="#bio">BIO.EXE</a>
+          <a className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors" href="#skills">SPECS.SYS</a>
+          <a className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors" href="#projects">VAULT.DIR</a>
+          <a className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors" href="#contact">UPLINK.NET</a>
+        </div>
+        <div className="flex gap-1">
+          <button className="w-6 h-6 bg-surface-container btn-bevel flex items-center justify-center hover:bg-surface-bright"><span className="material-symbols-outlined text-[14px]">minimize</span></button>
+          <button className="w-6 h-6 bg-surface-container btn-bevel flex items-center justify-center hover:bg-surface-bright"><span className="material-symbols-outlined text-[14px]">fullscreen</span></button>
+          <button className="w-6 h-6 bg-surface-container btn-bevel flex items-center justify-center hover:bg-red-500"><span className="material-symbols-outlined text-[14px]">close</span></button>
+        </div>
+      </nav>
 
-          {/* About Me Section */}
-          <section className="py-24 px-6 md:px-12 relative border-t border-white/5 bg-surface-container-low" id="about">
-              <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16">
-                  <div className="w-64 h-64 md:w-80 md:h-80 relative flex-shrink-0">
-                      <div className="absolute inset-0 rounded-full border-2 border-[#FF0000]/30 border-dashed animate-[spin_20s_linear_infinite]"></div>
-                      <div className="absolute inset-2 rounded-full border-2 border-[#FF0000]/50"></div>
-                      <div className="absolute inset-4 rounded-full overflow-hidden bg-surface-container-high grayscale hover:grayscale-0 transition-all duration-700">
-                          <img alt="Vinícius Almeida Portrait" className="w-full h-full object-cover mix-blend-luminosity hover:mix-blend-normal transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl4dY-IfbSwRkKqGMe4SHwC46NHN1SqpntK260Pn7Mv_oZi5DVWu_9T3YHlelymOjvNutMX0FgYZKRHaCvF_kGLw7rlharAgh-SCoFUbhm61yS4pJb8cGSdxGm3v49VB0763dBqIdUcMjqSqLhM4JXtca072YRu-rCl8_KCaAHYV8JEhsZ_2nN5Hcl8WDzOaKvd7PbrdlV4di-MVpGFnu_5r-S7eF2b88hDyr2F186SecwgEiAZoLTOAISSpNr2Gsm3MxborJuWOuS" />
-                      </div>
-                  </div>
-                  <div className="flex-1 space-y-6 text-center md:text-left">
-                      <h2 className="text-3xl md:text-5xl font-headline font-black tracking-tighter text-white">
-                          Sobre <span className="text-[#FF0000]">Mim</span>
-                      </h2>
-                      <p className="text-lg font-body leading-relaxed text-on-surface-variant">
-                          Sou um desenvolvedor Full Stack apaixonado por arquitetar sistemas eficientes e criar interfaces intuitivas. Atualmente formado em Análise e Desenvolvimento na <strong className="text-white">UNIPÊ</strong>, busco constantemente unir a teoria acadêmica com as melhores práticas de mercado.
-                      </p>
-                      <p className="text-lg font-body leading-relaxed text-on-surface-variant">
-                          Minha abordagem de desenvolvimento é focada na escalabilidade, manutenção e, acima de tudo, na experiência do usuário final. Acredito que o código não é apenas uma ferramenta de engenharia, mas um meio de comunicação com as pessoas.
-                      </p>
-                  </div>
+      {/* Main Content Canvas */}
+      <main className="pt-12 px-window-margin pb-20 max-w-7xl mx-auto flex flex-col gap-8 relative z-10">
+        
+        {/* Hero Section */}
+        <section className="relative mt-8" id="hero">
+          <div className="bg-surface-container window-bevel rounded-DEFAULT overflow-hidden">
+            <div className="window-title-bg h-6 flex justify-between items-center px-1 border-b border-black">
+              <span className="font-window-title text-window-title text-white drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">C:\SYS\INITIALIZE.BAT</span>
+              <div className="flex gap-1">
+                <button className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">_</button>
+                <button className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">□</button>
+                <button className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold hover:bg-red-500">X</button>
               </div>
-          </section>
+            </div>
+            <div className="p-container-padding bg-black min-h-[409px] flex flex-col justify-center relative overflow-hidden">
+              <div className="absolute inset-0 opacity-20">
+                <img className="w-full h-full object-cover mix-blend-screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe5GQOOs2Ch3TG-84UEpjiPR_g2Z6LVCFDUfQsm5QnDNLdNd7ljrE2BB49hptFDOZwbmhG5voufuCDronxmm0WT8VOHEAe23jAMw9F7-_xrxgRpUEoG74b_-UmSPc20Zrus58I68OKRS-xm2mVjEdivtPl9aw__U5Z3XMj8VS1LsWhjitS-k5RPutsIc_4zKJZ7pVq1XyqHdH4mvwh1EU2mvsaxdKLR2HjyORpDCL0q7AkQPbqj9LqEhLbbHVTFeqmrxFn0z-714h5" alt="Space" />
+              </div>
+              <div className="relative z-10 p-8 border border-secondary-fixed/30 bg-surface-container-lowest/80 backdrop-blur-sm max-w-2xl mx-auto text-center window-bevel">
+                <h1 className="font-display-header text-display-header text-primary mb-4 drop-shadow-[0_0_10px_rgba(180,197,255,0.8)]">VINÍCIUS ALMEIDA</h1>
+                <p className="text-secondary mb-6 blinking-cursor">&gt; CREATIVE DEVELOPER _ SYSTEM ARCHITECT _ UI/UX EXPLORER</p>
+                <div className="flex justify-center gap-4 mt-8">
+                  <button className="bg-surface btn-bevel px-6 py-2 text-primary font-label-caps text-label-caps uppercase hover:text-white hover:bg-primary-container transition-colors shadow-[0_0_15px_rgba(0,83,225,0.5)]">
+                    [ EXECUTE_PORTFOLIO ]
+                  </button>
+                  <button className="bg-surface btn-bevel px-6 py-2 text-secondary font-label-caps text-label-caps uppercase hover:text-white hover:bg-secondary-container transition-colors">
+                    [ INITIATE_COMMS ]
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-          {/* Technical Skills Section */}
-          <section className="py-24 px-6 md:px-12 relative border-t border-white/5" id="stack">
-              <div className="max-w-6xl mx-auto space-y-16">
-                  <div className="text-center space-y-4">
-                      <h2 className="text-3xl md:text-5xl font-headline font-black tracking-tighter text-white">
-                          Technical <span className="text-[#FF0000]">Stack</span>
-                      </h2>
-                      <p className="font-label text-sm uppercase tracking-widest text-neutral-500">O arsenal do arquiteto</p>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                      {/* Stack Categories */}
-                      <div className="glass-panel p-8 rounded-xl ghost-border hover-ghost-border transition-all duration-300">
-                          <div className="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center mb-6">
-                              <span className="material-symbols-outlined text-[#FF0000]">code</span>
-                          </div>
-                          <h3 className="text-xl font-headline font-bold text-white mb-4">Lang/Frameworks</h3>
-                          <ul className="space-y-3 font-body text-sm text-on-surface-variant">
-                              <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> TypeScript / JavaScript</li>
-                              <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> React / Next.js</li>
-                              <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> Express / Nest.js</li>
-                              <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> HTML5 / CSS3 / Tailwind</li>
-                          </ul>
-                      </div>
-                      {/* Database */}
-                      <div className="glass-panel p-8 rounded-xl ghost-border hover-ghost-border transition-all duration-300">
-                          <div className="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center mb-6">
-                              <span className="material-symbols-outlined text-[#FF0000]">database</span>
-                          </div>
-                          <h3 className="text-xl font-headline font-bold text-white mb-4">Database & ORM</h3>
-                          <ul className="space-y-3 font-body text-sm text-on-surface-variant">
-                              <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> PostgreSQL</li>
-                              <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> MongoDB</li>
-                              <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> Prisma ORM</li>
-                              <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> Redis</li>
-                          </ul>
-                      </div>
-                      {/* Tools */}
-                      <div className="glass-panel p-8 rounded-xl ghost-border hover-ghost-border transition-all duration-300">
-                          <div className="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center mb-6">
-                              <span className="material-symbols-outlined text-[#FF0000]">build</span>
-                          </div>
-                          <h3 className="text-xl font-headline font-bold text-white mb-4">Ferramentas</h3>
-                          <ul className="space-y-3 font-body text-sm text-on-surface-variant">
-                              <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> Git / GitHub</li>
-                              <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> Docker</li>
-                              <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> Vercel</li>
-                              <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> Figma</li>
-                          </ul>
-                      </div>
-                      {/* Practices */}
-                      <div className="glass-panel p-8 rounded-xl ghost-border hover-ghost-border transition-all duration-300">
-                          <div className="w-12 h-12 bg-surface-container rounded-lg flex items-center justify-center mb-6">
-                              <span className="material-symbols-outlined text-[#FF0000]">architecture</span>
-                          </div>
-                          <h3 className="text-xl font-headline font-bold text-white mb-4">Práticas</h3>
-                          <ul className="space-y-3 font-body text-sm text-on-surface-variant">
-                              <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> Clean Code</li>
-                              <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> SOLID Principles</li>
-                              <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> Agile / Scrum</li>
-                              <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#FF0000]"></span> UI/UX Design</li>
-                          </ul>
-                      </div>
-                  </div>
+        {/* Bio Window */}
+        <section className="grid grid-cols-1 lg:grid-cols-3 gap-8" id="bio">
+          <div className="lg:col-span-2 bg-surface-container window-bevel rounded-DEFAULT overflow-hidden h-full">
+            <div className="window-title-bg h-6 flex justify-between items-center px-1 border-b border-black">
+              <span className="font-window-title text-window-title text-white drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">BIO_ENCRYPTED.EXE</span>
+              <div className="flex gap-1">
+                <button className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">_</button>
+                <button className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">□</button>
+                <button className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold hover:bg-red-500">X</button>
               </div>
-          </section>
+            </div>
+            <div className="p-container-padding bg-surface-container-lowest h-[calc(100%-24px)] flex flex-col md:flex-row gap-6 items-start">
+              <div className="w-full md:w-1/3 border-2 border-outline-variant p-2 bg-black flex-shrink-0">
+                <img className="w-full aspect-square object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz4275Pb2tIos89RgTqpKpclOoLMmR0rch0PbY-AmYM5rx_z3luBN8RspnnxtSBL3cBbwdmw-ZcIpEjdBLDyINn_zYUqJFDuNvy5Wg4dNe8n8UG-4oSGV0HsAdng_88hv-l-3mA1pHlyrfqQIENfEK8c7C-EyDjQzu9zEDc7xadLdgQk-Sc-H2Tuoi2CzCeZz_-EFX6PnqFH1vDcQx4lBrLk5CTP8wA_XMXYtwNsWBCxkomDcKpSoyPOI75x1RjwFMqRhCawhP6ktS" alt="Profile" />
+                <div className="mt-2 text-center text-on-surface-variant text-sm font-label-caps">ID: V.ALMEIDA_77</div>
+              </div>
+              <div className="text-on-surface space-y-4">
+                <p className="text-secondary blinking-cursor">&gt; DECRYPTING DATA STREAM...</p>
+                <p>I am a Creative Developer specializing in bridging the gap between robust system architecture and immersive, high-fidelity user experiences. With a foundation built on full-stack technologies, I construct digital environments that are as functional as they are visually compelling.</p>
+                <p>Operating primarily within the React ecosystem, I engineer interfaces that evoke emotion while maintaining strict performance standards. My approach blends modern technical capabilities with distinct, narrative-driven aesthetics—often drawing inspiration from retro-computing, sci-fi interfaces, and industrial design.</p>
+                <div className="mt-4 p-4 border border-outline-variant bg-surface-dim">
+                  <ul className="space-y-2 text-sm text-on-surface-variant">
+                    <li><span className="text-primary-fixed">CLASS:</span> FRONTEND ENGINEER</li>
+                    <li><span className="text-primary-fixed">SPECIALIZATION:</span> UI/UX ARCHITECTURE</li>
+                    <li><span className="text-primary-fixed">STATUS:</span> ONLINE_AND_SEARCHING</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-surface-container window-bevel rounded-DEFAULT overflow-hidden">
+            <div className="window-title-bg h-6 flex justify-between items-center px-1 border-b border-black">
+              <span className="font-window-title text-window-title text-white drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">HARDWARE_MONITOR</span>
+              <div className="flex gap-1">
+                <button className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold hover:bg-red-500">X</button>
+              </div>
+            </div>
+            <div className="p-4 bg-black h-[calc(100%-24px)] flex items-center justify-center relative">
+              <img className="w-full h-full object-cover opacity-50 absolute inset-0 mix-blend-screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu4ILfoFkS54jFQvxSKX_PsgJPpkTjBOn-pUQroxpj1ZpCNX4TuZu9J7UvUtsQyflUMTw5u44jqC7kzfiWBV3xV6nNVSGU8Zo3-kN0K3UYwVQXM61mZk6oP0EP_MQAmSZtfztHwfW_dqpdF_FJRjvdPYpZeeV0BRD2wu_TC42Ip0PebvTWNUnlCIIGQTmsqbct9QWJKjGUFL413ds-brlRUcbQQOs7jDmsHHU8vgaZB95K-R9_fsS1igw_CK_2LqQVuKkK1tbFrcfi" alt="Hardware" />
+              <div className="z-10 text-center border-2 border-secondary-fixed p-4 bg-surface-container-lowest/90 backdrop-blur">
+                <div className="text-secondary text-2xl mb-2">SYSTEM: OPTIMAL</div>
+                <div className="w-full bg-surface-variant h-4 border border-outline-variant mt-2">
+                  <div className="bg-secondary-container h-full w-[85%]"></div>
+                </div>
+                <div className="text-xs text-on-surface-variant mt-1">CPU LOAD: 85%</div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-          {/* Professional Journey Section */}
-          <section className="py-24 px-6 md:px-12 relative border-t border-white/5 bg-surface-container-low" id="journey">
-              <div className="max-w-4xl mx-auto space-y-16">
-                  <div className="text-center space-y-4">
-                      <h2 className="text-3xl md:text-5xl font-headline font-black tracking-tighter text-white">
-                          Professional <span className="text-[#FF0000]">Journey</span>
-                      </h2>
-                      <p className="font-label text-sm uppercase tracking-widest text-neutral-500">A evolução contínua</p>
+        {/* Skills Window */}
+        <section className="bg-surface-container window-bevel rounded-DEFAULT overflow-hidden" id="skills">
+          <div className="window-title-bg h-6 flex justify-between items-center px-1 border-b border-black">
+            <span className="font-window-title text-window-title text-white drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">CORE_SYSTEM_SPECS.SYS</span>
+            <div className="flex gap-1">
+              <button className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">_</button>
+              <button className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">□</button>
+              <button className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold hover:bg-red-500">X</button>
+            </div>
+          </div>
+          <div className="p-container-padding bg-surface-container-lowest grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* Skill Modules */}
+            {[
+              { name: 'JAVASCRIPT', icon: 'javascript', val: '90%', ver: 'v.ES6+', color: 'primary-fixed' },
+              { name: 'TYPESCRIPT', icon: 'code', val: '85%', ver: 'v.5.0+', color: 'primary-fixed' },
+              { name: 'REACT.JS', icon: 'api', val: '95%', ver: 'v.18.0', color: 'secondary-fixed' },
+              { name: 'NODE.JS', icon: 'dns', val: '75%', ver: 'v.20.0', color: 'secondary-fixed' },
+            ].map((skill) => (
+              <div key={skill.name} className={`border border-outline-variant bg-surface p-4 hover:border-${skill.color} transition-colors group`}>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className={`w-10 h-10 bg-black border border-${skill.color} flex items-center justify-center text-${skill.color}`}>
+                    <span className="material-symbols-outlined">{skill.icon}</span>
                   </div>
-                  <div className="relative border-l border-[#FF0000]/30 ml-4 md:ml-12 space-y-12">
-                      {/* Meets Tecnologia */}
-                      <div className="relative pl-8 md:pl-12">
-                          <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-[#FF0000] border-4 border-[#1b1b1b]"></div>
-                          <div className="space-y-2">
-                              <span className="font-label text-xs uppercase tracking-widest text-primary">Setembro 2025 - Presente</span>
-                              <h3 className="text-2xl font-headline font-bold text-white">Desenvolvedor Full Stack Júnior</h3>
-                              <h4 className="text-lg font-body text-neutral-400">Meets Tecnologia</h4>
-                              <p className="text-on-surface-variant font-body leading-relaxed pt-2">
-                                  Desenvolvimento e manutenção de aplicações web escaláveis. Colaboração em equipes ágeis, implementação de novas features focadas na experiência do usuário e otimização de performance no backend.
-                              </p>
-                          </div>
-                      </div>
-                      {/* UBTech Office */}
-                      <div className="relative pl-8 md:pl-12">
-                          <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-surface-variant border-4 border-[#1b1b1b]"></div>
-                          <div className="space-y-2">
-                              <span className="font-label text-xs uppercase tracking-widest text-neutral-500">Setembro 2024 - Junho 2025</span>
-                              <h3 className="text-2xl font-headline font-bold text-white">Estagiário de Desenvolvimento</h3>
-                              <h4 className="text-lg font-body text-neutral-400">UBTech Office</h4>
-                              <p className="text-on-surface-variant font-body leading-relaxed pt-2">
-                                  Apoio no desenvolvimento de sistemas internos, criação de interfaces de usuário com React e rotinas de backend. Aprendizado intenso sobre o ciclo de vida do software corporativo.
-                              </p>
-                          </div>
-                      </div>
-                  </div>
+                  <div className={`font-label-caps text-label-caps text-${skill.color} group-hover:text-white`}>{skill.name}</div>
+                </div>
+                <div className="w-full bg-black terminal-input h-3">
+                  <div 
+                    className={`bg-${skill.color} h-full shadow-[0_0_8px_rgba(219,225,255,0.8)]`} 
+                    style={{ width: skill.val }}
+                  ></div>
+                </div>
+                <div className="text-right text-xs mt-1 text-on-surface-variant">{skill.ver} [{skill.val}]</div>
               </div>
-          </section>
+            ))}
+          </div>
+        </section>
 
-          {/* Featured Projects Section */}
-          <section className="py-24 px-6 md:px-12 relative border-t border-white/5" id="work">
-              <div className="max-w-6xl mx-auto space-y-16">
-                  <div className="text-center space-y-4">
-                      <h2 className="text-3xl md:text-5xl font-headline font-black tracking-tighter text-white">
-                          Featured <span className="text-[#FF0000]">Projects</span>
-                      </h2>
-                      <p className="font-label text-sm uppercase tracking-widest text-neutral-500">A prova de conceito</p>
+        {/* Project Archive */}
+        <section className="bg-surface-container window-bevel rounded-DEFAULT overflow-hidden" id="projects">
+          <div className="window-title-bg h-6 flex justify-between items-center px-1 border-b border-black">
+            <span className="font-window-title text-window-title text-white drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">PROJECT_VAULT.DIR</span>
+            <div className="flex gap-1">
+              <button className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">_</button>
+              <button className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">□</button>
+              <button className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold hover:bg-red-500">X</button>
+            </div>
+          </div>
+          <div className="p-container-padding bg-surface-container-lowest overflow-x-auto">
+            <div className="flex gap-6 min-w-max pb-4">
+              {/* Project Cards */}
+              {[
+                { title: 'BPet System', type: '.EXE', color: 'primary', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAEfRL3dKTLEPHLQOxClkM4vqE827PoNOl-P2KmaQDAAKcalGOO9G5kca9bTe5FPDNR8HfF4s0nzZyRmD3D8u6xUQyikBCM3qrrNb0TPKJ2-trwEE5_qkK1MY8f83plYIKIF5o-CBq7vpP8U98XcjbuMouPCK3uDGVtQEunXlyw-T_sknLWDdMLEnWb-n9XyxWR5m8zXFfMJQs4GQ05oQ4glg1aMSYCBQisW6j0EB4-iDScyEfAQMa6V9e07PLkXvvtDolzx-QcdTVR', desc: 'Comprehensive veterinary management platform built with React and Node.js.', size: '4.2GB' },
+                { title: 'ESP-PB', type: '.SYS', color: 'secondary', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAByM7v6r6qRB6lXLYjpozMCIFtw2hUkpF-k0BG39RX89rN8aKGRfsBqJevptAmh7jb5aHUe8zkbD61HT6iBuF11zUvTwowDOA5JtwASUTXDBAJpWh5AMmNUJ06sZKPJkduQBcqqJqHNqbpBOiYJXVZTg8LUcDhmwXVsxT5F4a-QQjiPMfbCQL6js8l7vt6h0kBF8VakGjMTul_6TvQ9hLnlwqfFxjEHo2mqVug2Lh5qVlu6VAhQTu8oN7BwdxYjYDqJ-T4Jukra7ij', desc: 'IoT dashboard for real-time monitoring of ESP8266 devices.', size: '1.1GB' },
+                { title: 'PM-PB', type: '.BAT', color: 'tertiary', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCFPNKRoWbfSDeS0QGtf1Vblaf74rY0qIN1e-B4eTArve7SWUoYXA0DpFTIEmwG5TypJWxAnmvGphCyszNBYm3icYkvaXweWoUYH235TnRxC1wOM7DBYOeTryztnHpgDgx2Ch5T3cCNEiOQHObw-Jq51xNbAp1xupfgnZkkzMHSjxFt70mkOvk5wlE1q1VpiJZnn3PYkTWI3VLmK4CHtFxghTl9g8etYa7CHkGc5tTO4MMWUASiSWnT9zBAkfeWP_FBi5OCJsOspN0Y', desc: 'Project management tool designed for agile teams.', size: '2.8GB' }
+              ].map((proj) => (
+                <div key={proj.title} className="w-80 bg-surface border-2 border-outline-variant flex flex-col btn-bevel">
+                  <div className="h-40 border-b-2 border-outline-variant relative overflow-hidden bg-black group">
+                    <img className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src={proj.img} alt={proj.title} />
+                    <div className={`absolute top-2 left-2 bg-black/80 px-2 py-1 text-xs border border-${proj.color}-fixed text-${proj.color}-fixed`}>{proj.type}</div>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                      {/* BPet */}
-                      <div className="glass-panel group rounded-xl overflow-hidden ghost-border hover-ghost-border transition-all duration-500 flex flex-col">
-                          <div className="h-48 bg-surface-container relative overflow-hidden">
-                              <div className="absolute inset-0 bg-gradient-to-t from-[#131313] to-transparent z-10"></div>
-                              <img alt="BPet Project" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60 group-hover:opacity-100 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWSGL-vaJQS_NJlA23YRxIKwUNYZVu7aNMwzqTECG-3E00ttn_qxI-83jjKccA5NicAGbkdMDGV6KE5yShFOJfJ4DyG-NCcuh6vt4aOHPxsmn0rHWZsaOu0VEoH43aXau9QH9LraVc0iMlHV56CncDry5Qbke-nZiEszlD61P1XqD8zDEPbKUY2SLAyqLWbRN3B9NvnSTmiaQRbF5Z4sEPxEbPiFAiM7bykXDKFIlfnXGco_z_njWWhP5E8oQLRxnwk402Wfp_iZC7" />
-                          </div>
-                          <div className="p-8 flex-1 flex flex-col">
-                              <h3 className="text-2xl font-headline font-bold text-white mb-2 group-hover:text-[#FF0000] transition-colors">BPet</h3>
-                              <p className="text-sm font-body text-on-surface-variant mb-6 flex-1">
-                                  Plataforma de gestão para clínicas veterinárias. Sistema completo com controle de prontuários, agendamentos e faturamento financeiro integrado.
-                              </p>
-                              <div className="flex flex-wrap gap-2 mt-auto">
-                                  <span className="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300">Next.js</span>
-                                  <span className="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300">Node.js</span>
-                                  <span className="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300">PostgreSQL</span>
-                              </div>
-                          </div>
-                      </div>
-                      {/* ESP-PB */}
-                      <div className="glass-panel group rounded-xl overflow-hidden ghost-border hover-ghost-border transition-all duration-500 flex flex-col">
-                          <div className="h-48 bg-surface-container relative overflow-hidden">
-                              <div className="absolute inset-0 bg-gradient-to-t from-[#131010] to-transparent z-10"></div>
-                              <img alt="ESP-PB Project" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60 group-hover:opacity-100 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEBNu2ayzd7ONHHEVbQQTJXVIkFxcK-hhhzqZS_iLYL_FpNoqLHYInsaitmS4tYo6574HOJQPriEYWUcnGIoxw_HQUHovL5Wi8THmU0GcC0ER1A0NjEFyz_zXlLRcZuavA-goHPlXf0gh4IWhip5d_isvLhcxWMdTAqbHLgt_SHvMbEeEZW6gbJqnLUo6-kdEpwe86OvITKSxQtTCA2_hdEmPejMu-2Df5_jKhNhQYdgjvobtpHfNfdbFtW4-DdG_G1-Psjk5dBE0j" />
-                          </div>
-                          <div className="p-8 flex-1 flex flex-col">
-                              <h3 className="text-2xl font-headline font-bold text-white mb-2 group-hover:text-[#FF0000] transition-colors">ESP-PB</h3>
-                              <p className="text-sm font-body text-on-surface-variant mb-6 flex-1">
-                                  Portal educacional para a Escola de Saúde Pública da Paraíba. Sistema de gestão de cursos, inscrições e certificação digital com alta disponibilidade.
-                              </p>
-                              <div className="flex flex-wrap gap-2 mt-auto">
-                                  <span className="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300">React</span>
-                                  <span className="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300">Express</span>
-                                  <span className="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300">MongoDB</span>
-                              </div>
-                          </div>
-                      </div>
-                      {/* PM-PB */}
-                      <div className="glass-panel group rounded-xl overflow-hidden ghost-border hover-ghost-border transition-all duration-500 flex flex-col">
-                          <div className="h-48 bg-surface-container relative overflow-hidden">
-                              <div className="absolute inset-0 bg-gradient-to-t from-[#131111] to-transparent z-10"></div>
-                              <img alt="PM-PB Project" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60 group-hover:opacity-100 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYOIdYta8dVvU8X5e_xu0Box-IaHuxiMiwDTqh3AFQR7hMkK5oF1F5AmXjLntS5ljmFjGZrpYE_ZtNw3XTJTIQvQtjzri8cPMYIP0aBqS0mQ6DZLUl_AJoz05USvwKCig43zLajzoSUitUfsLXoJ1e7SqfLiZakUBUHL2ljA-sbTFsQ0JUtNeunH9TRSs8kh0TagmyHeBRDbQiNGh93kQ8p23YWJkTFSRwr8GSwNNIZY6gt0WRFIKBbBfeq7pKjUYSaDH1uXpq1KSK" />
-                          </div>
-                          <div className="p-8 flex-1 flex flex-col">
-                              <h3 className="text-2xl font-headline font-bold text-white mb-2 group-hover:text-[#FF0000] transition-colors">PM-PB</h3>
-                              <p className="text-sm font-body text-on-surface-variant mb-6 flex-1">
-                                  Sistema administrativo para a Polícia Militar da Paraíba. Foco estrito em segurança, controle de acesso granular e auditoria de dados sensíveis.
-                              </p>
-                              <div className="flex flex-wrap gap-2 mt-auto">
-                                  <span className="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300">TypeScript</span>
-                                  <span className="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300">NestJS</span>
-                                  <span className="px-3 py-1 bg-surface-container-high rounded-full text-xs font-label text-neutral-300">Docker</span>
-                              </div>
-                          </div>
-                      </div>
+                  <div className="p-4 flex-1 flex flex-col">
+                    <h3 className={`font-display-header text-xl text-${proj.color} mb-2`}>{proj.title}</h3>
+                    <p className="text-sm text-on-surface-variant flex-1 mb-4">{proj.desc}</p>
+                    <div className="flex justify-between items-center mt-auto border-t border-outline-variant pt-4">
+                      <span className="text-xs text-outline">SIZE: {proj.size}</span>
+                      <button className={`${proj.color === 'secondary' ? 'bg-secondary-container text-on-secondary-fixed' : proj.color === 'tertiary' ? 'bg-tertiary-container text-on-tertiary-container' : 'bg-primary-container text-on-primary-container'} px-4 py-1 btn-bevel text-sm hover:brightness-125`}>RUN</button>
+                    </div>
                   </div>
-              </div>
-          </section>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-          {/* Contact Section */}
-          <section className="py-24 px-6 md:px-12 relative border-t border-white/5 data-wave-bg" id="contact">
-              <div className="max-w-3xl mx-auto text-center space-y-12">
-                  <div className="space-y-4">
-                      <h2 className="text-4xl md:text-6xl font-headline font-black tracking-tighter text-white">
-                          Vamos <span className="text-[#FF0000]">Conversar.</span>
-                      </h2>
-                      <p className="text-lg font-body text-on-surface-variant">Pronto para construir o próximo projeto incrível? Entre em contato e vamos transformar sua ideia em realidade digital.</p>
-                  </div>
-                  <form className="space-y-6 text-left glass-panel p-8 md:p-12 rounded-2xl ghost-border">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="space-y-2">
-                              <label className="font-label text-xs uppercase tracking-widest text-neutral-400" htmlFor="name">Nome</label>
-                              <input className="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 text-white placeholder-neutral-600 focus:ring-2 focus:ring-[#FF0000] transition-all font-body" id="name" placeholder="John Doe" type="text" />
-                          </div>
-                          <div className="space-y-2">
-                              <label className="font-label text-xs uppercase tracking-widest text-neutral-400" htmlFor="email">Email</label>
-                              <input className="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 text-white placeholder-neutral-600 focus:ring-2 focus:ring-[#FF0000] transition-all font-body" id="email" placeholder="john@example.com" type="email" />
-                          </div>
-                      </div>
-                      <div className="space-y-2">
-                          <label className="font-label text-xs uppercase tracking-widest text-neutral-400" htmlFor="message">Mensagem</label>
-                          <textarea className="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 text-white placeholder-neutral-600 focus:ring-2 focus:ring-[#FF0000] transition-all font-body resize-none" id="message" placeholder="Olá, gostaria de falar sobre..." rows={4}></textarea>
-                      </div>
-                      <button className="w-full px-8 py-4 rounded-md red-gradient-bg text-white hover:opacity-90 transition-opacity font-label text-sm uppercase tracking-wider font-bold">
-                          Enviar Mensagem
-                      </button>
-                  </form>
+        {/* Contact Form */}
+        <section className="max-w-2xl mx-auto w-full mb-12" id="contact">
+          <div className="bg-surface-container window-bevel rounded-DEFAULT overflow-hidden">
+            <div className="window-title-bg h-6 flex justify-between items-center px-1 border-b border-black">
+              <span className="font-window-title text-window-title text-white drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">COMM_UPLINK.NET</span>
+              <div className="flex gap-1">
+                <button className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">_</button>
+                <button className="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold hover:bg-red-500">X</button>
               </div>
-          </section>
+            </div>
+            <div className="p-container-padding bg-black border-[8px] border-surface-container-lowest">
+              <div className="text-secondary mb-6 border-b border-secondary-fixed/30 pb-2">
+                &gt; ESTABLISHING SECURE CONNECTION...<br/>
+                &gt; CONNECTION ESTABLISHED.<br/>
+                &gt; ENTER MESSAGE BELOW:
+              </div>
+              <form className="space-y-4">
+                <div className="flex flex-col">
+                  <label className="text-primary-fixed text-sm mb-1">ID [NAME]:</label>
+                  <input className="bg-black terminal-input text-secondary focus:ring-0 focus:border-secondary-fixed focus:outline-none p-2 font-terminal-md" placeholder="Enter identification..." type="text" />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-primary-fixed text-sm mb-1">ROUTING [EMAIL]:</label>
+                  <input className="bg-black terminal-input text-secondary focus:ring-0 focus:border-secondary-fixed focus:outline-none p-2 font-terminal-md" placeholder="Enter routing address..." type="email" />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-primary-fixed text-sm mb-1">PAYLOAD [MESSAGE]:</label>
+                  <textarea className="bg-black terminal-input text-secondary focus:ring-0 focus:border-secondary-fixed focus:outline-none p-2 font-terminal-md resize-none" placeholder="Transmit data..." rows={4}></textarea>
+                </div>
+                <div className="pt-4 flex justify-end">
+                  <button className="bg-black border border-secondary-fixed text-secondary-fixed px-8 py-2 hover:bg-secondary-fixed hover:text-black transition-colors blinking-cursor shadow-[0_0_10px_rgba(116,255,106,0.2)]" type="button">
+                    TRANSMIT
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
       </main>
 
-      {/* Footer */}
-      <footer className="w-full flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 bg-[#0e0e0e] border-t border-white/5">
-          <div className="font-headline font-bold text-white uppercase text-xl">V.ALMEIDA</div>
-          <div className="font-body text-[10px] uppercase tracking-[0.2em] text-neutral-500">© 2026 VINÍCIUS ALMEIDA</div>
-          <div className="flex items-center gap-6 font-label text-xs uppercase tracking-widest text-neutral-600">
-              <a className="hover:text-[#FF0000] transition-colors" href="#">GitHub</a>
-              <a className="hover:text-[#FF0000] transition-colors" href="#">LinkedIn</a>
-              <a className="hover:text-[#FF0000] transition-colors" href="#">Email</a>
-          </div>
-      </footer>
+      {/* Bottom Nav Bar / Taskbar (Mobile/Global) */}
+      <div className="fixed bottom-0 left-0 w-full z-50 flex items-center bg-gray-300 dark:bg-slate-900 h-10 px-0 border-t-2 border-white shadow-[inset_0_-2px_0_rgba(0,0,0,0.5),0_-4px_10px_rgba(0,83,225,0.3)] font-terminal-md text-lg uppercase text-black dark:text-white md:hidden">
+        {/* Start/Launch Button */}
+        <div className="h-full flex items-center pr-4 pl-2 bg-gradient-to-r from-green-600 to-green-400 rounded-r-full shadow-[inset_2px_2px_0_rgba(255,255,255,0.5)] border-r-2 border-black mr-2 hover:brightness-110 cursor-pointer">
+          <span className="text-white font-black italic flex items-center gap-1">
+            <span className="material-symbols-outlined text-[18px]">rocket_launch</span>
+            LAUNCH
+          </span>
+        </div>
+        <div className="flex h-full flex-1 overflow-x-auto no-scrollbar">
+          <a className="flex items-center gap-2 px-3 h-full border-r border-gray-400 hover:bg-white/10 shrink-0" href="#bio">
+            <span className="material-symbols-outlined text-[18px]">account_circle</span>
+            BIO.EXE
+          </a>
+          <a className="flex items-center gap-2 bg-slate-400 dark:bg-slate-600 shadow-[inset_2px_2px_0_rgba(0,0,0,0.5)] px-3 h-full border-x border-gray-500 shrink-0 scale-95 origin-bottom text-white" href="#projects">
+            <span className="material-symbols-outlined text-[18px]">folder_open</span>
+            FILES.DIR
+          </a>
+          <a className="flex items-center gap-2 px-3 h-full border-r border-gray-400 hover:bg-white/10 shrink-0" href="#contact">
+            <span className="material-symbols-outlined text-[18px]">terminal</span>
+            SYS.LOG
+          </a>
+        </div>
+      </div>
     </>
   );
 }

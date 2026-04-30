@@ -11,8 +11,23 @@ const inter = Inter({
 const spaceGrotesk = Space_Grotesk({ 
   subsets: ['latin'], 
   variable: '--font-space-grotesk',
-  weight: ['400', '700', '700'] 
+  weight: ['400', '700'] 
 });
+
+import { Orbitron, VT323 } from 'next/font/google';
+
+const orbitron = Orbitron({
+  subsets: ['latin'],
+  variable: '--font-orbitron',
+  weight: ['400', '700', '900']
+});
+
+const vt323 = VT323({
+  subsets: ['latin'],
+  variable: '--font-vt323',
+  weight: ['400']
+});
+
 
 export const metadata: Metadata = {
   title: 'Vinícius Almeida | The Kinetic Architect',
@@ -25,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`dark ${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="pt-BR" className={`dark ${inter.variable} ${spaceGrotesk.variable} ${orbitron.variable} ${vt323.variable}`}>
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
       </head>

@@ -6,6 +6,7 @@ import OSWindow from '@/components/OSWindow';
 import CodeStreamBackground from '@/components/CodeStreamBackground';
 import MobileView from '@/components/MobileView';
 import Image from 'next/image';
+import { translations, Language } from '@/data/translations';
 
 type WindowState = {
   id: string;
@@ -18,6 +19,8 @@ type WindowState = {
 
 export default function Home() {
   const [isBooted, setIsBooted] = useState(false);
+  const [language, setLanguage] = useState<Language>('pt');
+  const t = translations[language];
   
   const [windows, setWindows] = useState<WindowState[]>([
     { id: 'hero', title: 'C:\\SYS\\INITIALIZE.BAT', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 10 },
@@ -26,6 +29,7 @@ export default function Home() {
     { id: 'projects', title: 'PROJECT_VAULT.DIR', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 13 },
     { id: 'contact', title: 'COMM_UPLINK.NET', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 14 },
     { id: 'hardware', title: 'HARDWARE_MONITOR', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 15 },
+    { id: 'social', title: 'SOCIAL_NETWORK.CONNECT', isOpen: false, isMinimized: false, isMaximized: false, zIndex: 16 },
   ]);
 
   const [highestZIndex, setHighestZIndex] = useState(20);
@@ -84,7 +88,7 @@ export default function Home() {
     <>
       {/* Mobile View */}
       <div className="block md:hidden">
-        <MobileView />
+        <MobileView language={language} setLanguage={setLanguage} />
       </div>
 
       {/* Desktop OS View */}
@@ -101,14 +105,19 @@ export default function Home() {
           <nav className="fixed top-0 left-0 w-full z-[9999] flex justify-between items-center px-2 bg-blue-700 dark:bg-blue-800 font-label-caps text-label-caps tracking-tighter uppercase h-8 border-b-2 border-black/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_2px_0_0_rgba(0,0,0,1)] text-white select-none">
             <div className="text-sm font-black text-white italic"><img src="/logo.svg" alt="Logo" width={40} height={40} /></div>
             <div className="hidden md:flex gap-4 h-full">
-              <button onClick={() => openWindow('hero')} className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors cursor-pointer">HOME</button>
-              <button onClick={() => openWindow('bio')} className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors cursor-pointer">BIO.EXE</button>
-              <button onClick={() => openWindow('skills')} className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors cursor-pointer">SPECS.SYS</button>
-              <button onClick={() => openWindow('projects')} className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors cursor-pointer">PROJECTS.DIR</button>
-              <button onClick={() => openWindow('contact')} className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors cursor-pointer">UPLINK.NET</button>
+              <button onClick={() => openWindow('hero')} className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors cursor-pointer">{t.nav.home}</button>
+              <button onClick={() => openWindow('bio')} className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors cursor-pointer">{t.nav.bio}</button>
+              <button onClick={() => openWindow('skills')} className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors cursor-pointer">{t.nav.skills}</button>
+              <button onClick={() => openWindow('projects')} className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors cursor-pointer">{t.nav.projects}</button>
+              <button onClick={() => openWindow('social')} className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors cursor-pointer">{t.nav.social}</button>
+              <button onClick={() => openWindow('contact')} className="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors cursor-pointer">{t.nav.contact}</button>
             </div>
             <div className="flex gap-1">
-              <div className="text-xs mr-2 flex items-center">CPU: OPTIMAL</div>
+              <div className="flex gap-2 items-center mr-2 text-xs font-bold bg-black/30 px-2 py-0.5 rounded border border-white/20">
+                <button onClick={() => setLanguage('pt')} className={`transition-colors cursor-pointer ${language === 'pt' ? 'text-white' : 'text-white/40 hover:text-white/80'}`}>PT</button>
+                <span className="text-white/20">|</span>
+                <button onClick={() => setLanguage('en')} className={`transition-colors cursor-pointer ${language === 'en' ? 'text-white' : 'text-white/40 hover:text-white/80'}`}>EN</button>
+              </div>
             </div>
           </nav>
 
@@ -135,13 +144,13 @@ export default function Home() {
               >
                 <div className="p-8 border border-secondary-fixed/30 bg-surface-container-lowest/80 backdrop-blur-sm text-center h-full flex flex-col justify-center items-center min-h-[350px]">
                   <h1 className="font-display-header text-4xl md:text-5xl text-primary mb-4 drop-shadow-[0_0_10px_rgba(180,197,255,0.8)]">VINÍCIUS ALMEIDA</h1>
-                  <p className="text-secondary mb-6 blinking-cursor">&gt; CREATIVE DEVELOPER _ SYSTEM ARCHITECT _ UI/UX EXPLORER</p>
+                  <p className="text-secondary mb-6 blinking-cursor">{t.hero.subtitle}</p>
                   <div className="flex justify-center gap-4 mt-8">
                     <button onClick={() => openWindow('projects')} className="bg-surface btn-bevel px-6 py-2 text-primary font-label-caps text-label-caps uppercase hover:text-white hover:bg-primary-container transition-colors shadow-[0_0_15px_rgba(0,83,225,0.5)]">
-                      [ EXECUTE_PORTFOLIO ]
+                      {t.hero.btnPortfolio}
                     </button>
                     <button onClick={() => openWindow('contact')} className="bg-surface btn-bevel px-6 py-2 text-secondary font-label-caps text-label-caps uppercase hover:text-white hover:bg-secondary-container transition-colors">
-                      [ INITIATE_COMMS ]
+                      {t.hero.btnContact}
                     </button>
                   </div>
                 </div>
@@ -186,58 +195,58 @@ export default function Home() {
                       <div className="mt-2 text-center text-gray-700 text-sm font-bold">Vinícius Almeida</div>
                     </div>
                     <div className="text-gray-800 space-y-4 w-full text-sm leading-relaxed">
-                      <h2 className="text-2xl text-[#000080] font-bold border-b border-gray-300 pb-2">Sobre Mim</h2>
-                      <p>Desenvolvedor Full Stack com experiência prática em ambientes reais de desenvolvimento de software, atuando tanto no back-end quanto no front-end. Minha trajetória é marcada por evolução constante, aprendizado contínuo e participação ativa em projetos com impacto direto em usuários e clientes.</p>
+                      <h2 className="text-2xl text-[#000080] font-bold border-b border-gray-300 pb-2">{t.bio.title}</h2>
+                      <p>{t.bio.p1}</p>
                       
                       {!getWindow('bio')?.isMaximized ? (
                         <>
                           <div className="mt-4 p-4 border border-blue-200 bg-blue-50">
                             <ul className="space-y-2">
-                              <li><strong>Especialização:</strong> Desenvolvedor Full Stack</li>
-                              <li><strong>Localidade:</strong> João Pessoa, PB, Brasil</li>
-                              <li><strong>Status:</strong> Empregado / Ativo</li>
+                              <li><strong>{t.bio.spec}</strong> {t.bio.specValue}</li>
+                              <li><strong>{t.bio.location}</strong> {t.bio.locationValue}</li>
+                              <li><strong>{t.bio.status}</strong> {t.bio.statusValue}</li>
                             </ul>
                           </div>
                         </>
                       ) : (
                         <div className="animate-in fade-in duration-500 space-y-6">
-                          <p>Valorizo o desenvolvimento contínuo e a construção de soluções com impacto real. Meu perfil combina uma base técnica sólida, experiência prática em produção e maturidade profissional para atuar em ambientes desafiadores, desde a análise de requisitos até a implementação e manutenção.</p>
+                          <p>{t.bio.p2}</p>
                           
                           <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
                             <div className="p-4 border border-gray-300 bg-gray-50 shadow-sm">
                               <h4 className="text-[#000080] mb-3 font-bold flex items-center gap-2">
-                                <span className="material-symbols-outlined text-sm">work</span> Trajetória Profissional
+                                <span className="material-symbols-outlined text-sm">work</span> {t.bio.expTitle}
                               </h4>
                               <div className="space-y-4">
                                 <div>
                                   <div className="font-bold text-sm">Meets Tecnologia</div>
-                                  <div className="text-xs text-gray-600 mb-1">Dev Full Stack Júnior | Remoto | Atual</div>
-                                  <p className="text-xs text-gray-700">Desenvolvimento em PHP (Zend) no back/front (CRM), React (JS/TS) e NestJS. Destaque: Módulo de "Coexistência WhatsApp".</p>
+                                  <div className="text-xs text-gray-600 mb-1">{t.bio.exp1Role}</div>
+                                  <p className="text-xs text-gray-700">{t.bio.exp1Desc}</p>
                                 </div>
                                 <div>
                                   <div className="font-bold text-sm">BPet System</div>
-                                  <div className="text-xs text-gray-600 mb-1">Dev Full Stack Freelancer | Nov 2025 - Atual</div>
-                                  <p className="text-xs text-gray-700">Back-end com NestJS (APIs e regras de negócio) e front-end com Next.js.</p>
+                                  <div className="text-xs text-gray-600 mb-1">{t.bio.exp2Role}</div>
+                                  <p className="text-xs text-gray-700">{t.bio.exp2Desc}</p>
                                 </div>
                                 <div>
                                   <div className="font-bold text-sm">Fábrica de Software UBTech Office</div>
-                                  <div className="text-xs text-gray-600 mb-1">Estagiário & Squad Leader (Back-end)</div>
-                                  <p className="text-xs text-gray-700">Liderança técnica. Projetos ESP-PB (Django REST, React) e PM-PB (Geoprocessamento).</p>
+                                  <div className="text-xs text-gray-600 mb-1">{t.bio.exp3Role}</div>
+                                  <p className="text-xs text-gray-700">{t.bio.exp3Desc}</p>
                                 </div>
                               </div>
                             </div>
                             <div className="p-4 border border-gray-300 bg-gray-50 shadow-sm h-fit">
                               <h4 className="text-[#000080] mb-3 font-bold flex items-center gap-2">
-                                <span className="material-symbols-outlined text-sm">school</span> Formação
+                                <span className="material-symbols-outlined text-sm">school</span> {t.bio.eduTitle}
                               </h4>
                               <div className="space-y-4">
                                 <div>
                                   <div className="font-bold text-sm">UNIPÊ</div>
-                                  <div className="text-xs text-gray-600 mb-1">Análise e Desenvolvimento de Sistemas | Dez 2025</div>
+                                  <div className="text-xs text-gray-600 mb-1">{t.bio.edu1Role}</div>
                                 </div>
                                 <div>
                                   <div className="font-bold text-sm">Cisco Maratona CiberEducação</div>
-                                  <div className="text-xs text-gray-600 mb-1">Treinamento Cibersegurança | Set 2025</div>
+                                  <div className="text-xs text-gray-600 mb-1">{t.bio.edu2Role}</div>
                                 </div>
                               </div>
                             </div>
@@ -353,15 +362,15 @@ export default function Home() {
 
                   {getWindow('skills')?.isMaximized && (
                     <div className="animate-in fade-in duration-500 pb-4">
-                      <h3 className="text-tertiary font-label-caps text-sm mb-4 border-b border-outline-variant pb-2 uppercase tracking-widest">&gt; LINGUAGENS_&_FRAMEWORKS.SYS</h3>
+                      <h3 className="text-tertiary font-label-caps text-sm mb-4 border-b border-outline-variant pb-2 uppercase tracking-widest">{t.skills.langSys}</h3>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                         {[
-                          { name: 'NEXT.JS', type: 'FRONTEND', lvl: 'ADVANCED' },
-                          { name: 'NESTJS', type: 'BACKEND', lvl: 'ADVANCED' },
-                          { name: 'PHP / ZEND', type: 'BACKEND', lvl: 'INTERMEDIATE' },
-                          { name: 'PYTHON / DJANGO', type: 'BACKEND', lvl: 'INTERMEDIATE' },
-                          { name: 'TAILWIND CSS', type: 'FRONTEND', lvl: 'EXPERT' },
-                          { name: 'SHADCN/UI', type: 'FRONTEND', lvl: 'ADVANCED' },
+                          { name: 'NEXT.JS', type: 'FRONTEND', lvl: t.skills.lvlAdvanced },
+                          { name: 'NESTJS', type: 'BACKEND', lvl: t.skills.lvlAdvanced },
+                          { name: 'PHP / ZEND', type: 'BACKEND', lvl: t.skills.lvlIntermediate },
+                          { name: 'PYTHON / DJANGO', type: 'BACKEND', lvl: t.skills.lvlIntermediate },
+                          { name: 'TAILWIND CSS', type: 'FRONTEND', lvl: t.skills.lvlExpert },
+                          { name: 'SHADCN/UI', type: 'FRONTEND', lvl: t.skills.lvlAdvanced },
                         ].map(tool => (
                           <div key={tool.name} className="border border-outline-variant bg-surface-dim p-3 flex flex-col justify-between h-24">
                             <span className="font-terminal-md text-white text-lg">{tool.name}</span>
@@ -373,15 +382,15 @@ export default function Home() {
                         ))}
                       </div>
 
-                      <h3 className="text-tertiary font-label-caps text-sm mb-4 border-b border-outline-variant pb-2 uppercase tracking-widest">&gt; DB_&_DEVOPS_&_TOOLS.SYS</h3>
+                      <h3 className="text-tertiary font-label-caps text-sm mb-4 border-b border-outline-variant pb-2 uppercase tracking-widest">{t.skills.dbSys}</h3>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                         {[
-                          { name: 'POSTGRESQL', type: 'DATABASE', lvl: 'ADVANCED' },
-                          { name: 'MYSQL / MONGODB', type: 'DATABASE', lvl: 'INTERMEDIATE' },
-                          { name: 'PRISMA / TYPEORM', type: 'ORM', lvl: 'ADVANCED' },
-                          { name: 'DOCKER', type: 'DEVOPS', lvl: 'INTERMEDIATE' },
-                          { name: 'GIT / GITHUB', type: 'VCS', lvl: 'EXPERT' },
-                          { name: 'SCRUM / AGILE', type: 'METODOLOGIA', lvl: 'EXPERIÊNCIA PRÁTICA' },
+                          { name: 'POSTGRESQL', type: 'DATABASE', lvl: t.skills.lvlAdvanced },
+                          { name: 'MYSQL / MONGODB', type: 'DATABASE', lvl: t.skills.lvlIntermediate },
+                          { name: 'PRISMA / TYPEORM', type: 'ORM', lvl: t.skills.lvlAdvanced },
+                          { name: 'DOCKER', type: 'DEVOPS', lvl: t.skills.lvlIntermediate },
+                          { name: 'GIT / GITHUB', type: 'VCS', lvl: t.skills.lvlExpert },
+                          { name: 'SCRUM / AGILE', type: 'METODOLOGIA', lvl: t.skills.lvlPractical },
                         ].map(tool => (
                           <div key={tool.name} className="border border-outline-variant bg-surface-dim p-3 flex flex-col justify-between h-24">
                             <span className="font-terminal-md text-white text-lg">{tool.name}</span>
@@ -395,20 +404,20 @@ export default function Home() {
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
-                          <h3 className="text-secondary font-label-caps text-sm mb-4 border-b border-outline-variant pb-2 uppercase tracking-widest">&gt; SOFT_SKILLS.LOG</h3>
+                          <h3 className="text-secondary font-label-caps text-sm mb-4 border-b border-outline-variant pb-2 uppercase tracking-widest">{t.skills.softSys}</h3>
                           <ul className="space-y-2 text-sm text-on-surface-variant">
-                            <li><strong className="text-secondary">Comunicação:</strong> Clara e objetiva (times técnicos e clientes).</li>
-                            <li><strong className="text-secondary">Liderança Técnica:</strong> Experiência prática como squad leader.</li>
-                            <li><strong className="text-secondary">Resolução de Problemas:</strong> Senso analítico forte / troubleshooting.</li>
-                            <li><strong className="text-secondary">Trabalho em Equipe:</strong> Colaboração em ambientes ágeis/remotos.</li>
-                            <li><strong className="text-secondary">Proatividade:</strong> Antecipação e proposição de soluções.</li>
+                            <li><strong className="text-secondary">{t.skills.soft1}</strong> {t.skills.soft1v}</li>
+                            <li><strong className="text-secondary">{t.skills.soft2}</strong> {t.skills.soft2v}</li>
+                            <li><strong className="text-secondary">{t.skills.soft3}</strong> {t.skills.soft3v}</li>
+                            <li><strong className="text-secondary">{t.skills.soft4}</strong> {t.skills.soft4v}</li>
+                            <li><strong className="text-secondary">{t.skills.soft5}</strong> {t.skills.soft5v}</li>
                           </ul>
                         </div>
                         <div>
-                          <h3 className="text-primary font-label-caps text-sm mb-4 border-b border-outline-variant pb-2 uppercase tracking-widest">&gt; IDIOMAS.DAT</h3>
+                          <h3 className="text-primary font-label-caps text-sm mb-4 border-b border-outline-variant pb-2 uppercase tracking-widest">{t.skills.langDat}</h3>
                           <ul className="space-y-2 text-sm text-on-surface-variant">
-                            <li className="flex items-center gap-2"><span className="material-symbols-outlined text-sm text-primary">language</span> <strong>Português:</strong> Nativo</li>
-                            <li className="flex items-center gap-2"><span className="material-symbols-outlined text-sm text-primary">language</span> <strong>Inglês:</strong> Intermediário (Leitura técnica avançada)</li>
+                            <li className="flex items-center gap-2"><span className="material-symbols-outlined text-sm text-primary">language</span> <strong>{t.skills.lang1}</strong> {t.skills.lang1v}</li>
+                            <li className="flex items-center gap-2"><span className="material-symbols-outlined text-sm text-primary">language</span> <strong>{t.skills.lang2}</strong> {t.skills.lang2v}</li>
                           </ul>
                         </div>
                       </div>
@@ -447,15 +456,15 @@ export default function Home() {
                     <div className="w-48 bg-white border-r border-[#808080] p-2 hidden md:block shrink-0">
                       <div className="flex items-center gap-2 mb-2 cursor-pointer bg-[#000080] text-white px-1">
                         <Image src="/file.svg" alt="Folder" width={16} height={16} />
-                        <span className="text-sm">My Projects</span>
+                        <span className="text-sm">{t.projects.myProjects}</span>
                       </div>
                       <div className="flex items-center gap-2 mb-2 pl-4 cursor-pointer text-black hover:bg-[#000080] hover:text-white px-1">
                         <Image src="/file.svg" alt="Folder" width={16} height={16} />
-                        <span className="text-sm">Client Work</span>
+                        <span className="text-sm">{t.projects.clientWork}</span>
                       </div>
                       <div className="flex items-center gap-2 pl-4 cursor-pointer text-black hover:bg-[#000080] hover:text-white px-1">
                         <Image src="/file.svg" alt="Folder" width={16} height={16} />
-                        <span className="text-sm">Experiments</span>
+                        <span className="text-sm">{t.projects.experiments}</span>
                       </div>
                     </div>
                     
@@ -463,14 +472,14 @@ export default function Home() {
                     <div className={`bg-white p-4 flex-1 ${getWindow('projects')?.isMaximized ? 'overflow-y-auto' : 'overflow-x-auto'}`}>
                       <div className={`${getWindow('projects')?.isMaximized ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8' : 'flex gap-6 min-w-max pb-4 h-full'}`}>
                         {[
-                          { title: 'Meets Tecnologia', type: 'Trabalho / CRM', img: '/projetos/meets.png', desc: 'Soluções de CRM e centrais de atendimento.', link: 'https://meets.com.br/pt-br', extended: 'Desenvolvimento e manutenção do CRM (PHP Zend) e front-end React. Implementação de Coexistência WhatsApp com Meta Graph API.' },
-                          { title: 'BPet System', type: 'Trabalho / SaaS', img: '/projetos/bpet.png', desc: 'Plataforma de gestão para petshops.', link: 'https://www.b-pet.app.br', extended: 'Back-end com NestJS e Front-end com Next.js. Gerenciamento de clientes, empresas e fornecedores.' },
-                          { title: 'ESP-PB', type: 'Trabalho / Governo', img: '/projetos/esppb.png', desc: 'Sistema de gestão de vagas de estágio.', link: 'Em Progresso', extended: 'Regras de negócio complexas usando Django REST Framework, React, Docker e PostgreSQL. Atuação como Squad Leader do back-end.' },
-                          { title: 'PM-PB', type: 'Trabalho / Governo', img: '/projetos/pmpb.png', desc: 'Projeto Sigiloso de geoprocessamento.', link: 'Em Progresso', extended: 'Visualização de dados espaciais com Django Template, GDAL e Leaflet.' },
-                          { title: 'Sentinela Elétrica', type: 'Projeto / IoT', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAEfRL3dKTLEPHLQOxClkM4vqE827PoNOl-P2KmaQDAAKcalGOO9G5kca9bTe5FPDNR8HfF4s0nzZyRmD3D8u6xUQyikBCM3qrrNb0TPKJ2-trwEE5_qkK1MY8f83plYIKIF5o-CBq7vpP8U98XcjbuMouPCK3uDGVtQEunXlyw-T_sknLWDdMLEnWb-n9XyxWR5m8zXFfMJQs4GQ05oQ4glg1aMSYCBQisW6j0EB4-iDScyEfAQMa6V9e07PLkXvvtDolzx-QcdTVR', desc: 'Dashboard IoT para redes de distribuição.', link: 'https://smart-lumen.vercel.app', extended: 'Monitoramento em tempo real, sistema de alertas inteligentes, análises preditivas e mapa interativo de sensores.' },
-                          { title: 'Dialoga', type: 'Projeto / Fórum', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAByM7v6r6qRB6lXLYjpozMCIFtw2hUkpF-k0BG39RX89rN8aKGRfsBqJevptAmh7jb5aHUe8zkbD61HT6iBuF11zUvTwowDOA5JtwASUTXDBAJpWh5AMmNUJ06sZKPJkduQBcqqJqHNqbpBOiYJXVZTg8LUcDhmwXVsxT5F4a-QQjiPMfbCQL6js8l7vt6h0kBF8VakGjMTul_6TvQ9hLnlwqfFxjEHo2mqVug2Lh5qVlu6VAhQTu8oN7BwdxYjYDqJ-T4Jukra7ij', desc: 'Plataforma interativa para conectar pessoas.', link: 'https://github.com/Vinicius083/Forum-project', extended: 'Fórum moderno focado em troca de ideias e engajamento dos usuários, com interface fluida e intuitiva.' },
-                          { title: 'DueCheck', type: 'Projeto / Saúde', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCFPNKRoWbfSDeS0QGtf1Vblaf74rY0qIN1e-B4eTArve7SWUoYXA0DpFTIEmwG5TypJWxAnmvGphCyszNBYm3icYkvaXweWoUYH235TnRxC1wOM7DBYOeTryztnHpgDgx2Ch5T3cCNEiOQHObw-Jq51xNbAp1xupfgnZkkzMHSjxFt70mkOvk5wlE1q1VpiJZnn3PYkTWI3VLmK4CHtFxghTl9g8etYa7CHkGc5tTO4MMWUASiSWnT9zBAkfeWP_FBi5OCJsOspN0Y', desc: 'Gerenciador de consultas médicas e pacientes.', link: 'https://github.com/Vinicius083/duecheck-project', extended: 'Node.js, TypeScript e Prisma (PostgreSQL). Operações robustas e escaláveis para médicos e pacientes.' },
-                          { title: 'BookCommerce', type: 'Projeto / E-commerce', img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAEfRL3dKTLEPHLQOxClkM4vqE827PoNOl-P2KmaQDAAKcalGOO9G5kca9bTe5FPDNR8HfF4s0nzZyRmD3D8u6xUQyikBCM3qrrNb0TPKJ2-trwEE5_qkK1MY8f83plYIKIF5o-CBq7vpP8U98XcjbuMouPCK3uDGVtQEunXlyw-T_sknLWDdMLEnWb-n9XyxWR5m8zXFfMJQs4GQ05oQ4glg1aMSYCBQisW6j0EB4-iDScyEfAQMa6V9e07PLkXvvtDolzx-QcdTVR', desc: 'E-commerce completo para venda de livros.', link: 'https://github.com/douglasmeneses/book-commerce', extended: 'Node.js, TypeScript e Prisma. Suporte a carrinho de compras, cadastro de livros e gestão de vendas.' }
+                          { title: 'Meets Tecnologia', type: t.projects.proj1type, img: '/projetos/meets.png', desc: t.projects.proj1desc, link: 'https://meets.com.br/pt-br', extended: t.projects.proj1ext },
+                          { title: 'BPet System', type: t.projects.proj2type, img: '/projetos/bpet.png', desc: t.projects.proj2desc, link: 'https://www.b-pet.app.br', extended: t.projects.proj2ext },
+                          { title: 'ESP-PB', type: t.projects.proj3type, img: '/projetos/esppb.png', desc: t.projects.proj3desc, link: t.projects.inProgress, extended: t.projects.proj3ext },
+                          { title: 'PM-PB', type: t.projects.proj4type, img: '/projetos/pmpb.png', desc: t.projects.proj4desc, link: t.projects.inProgress, extended: t.projects.proj4ext },
+                          { title: 'Sentinela Elétrica', type: t.projects.proj5type, img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAEfRL3dKTLEPHLQOxClkM4vqE827PoNOl-P2KmaQDAAKcalGOO9G5kca9bTe5FPDNR8HfF4s0nzZyRmD3D8u6xUQyikBCM3qrrNb0TPKJ2-trwEE5_qkK1MY8f83plYIKIF5o-CBq7vpP8U98XcjbuMouPCK3uDGVtQEunXlyw-T_sknLWDdMLEnWb-n9XyxWR5m8zXFfMJQs4GQ05oQ4glg1aMSYCBQisW6j0EB4-iDScyEfAQMa6V9e07PLkXvvtDolzx-QcdTVR', desc: t.projects.proj5desc, link: 'https://smart-lumen.vercel.app', extended: t.projects.proj5ext },
+                          { title: 'Dialoga', type: t.projects.proj6type, img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAByM7v6r6qRB6lXLYjpozMCIFtw2hUkpF-k0BG39RX89rN8aKGRfsBqJevptAmh7jb5aHUe8zkbD61HT6iBuF11zUvTwowDOA5JtwASUTXDBAJpWh5AMmNUJ06sZKPJkduQBcqqJqHNqbpBOiYJXVZTg8LUcDhmwXVsxT5F4a-QQjiPMfbCQL6js8l7vt6h0kBF8VakGjMTul_6TvQ9hLnlwqfFxjEHo2mqVug2Lh5qVlu6VAhQTu8oN7BwdxYjYDqJ-T4Jukra7ij', desc: t.projects.proj6desc, link: 'https://github.com/Vinicius083/Forum-project', extended: t.projects.proj6ext },
+                          { title: 'DueCheck', type: t.projects.proj7type, img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCFPNKRoWbfSDeS0QGtf1Vblaf74rY0qIN1e-B4eTArve7SWUoYXA0DpFTIEmwG5TypJWxAnmvGphCyszNBYm3icYkvaXweWoUYH235TnRxC1wOM7DBYOeTryztnHpgDgx2Ch5T3cCNEiOQHObw-Jq51xNbAp1xupfgnZkkzMHSjxFt70mkOvk5wlE1q1VpiJZnn3PYkTWI3VLmK4CHtFxghTl9g8etYa7CHkGc5tTO4MMWUASiSWnT9zBAkfeWP_FBi5OCJsOspN0Y', desc: t.projects.proj7desc, link: 'https://github.com/Vinicius083/duecheck-project', extended: t.projects.proj7ext },
+                          { title: 'BookCommerce', type: t.projects.proj8type, img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAEfRL3dKTLEPHLQOxClkM4vqE827PoNOl-P2KmaQDAAKcalGOO9G5kca9bTe5FPDNR8HfF4s0nzZyRmD3D8u6xUQyikBCM3qrrNb0TPKJ2-trwEE5_qkK1MY8f83plYIKIF5o-CBq7vpP8U98XcjbuMouPCK3uDGVtQEunXlyw-T_sknLWDdMLEnWb-n9XyxWR5m8zXFfMJQs4GQ05oQ4glg1aMSYCBQisW6j0EB4-iDScyEfAQMa6V9e07PLkXvvtDolzx-QcdTVR', desc: t.projects.proj8desc, link: 'https://github.com/douglasmeneses/book-commerce', extended: t.projects.proj8ext }
                         ].map((proj) => (
                           <div key={proj.title} className={`${getWindow('projects')?.isMaximized ? 'w-full' : 'w-64'} bg-[#f0f0f0] border border-[#a0a0a0] flex flex-col shrink-0 transition-all duration-300 shadow-sm hover:shadow-md group`} >
                             <div className={`${getWindow('projects')?.isMaximized ? 'h-48' : 'h-32'} border-b border-[#a0a0a0] relative overflow-hidden bg-white transition-all duration-300`}>
@@ -490,7 +499,7 @@ export default function Home() {
                               </p>
                               <div className="mt-auto flex gap-2 justify-between items-center">
                                 <span className="text-[10px] text-gray-400 truncate max-w-[120px]">{proj.link}</span>
-                                <button onClick={() => window.open(proj.link !== 'Em Progresso' ? proj.link : '#', '_blank')} className="bg-gradient-to-b from-[#f9f9f9] to-[#dfdfdf] border border-[#8f8f8f] hover:border-[#3399ff] px-3 py-1 text-xs rounded text-black shadow-sm cursor-pointer">Abrir Link</button>
+                                <button onClick={() => window.open(proj.link !== t.projects.inProgress ? proj.link : '#', '_blank')} className="bg-gradient-to-b from-[#f9f9f9] to-[#dfdfdf] border border-[#8f8f8f] hover:border-[#3399ff] px-3 py-1 text-xs rounded text-black shadow-sm cursor-pointer">{t.projects.openLink}</button>
                               </div>
                             </div>
                           </div>
@@ -518,29 +527,126 @@ export default function Home() {
                   {/* MSN Header */}
                   <div className="bg-gradient-to-r from-[#0055e5] to-[#2a80ff] p-2 flex items-center gap-2 text-white">
                     <Image src="/chat.svg" alt="Chat" width={24} height={24} />
-                    <span className="font-bold text-sm shadow-[1px_1px_0_rgba(0,0,0,0.5)]">Vinícius - Instant Messenger</span>
+                    <span className="font-bold text-sm shadow-[1px_1px_0_rgba(0,0,0,0.5)]">{t.contact.title}</span>
                   </div>
                   
                   {/* Chat Area */}
                   <div className="flex-1 p-2 flex flex-col gap-2 bg-[#ece9d8]">
                     <div className="bg-white border border-[#7f9db9] flex-1 p-3 overflow-y-auto text-sm shadow-inner min-h-[150px]">
-                      <div className="text-gray-500 mb-2 text-center text-xs">--- Vinícius is Online ---</div>
+                      <div className="text-gray-500 mb-2 text-center text-xs">{t.contact.status}</div>
                       <div className="mb-2">
-                        <span className="font-bold text-blue-700">Vinícius says:</span>
-                        <div className="ml-2 text-gray-800">Hey! Looking to start a project? Or just want to connect? Send me a message below.</div>
+                        <span className="font-bold text-blue-700">{t.contact.says}</span>
+                        <div className="ml-2 text-gray-800">{t.contact.msg}</div>
                       </div>
                     </div>
                     
                     {/* Input Area */}
                     <form className="flex flex-col gap-2">
-                      <textarea className="w-full border border-[#7f9db9] p-2 text-sm focus:outline-none focus:border-[#0055e5] resize-none shadow-inner" rows={3} placeholder="Type your message here..."></textarea>
+                      <textarea className="w-full border border-[#7f9db9] p-2 text-sm focus:outline-none focus:border-[#0055e5] resize-none shadow-inner" rows={3} placeholder={t.contact.placeholder}></textarea>
                       <div className="flex justify-between items-center gap-2">
-                        <input className="border border-[#7f9db9] p-1 text-sm flex-1 focus:outline-none focus:border-[#0055e5]" type="email" placeholder="Your email/contact" />
+                        <input className="border border-[#7f9db9] p-1 text-sm flex-1 focus:outline-none focus:border-[#0055e5]" type="email" placeholder={t.contact.emailPlaceholder} />
                         <button type="button" className="px-6 py-1 bg-gradient-to-b from-[#f9f9f9] to-[#dfdfdf] border border-[#8f8f8f] hover:from-[#e3f0ff] hover:to-[#c3e1ff] hover:border-[#3399ff] rounded text-sm shadow-sm font-bold text-gray-700">
-                          Send
+                          {t.contact.send}
                         </button>
                       </div>
                     </form>
+                  </div>
+                </div>
+              </OSWindow>
+            )}
+
+            {/* SOCIAL_NETWORK.CONNECT */}
+            {getWindow('social') && (
+              <OSWindow
+                {...getWindow('social')!}
+                onFocus={() => focusWindow('social')}
+                onMinimize={() => minimizeWindow('social')}
+                onMaximize={() => toggleMaximize('social')}
+                onClose={() => closeWindow('social')}
+                initialX={350}
+                initialY={120}
+                defaultWidth="w-[500px]"
+              >
+                <div className="flex flex-col h-full bg-[#f0f2f5] font-sans text-black">
+                  {/* Social Header */}
+                  <div className="bg-[#1877f2] p-3 flex items-center justify-between text-white shadow-md">
+                    <div className="flex items-center gap-2">
+                      <div className="bg-white rounded-full p-1">
+                        <Image src="/social/social.svg" alt="Social" width={20} height={20} />
+                      </div>
+                      <span className="font-bold tracking-tight text-lg">vBook</span>
+                    </div>
+                    <div className="flex gap-3">
+                      <span className="material-symbols-outlined cursor-pointer">notifications</span>
+                      <span className="material-symbols-outlined cursor-pointer">search</span>
+                      <span className="material-symbols-outlined cursor-pointer">menu</span>
+                    </div>
+                  </div>
+                  
+                  {/* Profile Banner & Info */}
+                  <div className="bg-white pb-4 shadow-sm">
+                    <div className="h-32 bg-gradient-to-r from-blue-400 to-indigo-500 relative">
+                      <div className="absolute -bottom-10 left-4 p-1 bg-white rounded-full shadow-lg">
+                        <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-white bg-gray-200">
+                          <img src="/myPicture.webp" alt="Profile" className="w-full h-full object-cover" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-12 px-6">
+                      <h2 className="text-2xl font-bold">Vinícius Almeida</h2>
+                      <p className="text-gray-500 text-sm">{t.social.role}</p>
+                      <div className="flex gap-2 mt-4">
+                        <button className="flex-1 bg-[#1877f2] text-white font-bold py-2 rounded-lg text-sm hover:bg-[#166fe5]">{t.social.follow}</button>
+                        <button onClick={() => openWindow('contact')} className="flex-1 bg-gray-200 text-black font-bold py-2 rounded-lg text-sm hover:bg-gray-300">{t.social.message}</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Feed / Links Area */}
+                  <div className="p-4 space-y-4 overflow-y-auto flex-1">
+                    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-100 border border-gray-200">
+                          <img src="/myPicture.webp" alt="Profile Mini" className="w-full h-full object-cover" />
+                        </div>
+                        <div>
+                          <p className="font-bold text-sm">Vinícius Almeida <span className="text-gray-400 font-normal">{t.social.statusAction}</span></p>
+                          <p className="text-xs text-gray-500">{t.social.statusTime} • 🌍</p>
+                        </div>
+                      </div>
+                      <p className="text-sm mb-4">{t.social.statusText}</p>
+                      
+                      <div className="grid grid-cols-2 gap-3">
+                        <a href="https://github.com/Vinicius083" target="_blank" className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 border border-gray-100 transition-colors">
+                          <Image src="/social/github.svg" alt="GitHub" width={24} height={24} />
+                          <span className="font-bold text-xs">GitHub</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/viniciusalmeidabe/" target="_blank" className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 border border-gray-100 transition-colors">
+                          <Image src="/social/linkedin.svg" alt="LinkedIn" width={24} height={24} />
+                          <span className="font-bold text-xs">LinkedIn</span>
+                        </a>
+                        <a href="https://www.instagram.com/viniciuss._a/" target="_blank" className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 border border-gray-100 transition-colors">
+                          <Image src="/social/instagram.svg" alt="Instagram" width={24} height={24} />
+                          <span className="font-bold text-xs">Instagram</span>
+                        </a>
+                        <a href="https://discord.com/users/394810430771429377" target="_blank" className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 border border-gray-100 transition-colors">
+                          <Image src="/social/discord.svg" alt="Discord" width={24} height={24} />
+                          <span className="font-bold text-xs">Discord</span>
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Example "Post" to make it look like a feed */}
+                    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 opacity-60">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-8 h-8 rounded-full bg-gray-200 animate-pulse"></div>
+                        <div className="space-y-1">
+                          <div className="w-24 h-3 bg-gray-200 rounded animate-pulse"></div>
+                          <div className="w-16 h-2 bg-gray-100 rounded animate-pulse"></div>
+                        </div>
+                      </div>
+                      <div className="w-full h-32 bg-gray-100 rounded-lg animate-pulse"></div>
+                    </div>
                   </div>
                 </div>
               </OSWindow>
@@ -563,8 +669,9 @@ export default function Home() {
               {[
                 { id: 'hero', icon: '/terminal.svg' },
                 { id: 'bio', icon: '/internet.svg' },
-                { id: 'skills', icon: '/terminal.svg' },
+                { id: 'skills', icon: '/system.svg' },
                 { id: 'projects', icon: '/file.svg' },
+                { id: 'social', icon: '/social/social.svg' },
                 { id: 'contact', icon: '/chat.svg' }
               ].map(app => {
                 const w = getWindow(app.id);

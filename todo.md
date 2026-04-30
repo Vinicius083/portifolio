@@ -6,9 +6,9 @@
     [x] file explorer - projetos
     [x] chat - contato
 [x] responsividade mobile
-[ ] abrir e fechar janelas no mobile pelo scroll
-[ ] janela de rede social
-    [ ] adicionar linkedin, github, discord e instagram 
+[x] abrir e fechar janelas no mobile pelo scroll
+[x] janela de rede social
+    [x] adicionar linkedin, github, discord e instagram 
 [x] icones do site
     [x] browser
     [x] terminal
@@ -17,6 +17,6 @@
     [x] logo
 [x] bug das janelas
 [x] arrumar os textos
-[ ] portugues e ingles
-    [ ] bootScreen
-    [ ] OS normal 
+[x] portugues e ingles
+    [x] bootScreen
+    [x] OS normal 

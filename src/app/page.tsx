@@ -59,10 +59,20 @@ export default function Home() {
             let currentX = gsap.getProperty(rocket, "x") as number || 0;
             let currentY = gsap.getProperty(rocket, "y") as number || 0;
 
+            const getFlightBounds = () => {
+                const section = document.getElementById('sobre');
+                if (!section) return { maxX: 200, maxY: 200 };
+                const rect = section.getBoundingClientRect();
+                const maxX = Math.max(80, rect.width / 2 - 80);
+                const maxY = Math.max(80, rect.height / 2 - 80);
+                return { maxX, maxY };
+            };
+
             const flyRandomly = () => {
-                // Set bounds for random flying within the #sobre section
-                const nextX = gsap.utils.random(-350, 350);
-                const nextY = gsap.utils.random(-400, 400);
+                // Compute bounds dynamically so mobile never overflows
+                const { maxX, maxY } = getFlightBounds();
+                const nextX = gsap.utils.random(-maxX, maxX);
+                const nextY = gsap.utils.random(-maxY, maxY);
                 
                 const dx = nextX - currentX;
                 const dy = nextY - currentY;
@@ -254,7 +264,7 @@ export default function Home() {
             <section className="py-80 relative px-6 md:px-12 animate-section" id="sobre">
                 <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 relative">
                     <div className="w-full md:w-1/2 relative min-h-[400px]">
-                        <div ref={rocketRef} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-80 cursor-grab active:cursor-grabbing z-50">
+                        <div ref={rocketRef} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-48 md:w-64 h-64 md:h-80 cursor-grab active:cursor-grabbing z-50" style={{ touchAction: 'none', userSelect: 'none' }}>
                             <div className="absolute inset-0 flex flex-col items-center rocket-inner pointer-events-none">
                                 {/* Rocket Tip */}
                                 <div className="w-0 h-0 border-l-[40px] border-l-transparent border-r-[40px] border-r-transparent border-b-[60px] border-b-gray-300 filter drop-shadow-[0_-5px_5px_rgba(0,243,255,0.3)]"></div>

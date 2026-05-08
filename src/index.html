@@ -1,301 +1,390 @@
 <!DOCTYPE html>
-<html class="dark" lang="en"><head>
+<html class="dark" lang="pt-BR"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Vinícius Almeida | Creative Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=VT323&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
-
+<title>Vinícius Almeida - Dark Space Portfolio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&amp;family=Orbitron:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00f3ff", // Neon Cyan
+                        secondary: "#ff00ff", // Neon Magenta
+                        "background-light": "#f0f4f8",
+                        "background-dark": "#0a0a14", // Deep obsidian/midnight navy
+                        "surface-dark": "rgba(20, 20, 35, 0.7)",
+                    },
+                    fontFamily: {
+                        display: ["Orbitron", "sans-serif"],
+                        body: ["Space Grotesk", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                        'xl': "1.5rem",
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 15s linear infinite',
+                        'glitch': 'glitch 1s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: 1, filter: 'drop-shadow(0 0 10px #00f3ff)' },
+                            '50%': { opacity: .5, filter: 'drop-shadow(0 0 20px #00f3ff)' },
+                        },
+                        glitch: {
+                            '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
+                            '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
+                            '62%': { transform: 'translate(0,0) skew(5deg)' },
+                        }
+                    }
+                },
+            },
+        };
+    </script>
+<link href="style.css" rel="stylesheet"/>
 </head>
-<body class="bg-surface-container-lowest text-on-surface min-h-screen overflow-x-hidden pb-taskbar-height snap-grid starfield font-terminal-md text-terminal-md">
-<!-- Global CRT Overlay -->
-<div class="crt-overlay"></div>
-<!-- Top Navigation (MISSION_CONTROL_v1.0) -->
-<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-2 bg-blue-700 dark:bg-blue-800 font-label-caps text-label-caps tracking-tighter uppercase h-8 border-b-2 border-black/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_2px_0_0_rgba(0,0,0,1)] text-white">
-<div class="text-sm font-black text-white italic">MISSION_CONTROL_v1.0</div>
-<div class="hidden md:flex gap-4 h-full">
-<a class="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors" href="#hero">INITIALIZE</a>
-<a class="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors" href="#bio">BIO.EXE</a>
-<a class="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors" href="#skills">SPECS.SYS</a>
-<a class="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors" href="#projects">VAULT.DIR</a>
-<a class="flex items-center h-full px-2 text-white/70 hover:bg-red-500 hover:text-white transition-colors" href="#contact">UPLINK.NET</a>
+<body class="font-body antialiased selection:bg-primary selection:text-background-dark">
+<div class="stars" id="starfield"></div>
+<nav class="fixed w-full z-50 glass-panel py-4 px-6 md:px-12 flex justify-between items-center transition-all duration-300">
+<a class="font-display text-xl font-bold tracking-wider text-white neon-text" href="#">VA<span class="text-primary">.</span></a>
+<div class="hidden md:flex space-x-8">
+<a class="text-sm font-semibold text-gray-300 hover:text-primary transition-colors" href="#sobre">SOBRE</a>
+<a class="text-sm font-semibold text-gray-300 hover:text-primary transition-colors" href="#arsenal">ARSENAL</a>
+<a class="text-sm font-semibold text-gray-300 hover:text-primary transition-colors" href="#missoes">MISSÕES</a>
+<a class="text-sm font-semibold text-gray-300 hover:text-primary transition-colors" href="#contato">CONTATO</a>
 </div>
-<div class="flex gap-1">
-<button class="w-6 h-6 bg-surface-container btn-bevel flex items-center justify-center hover:bg-surface-bright"><span class="material-symbols-outlined text-[14px]">minimize</span></button>
-<button class="w-6 h-6 bg-surface-container btn-bevel flex items-center justify-center hover:bg-surface-bright"><span class="material-symbols-outlined text-[14px]">fullscreen</span></button>
-<button class="w-6 h-6 bg-surface-container btn-bevel flex items-center justify-center hover:bg-red-500"><span class="material-symbols-outlined text-[14px]">close</span></button>
-</div>
+<button class="md:hidden text-white"><span class="material-icons">menu</span></button>
 </nav>
-<!-- Main Content Canvas -->
-<main class="pt-12 px-window-margin pb-20 max-w-7xl mx-auto flex flex-col gap-8 relative z-10">
-<!-- Hero Section -->
-<section class="relative mt-8" id="hero">
-<div class="bg-surface-container window-bevel rounded-DEFAULT overflow-hidden">
-<div class="window-title-bg h-6 flex justify-between items-center px-1 border-b border-black">
-<span class="font-window-title text-window-title text-white drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">C:\SYS\INITIALIZE.BAT</span>
-<div class="flex gap-1">
-<button class="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">_</button>
-<button class="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">□</button>
-<button class="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold hover:bg-red-500">X</button>
+<section class="min-h-screen relative flex flex-col md:flex-row items-center justify-center px-6 md:px-12 pt-20 overflow-hidden">
+<div class="w-full md:w-1/2 z-10 flex flex-col items-start space-y-6">
+<div class="inline-block px-3 py-1 rounded-full glass-panel border border-primary/30 text-primary text-xs font-bold tracking-widest mb-4">
+                SISTEMA ONLINE
+            </div>
+<h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight">
+                VINÍCIUS<br/>ALMEIDA
+            </h1>
+<h2 class="text-xl md:text-2xl text-gray-400 font-light tracking-wide">
+                Desenvolvedor Full Stack
+            </h2>
+<p class="text-gray-400 max-w-md mt-4">
+                Transformando café e ideias complexas em soluções digitais robustas através da galáxia do código.
+            </p>
+<a class="mt-8 px-8 py-4 bg-transparent border-2 border-primary text-primary font-bold tracking-wider uppercase rounded hover:bg-primary hover:text-background-dark transition-all duration-300 neon-border animate-pulse-glow group flex items-center gap-2" href="#missoes">
+                Iniciar Missão
+                <span class="material-icons group-hover:translate-x-1 transition-transform">rocket_launch</span>
+</a>
+</div>
+<div class="w-full md:w-1/2 h-[512px] md:h-[819px] relative mt-10 md:mt-0 glass-panel rounded-xl flex flex-col">
+<div class="bg-black/50 p-2 border-b border-primary/20 flex justify-between items-center rounded-t-xl">
+<span class="text-xs text-primary font-display tracking-widest">SIMULADOR_DEFESA_V1.0</span>
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-red-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
+<div class="w-3 h-3 rounded-full bg-green-500/50"></div>
 </div>
 </div>
-<div class="p-container-padding bg-black min-h-[409px] flex flex-col justify-center relative overflow-hidden">
-<div class="absolute inset-0 opacity-20">
-<img class="w-full h-full object-cover mix-blend-screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe5GQOOs2Ch3TG-84UEpjiPR_g2Z6LVCFDUfQsm5QnDNLdNd7ljrE2BB49hptFDOZwbmhG5voufuCDronxmm0WT8VOHEAe23jAMw9F7-_xrxgRpUEoG74b_-UmSPc20Zrus58I68OKRS-xm2mVjEdivtPl9aw__U5Z3XMj8VS1LsWhjitS-k5RPutsIc_4zKJZ7pVq1XyqHdH4mvwh1EU2mvsaxdKLR2HjyORpDCL0q7AkQPbqj9LqEhLbbHVTFeqmrxFn0z-714h5"/>
-</div>
-<div class="relative z-10 p-8 border border-secondary-fixed/30 bg-surface-container-lowest/80 backdrop-blur-sm max-w-2xl mx-auto text-center window-bevel">
-<h1 class="font-display-header text-display-header text-primary mb-4 drop-shadow-[0_0_10px_rgba(180,197,255,0.8)]">VINÍCIUS ALMEIDA</h1>
-<p class="text-secondary mb-6 blinking-cursor">&gt; CREATIVE DEVELOPER _ SYSTEM ARCHITECT _ UI/UX EXPLORER</p>
-<div class="flex justify-center gap-4 mt-8">
-<button class="bg-surface btn-bevel px-6 py-2 text-primary font-label-caps text-label-caps uppercase hover:text-white hover:bg-primary-container transition-colors shadow-[0_0_15px_rgba(0,83,225,0.5)]">
-                                [ EXECUTE_PORTFOLIO ]
-                            </button>
-<button class="bg-surface btn-bevel px-6 py-2 text-secondary font-label-caps text-label-caps uppercase hover:text-white hover:bg-secondary-container transition-colors">
-                                [ INITIATE_COMMS ]
-                            </button>
+<div class="flex-1 relative overflow-hidden" id="game-container">
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
+<span class="material-icons text-6xl text-primary/50 mb-4 animate-float">videogame_asset</span>
+<p class="text-primary font-display text-sm tracking-widest mb-2">[ MINIGAME CARREGANDO ]</p>
+<p class="text-gray-500 text-xs">Destrua os bugs do código para avançar.</p>
+<div class="mt-8 relative w-full h-32 border-t border-dashed border-primary/20">
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[20px] border-b-primary filter drop-shadow-[0_0_5px_#00f3ff]"></div>
+<div class="absolute top-4 left-1/4 text-secondary text-xs font-mono animate-bounce">NullPointer</div>
+<div class="absolute top-8 right-1/3 text-secondary text-xs font-mono animate-pulse">SyntaxError</div>
+<div class="absolute top-2 right-1/4 text-secondary text-xs font-mono animate-bounce" style="animation-delay: 0.5s;">CORS</div>
 </div>
 </div>
 </div>
 </div>
 </section>
-<!-- Bio Window -->
-<section class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="bio">
-<div class="lg:col-span-2 bg-surface-container window-bevel rounded-DEFAULT overflow-hidden h-full">
-<div class="window-title-bg h-6 flex justify-between items-center px-1 border-b border-black">
-<span class="font-window-title text-window-title text-white drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">BIO_ENCRYPTED.EXE</span>
-<div class="flex gap-1">
-<button class="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">_</button>
-<button class="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">□</button>
-<button class="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold hover:bg-red-500">X</button>
-</div>
-</div>
-<div class="p-container-padding bg-surface-container-lowest h-[calc(100%-24px)] flex flex-col md:flex-row gap-6 items-start">
-<div class="w-full md:w-1/3 border-2 border-outline-variant p-2 bg-black flex-shrink-0">
-<img class="w-full aspect-square object-cover opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz4275Pb2tIos89RgTqpKpclOoLMmR0rch0PbY-AmYM5rx_z3luBN8RspnnxtSBL3cBbwdmw-ZcIpEjdBLDyINn_zYUqJFDuNvy5Wg4dNe8n8UG-4oSGV0HsAdng_88hv-l-3mA1pHlyrfqQIENfEK8c7C-EyDjQzu9zEDc7xadLdgQk-Sc-H2Tuoi2CzCeZz_-EFX6PnqFH1vDcQx4lBrLk5CTP8wA_XMXYtwNsWBCxkomDcKpSoyPOI75x1RjwFMqRhCawhP6ktS"/>
-<div class="mt-2 text-center text-on-surface-variant text-sm font-label-caps">ID: V.ALMEIDA_77</div>
-</div>
-<div class="text-on-surface space-y-4">
-<p class="text-secondary blinking-cursor">&gt; DECRYPTING DATA STREAM...</p>
-<p>I am a Creative Developer specializing in bridging the gap between robust system architecture and immersive, high-fidelity user experiences. With a foundation built on full-stack technologies, I construct digital environments that are as functional as they are visually compelling.</p>
-<p>Operating primarily within the React ecosystem, I engineer interfaces that evoke emotion while maintaining strict performance standards. My approach blends modern technical capabilities with distinct, narrative-driven aesthetics—often drawing inspiration from retro-computing, sci-fi interfaces, and industrial design.</p>
-<div class="mt-4 p-4 border border-outline-variant bg-surface-dim">
-<ul class="space-y-2 text-sm text-on-surface-variant">
-<li><span class="text-primary-fixed">CLASS:</span> FRONTEND ENGINEER</li>
-<li><span class="text-primary-fixed">SPECIALIZATION:</span> UI/UX ARCHITECTURE</li>
-<li><span class="text-primary-fixed">STATUS:</span> ONLINE_AND_SEARCHING</li>
-</ul>
+<section class="py-24 relative px-6 md:px-12" id="sobre">
+<div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+<div class="w-full md:w-1/2 relative">
+<div class="relative w-64 h-64 mx-auto">
+<div class="absolute inset-0 rounded-full border border-primary/30 animate-spin-slow"></div>
+<div class="absolute inset-4 rounded-full border border-secondary/20 animate-spin-slow" style="animation-direction: reverse;"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-32 h-40 bg-gradient-to-b from-gray-800 to-black rounded-[40px] border-2 border-primary/50 relative overflow-hidden flex items-center justify-center">
+<div class="w-24 h-16 bg-gradient-to-br from-primary/40 to-secondary/40 rounded-2xl absolute top-6 border border-white/10 backdrop-blur-sm"></div>
+<div class="absolute top-8 left-6 w-2 h-2 bg-white rounded-full blur-[1px]"></div>
 </div>
 </div>
 </div>
 </div>
-<div class="bg-surface-container window-bevel rounded-DEFAULT overflow-hidden">
-<div class="window-title-bg h-6 flex justify-between items-center px-1 border-b border-black">
-<span class="font-window-title text-window-title text-white drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">HARDWARE_MONITOR</span>
-<div class="flex gap-1">
-<button class="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold hover:bg-red-500">X</button>
+<div class="w-full md:w-1/2">
+<h2 class="font-display text-3xl md:text-4xl text-white font-bold mb-6 flex items-center gap-3">
+<span class="material-icons text-primary">person_outline</span>
+                    Sobre o Piloto
+                </h2>
+<div class="glass-panel p-8 rounded-xl relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+<p class="text-gray-300 leading-relaxed mb-4 relative z-10 text-lg">
+                        Iniciei minha jornada explorando as fundações do desenvolvimento como estagiário, onde aprendi a navegar pelas complexidades dos sistemas iniciais.
+                    </p>
+<p class="text-gray-400 leading-relaxed relative z-10">
+                        Hoje, como Desenvolvedor Full Stack, piloto arquiteturas modernas, unindo o front-end dinâmico com back-ends escaláveis. Minha missão é traduzir requisitos complexos em interfaces limpas e APIs eficientes, sempre buscando a rota mais otimizada no espaço do código.
+                    </p>
+<div class="mt-8 flex gap-4">
+<div class="bg-black/40 p-4 rounded-lg border border-white/5 flex-1 text-center">
+<span class="block text-primary font-display text-2xl font-bold">3+</span>
+<span class="text-xs text-gray-500 uppercase tracking-wider">Anos em Órbita</span>
 </div>
-</div>
-<div class="p-4 bg-black h-[calc(100%-24px)] flex items-center justify-center relative">
-<img class="w-full h-full object-cover opacity-50 absolute inset-0 mix-blend-screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAu4ILfoFkS54jFQvxSKX_PsgJPpkTjBOn-pUQroxpj1ZpCNX4TuZu9J7UvUtsQyflUMTw5u44jqC7kzfiWBV3xV6nNVSGU8Zo3-kN0K3UYwVQXM61mZk6oP0EP_MQAmSZtfztHwfW_dqpdF_FJRjvdPYpZeeV0BRD2wu_TC42Ip0PebvTWNUnlCIIGQTmsqbct9QWJKjGUFL413ds-brlRUcbQQOs7jDmsHHU8vgaZB95K-R9_fsS1igw_CK_2LqQVuKkK1tbFrcfi"/>
-<div class="z-10 text-center border-2 border-secondary-fixed p-4 bg-surface-container-lowest/90 backdrop-blur">
-<div class="text-secondary text-2xl mb-2">SYSTEM: OPTIMAL</div>
-<div class="w-full bg-surface-variant h-4 border border-outline-variant mt-2">
-<div class="bg-secondary-container h-full w-[85%]"></div>
-</div>
-<div class="text-xs text-on-surface-variant mt-1">CPU LOAD: 85%</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Skills Window -->
-<section class="bg-surface-container window-bevel rounded-DEFAULT overflow-hidden" id="skills">
-<div class="window-title-bg h-6 flex justify-between items-center px-1 border-b border-black">
-<span class="font-window-title text-window-title text-white drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">CORE_SYSTEM_SPECS.SYS</span>
-<div class="flex gap-1">
-<button class="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">_</button>
-<button class="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">□</button>
-<button class="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold hover:bg-red-500">X</button>
-</div>
-</div>
-<div class="p-container-padding bg-surface-container-lowest grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-<!-- Skill Module -->
-<div class="border border-outline-variant bg-surface p-4 hover:border-primary-fixed transition-colors group">
-<div class="flex items-center gap-3 mb-4">
-<div class="w-10 h-10 bg-black border border-primary-fixed flex items-center justify-center text-primary-fixed">
-<span class="material-symbols-outlined">javascript</span>
-</div>
-<div class="font-label-caps text-label-caps text-primary-fixed group-hover:text-white">JAVASCRIPT</div>
-</div>
-<div class="w-full bg-black terminal-input h-3">
-<div class="bg-primary-fixed h-full w-[90%] shadow-[0_0_8px_rgba(219,225,255,0.8)]"></div>
-</div>
-<div class="text-right text-xs mt-1 text-on-surface-variant">v.ES6+ [90%]</div>
-</div>
-<!-- Skill Module -->
-<div class="border border-outline-variant bg-surface p-4 hover:border-primary-fixed transition-colors group">
-<div class="flex items-center gap-3 mb-4">
-<div class="w-10 h-10 bg-black border border-primary-fixed flex items-center justify-center text-primary-fixed">
-<span class="material-symbols-outlined">code</span>
-</div>
-<div class="font-label-caps text-label-caps text-primary-fixed group-hover:text-white">TYPESCRIPT</div>
-</div>
-<div class="w-full bg-black terminal-input h-3">
-<div class="bg-primary-fixed h-full w-[85%] shadow-[0_0_8px_rgba(219,225,255,0.8)]"></div>
-</div>
-<div class="text-right text-xs mt-1 text-on-surface-variant">v.5.0+ [85%]</div>
-</div>
-<!-- Skill Module -->
-<div class="border border-outline-variant bg-surface p-4 hover:border-secondary-fixed transition-colors group">
-<div class="flex items-center gap-3 mb-4">
-<div class="w-10 h-10 bg-black border border-secondary-fixed flex items-center justify-center text-secondary-fixed">
-<span class="material-symbols-outlined">api</span>
-</div>
-<div class="font-label-caps text-label-caps text-secondary-fixed group-hover:text-white">REACT.JS</div>
-</div>
-<div class="w-full bg-black terminal-input h-3">
-<div class="bg-secondary-fixed h-full w-[95%] shadow-[0_0_8px_rgba(116,255,106,0.8)]"></div>
-</div>
-<div class="text-right text-xs mt-1 text-on-surface-variant">v.18.0 [95%]</div>
-</div>
-<!-- Skill Module -->
-<div class="border border-outline-variant bg-surface p-4 hover:border-secondary-fixed transition-colors group">
-<div class="flex items-center gap-3 mb-4">
-<div class="w-10 h-10 bg-black border border-secondary-fixed flex items-center justify-center text-secondary-fixed">
-<span class="material-symbols-outlined">dns</span>
-</div>
-<div class="font-label-caps text-label-caps text-secondary-fixed group-hover:text-white">NODE.JS</div>
-</div>
-<div class="w-full bg-black terminal-input h-3">
-<div class="bg-secondary-fixed h-full w-[75%] shadow-[0_0_8px_rgba(116,255,106,0.8)]"></div>
-</div>
-<div class="text-right text-xs mt-1 text-on-surface-variant">v.20.0 [75%]</div>
-</div>
-</div>
-</section>
-<!-- Project Archive -->
-<section class="bg-surface-container window-bevel rounded-DEFAULT overflow-hidden" id="projects">
-<div class="window-title-bg h-6 flex justify-between items-center px-1 border-b border-black">
-<span class="font-window-title text-window-title text-white drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">PROJECT_VAULT.DIR</span>
-<div class="flex gap-1">
-<button class="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">_</button>
-<button class="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">□</button>
-<button class="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold hover:bg-red-500">X</button>
-</div>
-</div>
-<div class="p-container-padding bg-surface-container-lowest overflow-x-auto">
-<div class="flex gap-6 min-w-max pb-4">
-<!-- Project Card -->
-<div class="w-80 bg-surface border-2 border-outline-variant flex flex-col btn-bevel">
-<div class="h-40 border-b-2 border-outline-variant relative overflow-hidden bg-black group">
-<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEfRL3dKTLEPHLQOxClkM4vqE827PoNOl-P2KmaQDAAKcalGOO9G5kca9bTe5FPDNR8HfF4s0nzZyRmD3D8u6xUQyikBCM3qrrNb0TPKJ2-trwEE5_qkK1MY8f83plYIKIF5o-CBq7vpP8U98XcjbuMouPCK3uDGVtQEunXlyw-T_sknLWDdMLEnWb-n9XyxWR5m8zXFfMJQs4GQ05oQ4glg1aMSYCBQisW6j0EB4-iDScyEfAQMa6V9e07PLkXvvtDolzx-QcdTVR"/>
-<div class="absolute top-2 left-2 bg-black/80 px-2 py-1 text-xs border border-primary-fixed text-primary-fixed">.EXE</div>
-</div>
-<div class="p-4 flex-1 flex flex-col">
-<h3 class="font-display-header text-xl text-primary mb-2">BPet System</h3>
-<p class="text-sm text-on-surface-variant flex-1 mb-4">Comprehensive veterinary management platform built with React and Node.js. Features complex state management for patient records.</p>
-<div class="flex justify-between items-center mt-auto border-t border-outline-variant pt-4">
-<span class="text-xs text-outline">SIZE: 4.2GB</span>
-<button class="bg-primary-container text-on-primary-container px-4 py-1 btn-bevel text-sm hover:brightness-125">RUN</button>
-</div>
-</div>
-</div>
-<!-- Project Card -->
-<div class="w-80 bg-surface border-2 border-outline-variant flex flex-col btn-bevel">
-<div class="h-40 border-b-2 border-outline-variant relative overflow-hidden bg-black group">
-<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAByM7v6r6qRB6lXLYjpozMCIFtw2hUkpF-k0BG39RX89rN8aKGRfsBqJevptAmh7jb5aHUe8zkbD61HT6iBuF11zUvTwowDOA5JtwASUTXDBAJpWh5AMmNUJ06sZKPJkduQBcqqJqHNqbpBOiYJXVZTg8LUcDhmwXVsxT5F4a-QQjiPMfbCQL6js8l7vt6h0kBF8VakGjMTul_6TvQ9hLnlwqfFxjEHo2mqVug2Lh5qVlu6VAhQTu8oN7BwdxYjYDqJ-T4Jukra7ij"/>
-<div class="absolute top-2 left-2 bg-black/80 px-2 py-1 text-xs border border-secondary-fixed text-secondary-fixed">.SYS</div>
-</div>
-<div class="p-4 flex-1 flex flex-col">
-<h3 class="font-display-header text-xl text-secondary mb-2">ESP-PB</h3>
-<p class="text-sm text-on-surface-variant flex-1 mb-4">IoT dashboard for real-time monitoring of ESP8266 devices. Utilizes WebSockets for instant data visualization and telemetry.</p>
-<div class="flex justify-between items-center mt-auto border-t border-outline-variant pt-4">
-<span class="text-xs text-outline">SIZE: 1.1GB</span>
-<button class="bg-secondary-container text-on-secondary-fixed px-4 py-1 btn-bevel text-sm hover:brightness-125">RUN</button>
-</div>
-</div>
-</div>
-<!-- Project Card -->
-<div class="w-80 bg-surface border-2 border-outline-variant flex flex-col btn-bevel">
-<div class="h-40 border-b-2 border-outline-variant relative overflow-hidden bg-black group">
-<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFPNKRoWbfSDeS0QGtf1Vblaf74rY0qIN1e-B4eTArve7SWUoYXA0DpFTIEmwG5TypJWxAnmvGphCyszNBYm3icYkvaXweWoUYH235TnRxC1wOM7DBYOeTryztnHpgDgx2Ch5T3cCNEiOQHObw-Jq51xNbAp1xupfgnZkkzMHSjxFt70mkOvk5wlE1q1VpiJZnn3PYkTWI3VLmK4CHtFxghTl9g8etYa7CHkGc5tTO4MMWUASiSWnT9zBAkfeWP_FBi5OCJsOspN0Y"/>
-<div class="absolute top-2 left-2 bg-black/80 px-2 py-1 text-xs border border-tertiary-fixed text-tertiary-fixed">.BAT</div>
-</div>
-<div class="p-4 flex-1 flex flex-col">
-<h3 class="font-display-header text-xl text-tertiary mb-2">PM-PB</h3>
-<p class="text-sm text-on-surface-variant flex-1 mb-4">Project management tool designed for agile teams. Custom drag-and-drop interface prioritizing keyboard navigation.</p>
-<div class="flex justify-between items-center mt-auto border-t border-outline-variant pt-4">
-<span class="text-xs text-outline">SIZE: 2.8GB</span>
-<button class="bg-tertiary-container text-on-tertiary-container px-4 py-1 btn-bevel text-sm hover:brightness-125">RUN</button>
+<div class="bg-black/40 p-4 rounded-lg border border-white/5 flex-1 text-center">
+<span class="block text-secondary font-display text-2xl font-bold">50+</span>
+<span class="text-xs text-gray-500 uppercase tracking-wider">Bugs Aniquilados</span>
 </div>
 </div>
 </div>
 </div>
 </div>
 </section>
-<!-- Contact Form -->
-<section class="max-w-2xl mx-auto w-full mb-12" id="contact">
-<div class="bg-surface-container window-bevel rounded-DEFAULT overflow-hidden">
-<div class="window-title-bg h-6 flex justify-between items-center px-1 border-b border-black">
-<span class="font-window-title text-window-title text-white drop-shadow-[1px_1px_0_rgba(0,0,0,1)]">COMM_UPLINK.NET</span>
-<div class="flex gap-1">
-<button class="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold">_</button>
-<button class="w-4 h-4 bg-surface-container btn-bevel flex items-center justify-center text-black text-[10px] font-bold hover:bg-red-500">X</button>
+<section class="py-24 relative px-6 md:px-12 bg-black/40 border-y border-white/5" id="arsenal">
+<div class="max-w-6xl mx-auto text-center mb-16">
+<h2 class="font-display text-3xl md:text-4xl text-white font-bold inline-flex items-center gap-3">
+<span class="material-icons text-secondary">memory</span>
+                Arsenal Tecnológico
+            </h2>
+<p class="text-gray-400 mt-4 max-w-2xl mx-auto">Sistemas dominados para construção de módulos estelares.</p>
+</div>
+<div class="flex flex-col lg:flex-row items-center justify-center gap-16">
+<div class="relative w-full max-w-[400px] aspect-square flex items-center justify-center">
+<div class="w-24 h-24 rounded-full bg-background-dark border-2 border-primary shadow-[0_0_30px_rgba(0,243,255,0.4)] z-10 flex items-center justify-center relative">
+<span class="text-white font-display font-bold">CORE</span>
+<div class="absolute inset-0 rounded-full border border-primary animate-ping opacity-20"></div>
+</div>
+<div class="absolute inset-0 rounded-full border border-dashed border-gray-700 animate-[spin_30s_linear_infinite]">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 glass-panel rounded-full flex items-center justify-center text-primary border-primary/50" style="animation: spin 30s linear infinite reverse;">
+<span class="font-bold text-xs">Re</span>
+</div>
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-12 h-12 glass-panel rounded-full flex items-center justify-center text-green-400 border-green-400/50" style="animation: spin 30s linear infinite reverse;">
+<span class="font-bold text-xs">No</span>
+</div>
+<div class="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-12 h-12 glass-panel rounded-full flex items-center justify-center text-yellow-400 border-yellow-400/50" style="animation: spin 30s linear infinite reverse;">
+<span class="font-bold text-xs">Py</span>
+</div>
+<div class="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-12 h-12 glass-panel rounded-full flex items-center justify-center text-blue-400 border-blue-400/50" style="animation: spin 30s linear infinite reverse;">
+<span class="font-bold text-xs">Dk</span>
 </div>
 </div>
-<div class="p-container-padding bg-black border-[8px] border-surface-container-lowest">
-<div class="text-secondary mb-6 border-b border-secondary-fixed/30 pb-2">
-                        &gt; ESTABLISHING SECURE CONNECTION...<br/>
-                        &gt; CONNECTION ESTABLISHED.<br/>
-                        &gt; ENTER MESSAGE BELOW:
-                    </div>
+<div class="absolute inset-10 rounded-full border border-dashed border-gray-700 animate-[spin_20s_linear_infinite_reverse]">
+<div class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-10 h-10 glass-panel rounded-full flex items-center justify-center text-red-500 border-red-500/50" style="animation: spin 20s linear infinite;">
+<span class="font-bold text-[10px]">Ne</span>
+</div>
+<div class="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-10 h-10 glass-panel rounded-full flex items-center justify-center text-purple-400 border-purple-400/50" style="animation: spin 20s linear infinite;">
+<span class="font-bold text-[10px]">Ph</span>
+</div>
+</div>
+</div>
+<div class="w-full max-w-md glass-panel p-6 rounded-xl border border-gray-800">
+<div class="flex items-center justify-between mb-6 border-b border-gray-800 pb-2">
+<span class="text-xs text-gray-500 font-display tracking-widest">NÍVEIS_DE_ENERGIA</span>
+<span class="material-icons text-primary text-sm">bar_chart</span>
+</div>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-gray-300">Front-end (React, TS, Tailwind)</span>
+<span class="text-primary font-mono">90%</span>
+</div>
+<div class="h-1.5 w-full bg-gray-900 rounded-full overflow-hidden">
+<div class="h-full bg-primary shadow-[0_0_10px_#00f3ff]" style="width: 90%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-gray-300">Back-end (Node, NestJS, PHP)</span>
+<span class="text-secondary font-mono">85%</span>
+</div>
+<div class="h-1.5 w-full bg-gray-900 rounded-full overflow-hidden">
+<div class="h-full bg-secondary shadow-[0_0_10px_#ff00ff]" style="width: 85%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-gray-300">Database (SQL, NoSQL)</span>
+<span class="text-primary font-mono">80%</span>
+</div>
+<div class="h-1.5 w-full bg-gray-900 rounded-full overflow-hidden">
+<div class="h-full bg-primary opacity-80" style="width: 80%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-1">
+<span class="text-gray-300">DevOps (Docker, AWS basic)</span>
+<span class="text-secondary font-mono">70%</span>
+</div>
+<div class="h-1.5 w-full bg-gray-900 rounded-full overflow-hidden">
+<div class="h-full bg-secondary opacity-80" style="width: 70%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 relative px-6 md:px-12" id="missoes">
+<div class="max-w-6xl mx-auto">
+<h2 class="font-display text-3xl md:text-4xl text-white font-bold mb-16 text-center flex items-center justify-center gap-3">
+<span class="material-icons text-primary">explore</span>
+                Log de Missões
+            </h2>
+<div class="flex flex-col lg:flex-row gap-12">
+<div class="w-full lg:w-1/3 relative pl-8">
+<div class="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-primary via-secondary to-gray-800"></div>
+<div class="space-y-12">
+<div class="relative">
+<div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-background-dark border-2 border-primary z-10 shadow-[0_0_10px_#00f3ff]"></div>
+<h3 class="text-lg text-white font-display font-bold">Freelancer</h3>
+<p class="text-sm text-primary mb-2">2023 - Presente</p>
+<p class="text-xs text-gray-400">Desenvolvimento de soluções web customizadas e aplicativos independentes.</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-background-dark border-2 border-secondary z-10 shadow-[0_0_10px_#ff00ff]"></div>
+<h3 class="text-lg text-white font-display font-bold">UBTech Office</h3>
+<p class="text-sm text-secondary mb-2">2021 - 2023</p>
+<p class="text-xs text-gray-400">Desenvolvedor Full Stack Pleno. Manutenção e criação de novas features em sistemas internos.</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-background-dark border-2 border-gray-500 z-10"></div>
+<h3 class="text-lg text-white font-display font-bold">Meets Tecnologia</h3>
+<p class="text-sm text-gray-400 mb-2">2020 - 2021</p>
+<p class="text-xs text-gray-500">Estagiário de Desenvolvimento. Primeiros contatos com código em produção.</p>
+</div>
+</div>
+</div>
+<div class="w-full lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="hologram-card glass-panel rounded-xl border border-gray-800 p-1 group flex flex-col h-full cursor-pointer">
+<div class="bg-gray-900 rounded-t-lg h-48 relative overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-black"></div>
+<span class="font-display text-3xl text-white/50 font-bold mix-blend-overlay group-hover:scale-110 transition-transform duration-500">BPet</span>
+<div class="absolute inset-0 bg-primary/90 translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex flex-col items-center justify-center p-6 text-background-dark">
+<span class="font-display font-bold mb-2">Acessar Sistema</span>
+<div class="flex gap-2 text-xs font-bold">
+<span class="px-2 py-1 bg-black/20 rounded">React</span>
+<span class="px-2 py-1 bg-black/20 rounded">Node.js</span>
+</div>
+</div>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<h3 class="text-xl text-white font-bold mb-2 group-hover:text-primary transition-colors">BPet Platform</h3>
+<p class="text-sm text-gray-400 mb-4 flex-1">Sistema completo para gestão de clínicas veterinárias e petshops, integrando agendamentos e prontuários.</p>
+<div class="flex justify-between items-center text-xs text-gray-500 border-t border-gray-800 pt-4 mt-auto">
+<span>Status: Operacional</span>
+<span class="material-icons text-sm">open_in_new</span>
+</div>
+</div>
+</div>
+<div class="hologram-card glass-panel rounded-xl border border-gray-800 p-1 group flex flex-col h-full cursor-pointer">
+<div class="bg-gray-900 rounded-t-lg h-48 relative overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 bg-gradient-to-br from-purple-900/40 to-black"></div>
+<span class="font-display text-3xl text-white/50 font-bold mix-blend-overlay group-hover:scale-110 transition-transform duration-500">ESP-PB</span>
+<div class="absolute inset-0 bg-secondary/90 translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex flex-col items-center justify-center p-6 text-white">
+<span class="font-display font-bold mb-2">Acessar Sistema</span>
+<div class="flex gap-2 text-xs font-bold">
+<span class="px-2 py-1 bg-black/20 rounded">PHP</span>
+<span class="px-2 py-1 bg-black/20 rounded">MySQL</span>
+</div>
+</div>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<h3 class="text-xl text-white font-bold mb-2 group-hover:text-secondary transition-colors">Portal ESP-PB</h3>
+<p class="text-sm text-gray-400 mb-4 flex-1">Plataforma educacional para a Escola de Saúde Pública, gerenciando cursos e alunos.</p>
+<div class="flex justify-between items-center text-xs text-gray-500 border-t border-gray-800 pt-4 mt-auto">
+<span>Status: Concluído</span>
+<span class="material-icons text-sm">open_in_new</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 relative px-6 md:px-12 bg-black/60" id="contato">
+<div class="max-w-4xl mx-auto">
+<div class="glass-panel rounded-2xl border border-gray-700 p-1 overflow-hidden relative">
+<div class="bg-gray-900/80 px-4 py-2 flex items-center gap-2 border-b border-gray-800">
+<div class="w-3 h-3 rounded-full bg-red-500"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+<div class="w-3 h-3 rounded-full bg-green-500"></div>
+<span class="ml-4 text-xs font-mono text-gray-500">TERMINAL_COMUNICACAO.exe</span>
+</div>
+<div class="p-8 md:p-12 flex flex-col md:flex-row gap-12">
+<div class="w-full md:w-1/2">
+<h2 class="font-display text-2xl text-white font-bold mb-2 flex items-center gap-2">
+<span class="material-icons text-primary animate-pulse">radar</span>
+                            Estabelecer Contato
+                        </h2>
+<p class="text-sm text-gray-400 mb-8">Sinais de fumaça digitais aceitos. Preencha o formulário ou use os canais diretos abaixo.</p>
+<div class="space-y-4">
+<a class="flex items-center gap-4 text-gray-300 hover:text-primary transition-colors group p-3 rounded-lg hover:bg-white/5 border border-transparent hover:border-white/10" href="#">
+<div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center group-hover:shadow-[0_0_10px_#00f3ff] transition-shadow">
+<span class="material-icons">code</span>
+</div>
+<div>
+<span class="block text-sm font-bold">GitHub</span>
+<span class="text-xs text-gray-500">/viniciusalmeida</span>
+</div>
+</a>
+<a class="flex items-center gap-4 text-gray-300 hover:text-secondary transition-colors group p-3 rounded-lg hover:bg-white/5 border border-transparent hover:border-white/10" href="#">
+<div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center group-hover:shadow-[0_0_10px_#ff00ff] transition-shadow">
+<span class="material-icons">work</span>
+</div>
+<div>
+<span class="block text-sm font-bold">LinkedIn</span>
+<span class="text-xs text-gray-500">/in/viniciusalmeida</span>
+</div>
+</a>
+<a class="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group p-3 rounded-lg hover:bg-white/5 border border-transparent hover:border-white/10" href="mailto:contato@exemplo.com">
+<div class="w-10 h-10 rounded-full glass-panel flex items-center justify-center group-hover:shadow-[0_0_10px_#ffffff] transition-shadow">
+<span class="material-icons">mail</span>
+</div>
+<div>
+<span class="block text-sm font-bold">Email</span>
+<span class="text-xs text-gray-500">Enviar transmissão</span>
+</div>
+</a>
+</div>
+</div>
+<div class="w-full md:w-1/2">
 <form class="space-y-4">
-<div class="flex flex-col">
-<label class="text-primary-fixed text-sm mb-1">ID [NAME]:</label>
-<input class="bg-black terminal-input text-secondary focus:ring-0 focus:border-secondary-fixed focus:outline-none p-2 font-terminal-md" placeholder="Enter identification..." type="text"/>
+<div>
+<label class="block text-xs text-gray-500 font-mono mb-1">IDENTIFICAÇÃO</label>
+<input class="w-full bg-black/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-mono text-sm" placeholder="Seu nome" type="text"/>
 </div>
-<div class="flex flex-col">
-<label class="text-primary-fixed text-sm mb-1">ROUTING [EMAIL]:</label>
-<input class="bg-black terminal-input text-secondary focus:ring-0 focus:border-secondary-fixed focus:outline-none p-2 font-terminal-md" placeholder="Enter routing address..." type="email"/>
+<div>
+<label class="block text-xs text-gray-500 font-mono mb-1">FREQUÊNCIA (EMAIL)</label>
+<input class="w-full bg-black/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-mono text-sm" placeholder="seu@email.com" type="email"/>
 </div>
-<div class="flex flex-col">
-<label class="text-primary-fixed text-sm mb-1">PAYLOAD [MESSAGE]:</label>
-<textarea class="bg-black terminal-input text-secondary focus:ring-0 focus:border-secondary-fixed focus:outline-none p-2 font-terminal-md resize-none" placeholder="Transmit data..." rows="4"></textarea>
+<div>
+<label class="block text-xs text-gray-500 font-mono mb-1">MENSAGEM_CRIPTOGRAFADA</label>
+<textarea class="w-full bg-black/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors font-mono text-sm resize-none" placeholder="Digite sua mensagem..." rows="4"></textarea>
 </div>
-<div class="pt-4 flex justify-end">
-<button class="bg-black border border-secondary-fixed text-secondary-fixed px-8 py-2 hover:bg-secondary-fixed hover:text-black transition-colors blinking-cursor shadow-[0_0_10px_rgba(116,255,106,0.2)]" type="button">
-                                TRANSMIT
-                            </button>
-</div>
+<button class="w-full py-3 bg-primary/10 border border-primary text-primary font-display font-bold tracking-wider rounded-lg hover:bg-primary hover:text-black transition-all duration-300 flex items-center justify-center gap-2" type="button">
+                                Transmitir
+                                <span class="material-icons text-sm">send</span>
+</button>
 </form>
 </div>
 </div>
+</div>
+<div class="text-center mt-12 text-gray-600 font-mono text-xs flex flex-col items-center gap-2">
+<span class="material-icons text-gray-700 text-lg">settings_power</span>
+                &gt; Transmissão encerrada. Aguardando contato. _
+            </div>
+</div>
 </section>
-</main>
-<!-- Bottom Nav Bar / Taskbar (Mobile/Global) -->
-<div class="fixed bottom-0 left-0 w-full z-50 flex items-center bg-gray-300 dark:bg-slate-900 h-10 px-0 border-t-2 border-white shadow-[inset_0_-2px_0_rgba(0,0,0,0.5),0_-4px_10px_rgba(0,83,225,0.3)] font-['VT323'] text-lg uppercase text-black dark:text-white md:hidden">
-<!-- Start/Launch Button -->
-<div class="h-full flex items-center pr-4 pl-2 bg-gradient-to-r from-green-600 to-green-400 rounded-r-full shadow-[inset_2px_2px_0_rgba(255,255,255,0.5)] border-r-2 border-black mr-2 hover:brightness-110 cursor-pointer">
-<span class="text-white font-black italic flex items-center gap-1">
-<span class="material-symbols-outlined text-[18px]">rocket_launch</span>
-                LAUNCH
-            </span>
-</div>
-<div class="flex h-full flex-1 overflow-x-auto no-scrollbar">
-<a class="flex items-center gap-2 px-3 h-full border-r border-gray-400 hover:bg-white/10 shrink-0" href="#bio">
-<span class="material-symbols-outlined text-[18px]">account_circle</span>
-                BIO.EXE
-             </a>
-<a class="flex items-center gap-2 bg-slate-400 dark:bg-slate-600 shadow-[inset_2px_2px_0_rgba(0,0,0,0.5)] px-3 h-full border-x border-gray-500 shrink-0 scale-95 origin-bottom text-white" href="#projects">
-<span class="material-symbols-outlined text-[18px]">folder_open</span>
-                FILES.DIR
-             </a>
-<a class="flex items-center gap-2 px-3 h-full border-r border-gray-400 hover:bg-white/10 shrink-0" href="#contact">
-<span class="material-symbols-outlined text-[18px]">terminal</span>
-                SYS.LOG
-             </a>
-</div>
-</div>
+<footer class="py-6 text-center border-t border-white/5 text-gray-600 text-xs font-mono">
+        © 2024 Vinícius Almeida. Todos os sistemas operacionais.
+    </footer>
+<script src="script.js"></script>
 </body></html>

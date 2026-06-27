@@ -264,7 +264,9 @@ export default function Home() {
           <div className="inline-block px-3 py-1 rounded-full glass-panel border border-primary/30 text-primary text-xs font-bold tracking-widest mb-4">
             SISTEMA ONLINE
           </div>
-          <h1 className={`font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight ${!isGameActive ? "md:whitespace-nowrap" : ""}`}>
+          <h1
+            className={`font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight ${!isGameActive ? "md:whitespace-nowrap" : ""}`}
+          >
             VINÍCIUS{isGameActive ? <br /> : " "}ALMEIDA
           </h1>
           <h2
@@ -945,34 +947,6 @@ export default function Home() {
             </span>
             &gt; Transmissão encerrada. Aguardando contato. _
           </div>
-        </div>
-      </section>
-
-      {/* Easter Egg Section */}
-      <section className="py-20 relative px-6 md:px-12 border-t border-white/5 overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
-          <span className="text-[20rem] font-display font-bold text-primary">
-            ?
-          </span>
-        </div>
-        <div className="max-w-2xl mx-auto text-center relative z-10">
-          <p className="text-gray-700 font-mono text-xs tracking-widest mb-4">
-            [ SINAL DESCONHECIDO DETECTADO... ]
-          </p>
-          <p className="text-gray-600 font-mono text-[10px] mb-8">
-            coords: -7.1195° S, 34.8450° O &nbsp;|&nbsp; freq: 4.2 GHz
-            &nbsp;|&nbsp; origem: desconhecida
-          </p>
-          <a
-            href="/vinicius-os"
-            className="group inline-flex items-center gap-3 px-6 py-3 border border-gray-800 rounded-lg text-gray-600 hover:border-primary hover:text-primary transition-all duration-500 font-mono text-xs tracking-widest hover:shadow-[0_0_20px_rgba(0,243,255,0.15)]"
-          >
-            <span className="material-symbols-outlined text-base group-hover:animate-spin">
-              blur_on
-            </span>
-            investigar_sinal.exe
-            <span className="w-1.5 h-1.5 rounded-full bg-gray-700 group-hover:bg-primary group-hover:shadow-[0_0_8px_#00f3ff] transition-all duration-300"></span>
-          </a>
         </div>
       </section>
 

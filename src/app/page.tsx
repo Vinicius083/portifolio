@@ -264,10 +264,8 @@ export default function Home() {
           <div className="inline-block px-3 py-1 rounded-full glass-panel border border-primary/30 text-primary text-xs font-bold tracking-widest mb-4">
             SISTEMA ONLINE
           </div>
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight">
-            VINÍCIUS
-            <br />
-            ALMEIDA
+          <h1 className={`font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight ${!isGameActive ? "md:whitespace-nowrap" : ""}`}>
+            VINÍCIUS{isGameActive ? <br /> : " "}ALMEIDA
           </h1>
           <h2
             className={`text-xl md:text-3xl text-primary font-bold tracking-wide h-10 flex items-center ${isGameActive ? "justify-start" : "justify-center"}`}
@@ -304,7 +302,7 @@ export default function Home() {
             </a>
             <button
               onClick={() => setIsGameActive(!isGameActive)}
-              className={`px-8 py-4 bg-transparent border-2 text-white font-bold tracking-wider uppercase rounded transition-all duration-300 group flex items-center gap-2 ${isGameActive ? "border-red-500 hover:bg-red-500" : "border-gray-500 hover:bg-gray-500"}`}
+              className={`hidden md:flex px-8 py-4 bg-transparent border-2 text-white font-bold tracking-wider uppercase rounded transition-all duration-300 group items-center gap-2 ${isGameActive ? "border-red-500 hover:bg-red-500" : "border-gray-500 hover:bg-gray-500"}`}
             >
               {isGameActive ? "Ocultar Simulador" : "Ativar Simulador"}
               <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
@@ -348,11 +346,11 @@ export default function Home() {
         className="py-32 relative px-6 md:px-12 animate-section overflow-hidden"
         id="sobre"
       >
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 relative">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
           <div className="w-full md:w-1/2 relative min-h-[400px] flex items-center justify-center">
-            {/* Este wrapper absoluto faz com que o canvas do Lanyard ocupe a tela toda
-                (sem ser cortado pela coluna) mas mantenha o centro alinhado à esquerda. */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vh] z-0">
+            {/* Este wrapper faz com que no mobile o canvas ocupe apenas a altura do bloco (400px)
+                para não bloquear a rolagem do usuário, mas no desktop ganhe tela cheia (100vw/100vh). */}
+            <div className="relative w-full h-[400px] md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-[100vw] md:h-[100vh] z-0">
               <Lanyard
                 position={[0, 0, 20]}
                 gravity={[0, -40, 0]}

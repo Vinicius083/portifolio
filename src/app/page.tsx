@@ -8,6 +8,9 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Draggable } from "gsap/Draggable";
 import emailjs from "@emailjs/browser";
+import BorderGlow from "../components/BorderGlow";
+import Galaxy from "../components/Galaxy";
+import Lanyard from "../components/Lanyard";
 
 const SpaceGame = dynamic(() => import("./components/SpaceGame"), {
   ssr: false,
@@ -19,8 +22,6 @@ if (typeof window !== "undefined") {
 
 export default function Home() {
   const mainRef = useRef<HTMLDivElement>(null);
-  const starfieldRef = useRef<HTMLDivElement>(null);
-  const rocketRef = useRef<HTMLDivElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showNav, setShowNav] = useState(true);
   const [isGameActive, setIsGameActive] = useState(false);
@@ -36,10 +37,6 @@ export default function Home() {
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
-
-  // Tweens for rocket logic
-  const flyingTweenRef = useRef<gsap.core.Tween | null>(null);
-  const rotationTweenRef = useRef<gsap.core.Tween | null>(null);
 
   useGSAP(
     () => {
@@ -62,98 +59,6 @@ export default function Home() {
           },
         );
       });
-
-      // Draggable and Flying Rocket
-      const rocket = rocketRef.current;
-      if (rocket) {
-        let currentX = (gsap.getProperty(rocket, "x") as number) || 0;
-        let currentY = (gsap.getProperty(rocket, "y") as number) || 0;
-
-        const getFlightBounds = () => {
-          const section = document.getElementById("sobre");
-          if (!section) return { maxX: 200, maxY: 200 };
-          const rect = section.getBoundingClientRect();
-          const maxX = Math.max(80, rect.width / 2 - 80);
-          const maxY = Math.max(80, rect.height / 2 - 80);
-          return { maxX, maxY };
-        };
-
-        const flyRandomly = () => {
-          // Compute bounds dynamically so mobile never overflows
-          const { maxX, maxY } = getFlightBounds();
-          const nextX = gsap.utils.random(-maxX, maxX);
-          const nextY = gsap.utils.random(-maxY, maxY);
-
-          const dx = nextX - currentX;
-          const dy = nextY - currentY;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          const speed = 100; // pixels per second
-          const duration = Math.max(distance / speed, 1); // minimum 1 second duration
-
-          // Calculate angle. +90 because our rocket points UP (which is -90deg)
-          let angle = Math.atan2(dy, dx) * (180 / Math.PI) + 90;
-
-          // Turn towards new destination smoothly
-          rotationTweenRef.current = gsap.to(rocket, {
-            rotation: angle + "_short",
-            duration: 1.5,
-            ease: "sine.inOut",
-          });
-
-          // Move towards new destination
-          flyingTweenRef.current = gsap.to(rocket, {
-            x: nextX,
-            y: nextY,
-            duration: duration,
-            ease: "power1.inOut",
-            onUpdate: () => {
-              currentX = gsap.getProperty(rocket, "x") as number;
-              currentY = gsap.getProperty(rocket, "y") as number;
-            },
-            onComplete: flyRandomly, // Recursive loop
-          });
-        };
-
-        // Start the infinite flying loop
-        flyRandomly();
-
-        Draggable.create(rocket, {
-          type: "x,y",
-          bounds: "#sobre",
-          inertia: false,
-          onPress: function () {
-            // Pause flying when user grabs it
-            if (flyingTweenRef.current) flyingTweenRef.current.kill();
-            if (rotationTweenRef.current) rotationTweenRef.current.kill();
-            gsap.to(this.target, {
-              scale: 1.1,
-              duration: 0.2,
-              ease: "back.out",
-            });
-          },
-          onDrag: function () {
-            // Update current coordinates so it flies from here next
-            currentX = this.x;
-            currentY = this.y;
-          },
-          onRelease: function () {
-            gsap.to(this.target, { scale: 1, duration: 0.2, ease: "back.out" });
-            // Resume flying from new position
-            flyRandomly();
-          },
-        });
-
-        // Inner vibration/floating so the rocket feels "alive" engines on
-        gsap.to(".rocket-inner", {
-          x: 2,
-          y: 2,
-          rotation: 1,
-          duration: 0.2,
-          yoyo: true,
-          repeat: -1,
-          ease: "none",
-        });
-      }
     },
     { scope: mainRef },
   );
@@ -249,37 +154,11 @@ export default function Home() {
     return () => clearTimeout(timeout);
   }, []);
 
-  useEffect(() => {
-    const starfield = starfieldRef.current;
-    if (!starfield) return;
-
-    starfield.innerHTML = "";
-    const numStars = 100;
-    for (let i = 0; i < numStars; i++) {
-      const star = document.createElement("div");
-      star.style.position = "absolute";
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.top = `${Math.random() * 100}%`;
-
-      const size = Math.random() * 2 + 1;
-      star.style.width = `${size}px`;
-      star.style.height = `${size}px`;
-      star.style.backgroundColor = "white";
-      star.style.borderRadius = "50%";
-
-      star.style.opacity = Math.random().toString();
-      const duration = Math.random() * 3 + 2;
-      star.style.animation = `pulseGlow ${duration}s infinite alternate`;
-      starfield.appendChild(star);
-    }
-  }, []);
-
   return (
     <div
       ref={mainRef}
       className="dark-space-wrapper selection:bg-primary selection:text-background-dark"
     >
-      <div className="stars" ref={starfieldRef}></div>
       <nav
         className={`fixed w-[95%] left-1/2 -translate-x-1/2 rounded-2xl z-50 glass-panel py-4 px-6 md:px-12 flex justify-between items-center transition-all duration-300 ${showNav ? "top-4 opacity-100" : "-top-24 opacity-0"}`}
       >
@@ -363,6 +242,22 @@ export default function Home() {
       <section
         className={`min-h-screen relative flex flex-col md:flex-row items-center justify-center px-6 md:px-12 pb-12 md:pb-20 overflow-hidden animate-section transition-all duration-700 ease-in-out ${isGameActive ? "pt-28 md:pt-36" : "pt-20"}`}
       >
+        <div className="absolute inset-0 z-0">
+          <Galaxy
+            mouseRepulsion={false}
+            mouseInteraction
+            density={1}
+            glowIntensity={0.3}
+            saturation={0}
+            hueShift={140}
+            twinkleIntensity={0.3}
+            rotationSpeed={0.1}
+            repulsionStrength={2}
+            autoCenterRepulsion={0}
+            starSpeed={0.5}
+            speed={1}
+          />
+        </div>
         <div
           className={`z-10 flex flex-col space-y-6 transition-all duration-700 ease-in-out w-full ${isGameActive ? "md:w-1/2 items-start text-left md:pr-8" : "md:w-full items-center text-center max-w-4xl"}`}
         >
@@ -420,7 +315,7 @@ export default function Home() {
         </div>
 
         <div
-          className={`transition-all duration-700 ease-in-out overflow-hidden flex-shrink-0 ${isGameActive ? "w-full md:w-1/2 opacity-100 max-w-2xl mt-10 md:mt-0" : "w-0 opacity-0 h-0 md:h-auto"}`}
+          className={`relative z-10 transition-all duration-700 ease-in-out overflow-hidden flex-shrink-0 ${isGameActive ? "w-full md:w-1/2 opacity-100 max-w-2xl mt-10 md:mt-0" : "w-0 opacity-0 h-0 md:h-auto"}`}
         >
           <div className="w-full h-[512px] md:h-[819px] relative glass-panel rounded-xl flex flex-col min-w-[320px]">
             <div className="bg-black/50 p-2 border-b border-primary/20 flex justify-between items-center rounded-t-xl">
@@ -448,94 +343,78 @@ export default function Home() {
       </section>
 
       <section
-        className="py-80 relative px-6 md:px-12 animate-section"
+        // AQUI: 'py-32' controla o espaçamento vertical entre o hero e esta seção.
+        // Se quiser menor, use 'py-20'. Se quiser maior, use 'py-40' ou volte para 'py-80'.
+        className="py-32 relative px-6 md:px-12 animate-section overflow-hidden"
         id="sobre"
       >
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 relative">
-          <div className="w-full md:w-1/2 relative min-h-[400px]">
-            <div
-              ref={rocketRef}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-48 md:w-64 h-64 md:h-80 cursor-grab active:cursor-grabbing z-50"
-              style={{ touchAction: "none", userSelect: "none" }}
-            >
-              <div className="absolute inset-0 flex flex-col items-center rocket-inner pointer-events-none">
-                {/* Rocket Tip */}
-                <div className="w-0 h-0 border-l-[40px] border-l-transparent border-r-[40px] border-r-transparent border-b-[60px] border-b-gray-300 filter drop-shadow-[0_-5px_5px_rgba(0,243,255,0.3)]"></div>
-                {/* Rocket Body */}
-                <div className="w-[80px] h-[160px] bg-gradient-to-b from-gray-300 to-gray-500 relative rounded-b-3xl flex flex-col items-center shadow-[inset_-5px_0_10px_rgba(0,0,0,0.3)]">
-                  {/* Window with Photo */}
-                  <div className="w-[60px] h-[60px] bg-black rounded-full mt-6 border-4 border-primary shadow-[0_0_15px_#00f3ff] overflow-hidden relative pointer-events-auto flex items-center justify-center">
-                    <img
-                      src="/myPicture.webp"
-                      alt="Piloto Vinícius"
-                      className="w-full h-full object-cover"
-                      draggable={false}
-                    />
-                    <div className="absolute inset-0 shadow-[inset_0_4px_4px_rgba(255,255,255,0.4)] rounded-full border border-white/20"></div>
-                  </div>
-                  {/* Retro lines */}
-                  <div className="w-full h-1.5 bg-red-500 mt-auto mb-3 opacity-90"></div>
-                  <div className="w-full h-1 bg-gray-700 mb-6 opacity-60"></div>
-                </div>
-
-                {/* Fins */}
-                <div className="absolute top-[140px] flex w-[160px] justify-between -z-10">
-                  <div
-                    className="w-[40px] h-[80px] bg-red-600 rounded-tl-[40px] shadow-lg border-l border-t border-red-400"
-                    style={{ transform: "skewY(-25deg)" }}
-                  ></div>
-                  <div
-                    className="w-[40px] h-[80px] bg-red-600 rounded-tr-[40px] shadow-lg border-r border-t border-red-400"
-                    style={{ transform: "skewY(25deg)" }}
-                  ></div>
-                </div>
-
-                {/* Engine */}
-                <div className="w-14 h-8 bg-gradient-to-b from-gray-800 to-black rounded-b-lg -mt-2 z-10 border border-gray-700"></div>
-
-                {/* Fire Particle */}
-                <div className="w-10 h-24 bg-gradient-to-b from-yellow-300 via-orange-500 to-transparent rounded-b-full animate-pulse-glow blur-sm mt-1"></div>
-              </div>
+          <div className="w-full md:w-1/2 relative min-h-[400px] flex items-center justify-center">
+            {/* Este wrapper absoluto faz com que o canvas do Lanyard ocupe a tela toda
+                (sem ser cortado pela coluna) mas mantenha o centro alinhado à esquerda. */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[100vh] z-0">
+              <Lanyard
+                position={[0, 0, 20]}
+                gravity={[0, -40, 0]}
+                transparent={true}
+                frontImage="/myPicture.webp"
+              />
             </div>
           </div>
-          <div className="w-full md:w-1/2">
-            <h2 className="font-display text-3xl md:text-4xl text-white font-bold mb-6 flex items-center gap-3">
+          <div className="w-full md:w-1/2 relative z-10 pointer-events-none">
+            {/* O wrapper de texto tem z-10 (fica na frente) e os elementos filhos voltam a ter interatividade */}
+            <h2 className="font-display text-3xl md:text-4xl text-white font-bold mb-6 flex items-center gap-3 pointer-events-auto">
               <span className="material-symbols-outlined text-primary">
                 person_outline
               </span>
               Sobre o Piloto
             </h2>
-            <div className="glass-panel p-8 rounded-xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
-              <p className="text-gray-300 leading-relaxed mb-4 relative z-10 text-lg">
-                Desenvolvedor Full Stack com experiência prática em ambientes
-                reais de produção, atuando em back-end e front-end. Residindo em
-                João Pessoa, PB.
-              </p>
-              <p className="text-gray-400 leading-relaxed relative z-10">
-                Meu perfil combina base técnica sólida, maturidade profissional
-                e evolução constante — da análise de requisitos à implementação
-                e manutenção, sempre buscando impacto real nas soluções que
-                construo.
-              </p>
-              <div className="mt-8 flex gap-4">
-                <div className="bg-black/40 p-4 rounded-lg border border-white/5 flex-1 text-center">
-                  <span className="block text-primary font-display text-2xl font-bold">
-                    2+
-                  </span>
-                  <span className="text-xs text-gray-500 uppercase tracking-wider">
-                    Anos em Órbita
-                  </span>
+            <div className="pointer-events-auto">
+              <BorderGlow
+                edgeSensitivity={30}
+                glowColor="183 100 50"
+                backgroundColor="#120F17"
+                borderRadius={12}
+                glowRadius={40}
+                glowIntensity={1.0}
+                coneSpread={25}
+                animated={true}
+                colors={["#00f3ff", "#ff00ff", "#c299ff"]}
+                className="w-full"
+              >
+                <div className="p-8 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+                  <p className="text-gray-300 leading-relaxed mb-4 relative z-10 text-lg">
+                    Desenvolvedor Full Stack com experiência prática em
+                    ambientes reais de produção, atuando em back-end e
+                    front-end. Residindo em João Pessoa, PB.
+                  </p>
+                  <p className="text-gray-400 leading-relaxed relative z-10">
+                    Meu perfil combina base técnica sólida, maturidade
+                    profissional e evolução constante — da análise de requisitos
+                    à implementação e manutenção, sempre buscando impacto real
+                    nas soluções que construo.
+                  </p>
+                  <div className="mt-8 flex gap-4">
+                    <div className="bg-black/40 p-4 rounded-lg border border-white/5 flex-1 text-center">
+                      <span className="block text-primary font-display text-2xl font-bold">
+                        2+
+                      </span>
+                      <span className="text-xs text-gray-500 uppercase tracking-wider">
+                        Anos em Órbita
+                      </span>
+                    </div>
+                    <div className="bg-black/40 p-4 rounded-lg border border-white/5 flex-1 text-center">
+                      <span className="block text-secondary font-display text-2xl font-bold">
+                        ADS
+                      </span>
+                      <span className="text-xs text-gray-500 uppercase tracking-wider">
+                        UNIPÊ – 2025
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <div className="bg-black/40 p-4 rounded-lg border border-white/5 flex-1 text-center">
-                  <span className="block text-secondary font-display text-2xl font-bold">
-                    ADS
-                  </span>
-                  <span className="text-xs text-gray-500 uppercase tracking-wider">
-                    UNIPÊ – 2025
-                  </span>
-                </div>
-              </div>
+              </BorderGlow>
             </div>
           </div>
         </div>

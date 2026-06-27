@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Space_Grotesk } from 'next/font/google';
+import { Inter, Space_Grotesk, Geist } from 'next/font/google';
 import './globals.css';
 
 const inter = Inter({ 
@@ -15,6 +15,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 import { Orbitron, VT323 } from 'next/font/google';
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const orbitron = Orbitron({
   subsets: ['latin'],
@@ -43,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`dark ${inter.variable} ${spaceGrotesk.variable} ${orbitron.variable} ${vt323.variable}`}>
+    <html lang="pt-BR" className={cn("dark", inter.variable, spaceGrotesk.variable, orbitron.variable, vt323.variable, "font-sans", geist.variable)}>
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
       </head>

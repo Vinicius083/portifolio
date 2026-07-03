@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter, Space_Grotesk, Geist } from 'next/font/google';
 import './globals.css';
+import Navbar from '@/components/Navbar';
+import CustomCursor from '@/components/CustomCursor';
 
 const inter = Inter({ 
   subsets: ['latin'], 
@@ -64,6 +66,8 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
       </head>
       <body className="bg-background text-on-surface antialiased overflow-x-hidden selection:bg-primary-container selection:text-white font-body">
+        <CustomCursor />
+        <Navbar />
         {children}
       </body>
     </html>

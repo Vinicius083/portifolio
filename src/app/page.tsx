@@ -8,6 +8,7 @@ import {
   type CSSProperties,
 } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { PROJECTS, JOBS } from "@/data/portfolio";
 
 const ACCENT = "oklch(68% 0.19 38)";
@@ -32,32 +33,16 @@ export default function Home() {
   const rootRef = useRef<HTMLDivElement>(null);
 
   const [revealed, setRevealed] = useState<Record<string, boolean>>({});
-  const [cursor, setCursor] = useState({ x: -100, y: -100 });
-  const [hoverBig, setHoverBig] = useState(false);
-  const [scrollPct, setScrollPct] = useState(0);
+
   const [cardProgress, setCardProgress] = useState<Record<string, number>>({});
   const [photoProgress, setPhotoProgress] = useState(0);
   const [hoveredJob, setHoveredJob] = useState<string | null>(null);
   const [animatingJob, setAnimatingJob] = useState<string | null>(null);
   const [animPhase, setAnimPhase] = useState<AnimPhase>(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
       const doc = document.documentElement;
-      const max = doc.scrollHeight - doc.clientHeight;
-      const pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
 
       const vh = window.innerHeight;
       const tracks = rootRef.current
@@ -84,7 +69,6 @@ export default function Home() {
         nextPhotoProgress = Math.max(0, Math.min(1, p));
       }
 
-      setScrollPct(pct);
       setCardProgress(nextCardProgress);
       setPhotoProgress(nextPhotoProgress);
     };
@@ -121,20 +105,6 @@ export default function Home() {
     return () => io.disconnect();
   }, []);
 
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    setCursor({ x: e.clientX, y: e.clientY });
-  }, []);
-
-  const handleOver = useCallback((e: React.MouseEvent) => {
-    const target = e.target as HTMLElement;
-    if (target.closest && target.closest("a,button")) setHoverBig(true);
-  }, []);
-
-  const handleOut = useCallback((e: React.MouseEvent) => {
-    const target = e.target as HTMLElement;
-    if (target.closest && target.closest("a,button")) setHoverBig(false);
-  }, []);
-
   const handleJobEnter = useCallback((id: string) => {
     setHoveredJob(id);
     setAnimatingJob(id);
@@ -162,63 +132,17 @@ export default function Home() {
   return (
     <div
       ref={rootRef}
-      onMouseMove={handleMouseMove}
-      onMouseOver={handleOver}
-      onMouseOut={handleOut}
-      className="vinicius-cursor-area"
       style={{
         background: "#000000ff",
         color: "#F2F0EC",
         fontFamily: "var(--font-space-grotesk), sans-serif",
         minHeight: "100vh",
-        cursor: "none",
         position: "relative",
       }}
     >
       <style>{`
         .vinicius-cursor-area ::selection { background: ${ACCENT}; color: #07060a; }
-        @media (pointer: fine) {
-          .vinicius-cursor-area, .vinicius-cursor-area * { cursor: none !important; }
-        }
-        @media (pointer: coarse) {
-          .vinicius-cursor-area { cursor: auto !important; }
-          .vinicius-cursor-dot, .vinicius-cursor-ring { display: none; }
-        }
       `}</style>
-
-      <div
-        className="vinicius-cursor-dot"
-        style={{
-          position: "fixed",
-          left: cursor.x,
-          top: cursor.y,
-          width: 7,
-          height: 7,
-          borderRadius: "50%",
-          background: "#F2F0EC",
-          transform: "translate(-50%, -50%)",
-          pointerEvents: "none",
-          zIndex: 9999,
-          transition: "opacity 0.2s ease",
-        }}
-      />
-      <div
-        className="vinicius-cursor-ring"
-        style={{
-          position: "fixed",
-          left: cursor.x,
-          top: cursor.y,
-          width: hoverBig ? 54 : 30,
-          height: hoverBig ? 54 : 30,
-          borderRadius: "50%",
-          border: `1px solid ${hoverBig ? ACCENT : "rgba(255,255,255,0.4)"}`,
-          transform: "translate(-50%, -50%)",
-          pointerEvents: "none",
-          zIndex: 9998,
-          transition:
-            "width 0.25s ease, height 0.25s ease, border-color 0.25s ease",
-        }}
-      />
 
       {/* vertical grid guides */}
       <div
@@ -233,202 +157,6 @@ export default function Home() {
         }}
       />
 
-      {/* NAV */}
-      <nav
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 500,
-          background: isMenuOpen ? "transparent" : "rgba(7,6,10,0.55)",
-          backdropFilter: isMenuOpen ? "none" : "blur(8px) saturate(160%)",
-          WebkitBackdropFilter: isMenuOpen
-            ? "none"
-            : "blur(8px) saturate(160%)",
-          transition: "background 0.5s ease, backdrop-filter 0.5s ease",
-        }}
-      >
-        <div className="flex flex-row items-center justify-between px-6 py-4 md:px-8 md:py-[26px]">
-          <div
-            style={{
-              fontFamily: "var(--font-instrument-serif), serif",
-              fontSize: 22,
-              letterSpacing: "0.01em",
-              position: "relative",
-              zIndex: 510,
-            }}
-          >
-            Vinícius Almeida
-          </div>
-
-          <div
-            className="hidden md:flex items-center gap-9 justify-center text-[13px] font-light"
-            style={{
-              fontFamily: "var(--font-ibm-plex-mono), monospace",
-            }}
-          >
-            <a
-              href="#trabalhos"
-              style={{ color: "rgba(242,240,236,0.5)", textDecoration: "none" }}
-            >
-              trabalhos
-            </a>
-            <a
-              href="#sobre"
-              style={{ color: "rgba(242,240,236,0.5)", textDecoration: "none" }}
-            >
-              sobre
-            </a>
-            <a
-              href="#projetos"
-              style={{ color: "rgba(242,240,236,0.5)", textDecoration: "none" }}
-            >
-              projetos
-            </a>
-            <a
-              href="#contato"
-              style={{ color: ACCENT, textDecoration: "none" }}
-            >
-              me contrate
-            </a>
-          </div>
-
-          <button
-            className="md:hidden flex items-center gap-3 text-[14px] font-light cursor-pointer"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            style={{
-              fontFamily: "var(--font-ibm-plex-mono), monospace",
-              position: "relative",
-              zIndex: 510,
-              background: "none",
-              border: "none",
-              color: "inherit",
-            }}
-          >
-            <span>{isMenuOpen ? "close" : "menu"}</span>
-            {isMenuOpen ? (
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M6 6L18 18M18 6L6 18"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                />
-              </svg>
-            ) : (
-              <div className="flex flex-col gap-[6px]">
-                <div
-                  style={{
-                    width: 20,
-                    height: 1,
-                    backgroundColor: "currentColor",
-                  }}
-                />
-                <div
-                  style={{
-                    width: 20,
-                    height: 1,
-                    backgroundColor: "currentColor",
-                  }}
-                />
-              </div>
-            )}
-          </button>
-        </div>
-
-        <div
-          style={{
-            height: 1,
-            background: "rgba(255,255,255,0.14)",
-            position: "relative",
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              height: "100%",
-              width: `${scrollPct}%`,
-              background: ACCENT,
-              transition: "width 0.4s cubic-bezier(0.25, 1, 0.5, 1)",
-            }}
-          />
-        </div>
-      </nav>
-
-      {/* MOBILE MENU OVERLAY */}
-      <div
-        className={`fixed inset-0 z-[495] flex flex-col items-end pt-32 px-8 bg-black/60 md:hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          isMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-        style={{
-          backdropFilter: "blur(14px) saturate(160%)",
-          WebkitBackdropFilter: "blur(14px) saturate(160%)",
-        }}
-      >
-        <div
-          className="flex flex-col items-end gap-10 text-[26px] font-light"
-          style={{ fontFamily: "var(--font-ibm-plex-mono), monospace" }}
-        >
-          <a
-            href="#trabalhos"
-            onClick={() => setIsMenuOpen(false)}
-            className={`transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-75 ${
-              isMenuOpen
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-6"
-            }`}
-            style={{ color: "rgba(242,240,236,0.8)", textDecoration: "none" }}
-          >
-            trabalhos
-          </a>
-          <a
-            href="#sobre"
-            onClick={() => setIsMenuOpen(false)}
-            className={`transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-100 ${
-              isMenuOpen
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-6"
-            }`}
-            style={{ color: "rgba(242,240,236,0.8)", textDecoration: "none" }}
-          >
-            sobre
-          </a>
-          <a
-            href="#projetos"
-            onClick={() => setIsMenuOpen(false)}
-            className={`transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-150 ${
-              isMenuOpen
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-6"
-            }`}
-            style={{ color: "rgba(242,240,236,0.8)", textDecoration: "none" }}
-          >
-            projetos
-          </a>
-          <a
-            href="#contato"
-            onClick={() => setIsMenuOpen(false)}
-            className={`transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] delay-200 ${
-              isMenuOpen
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-6"
-            }`}
-            style={{ color: ACCENT, textDecoration: "none" }}
-          >
-            me contrate
-          </a>
-        </div>
-      </div>
       <div style={{ height: 81 }} />
 
       {/* HERO */}
@@ -437,12 +165,12 @@ export default function Home() {
         style={{
           position: "relative",
           zIndex: 2,
-          maxWidth: 1400,
+          maxWidth: 1600,
           margin: "0 auto",
         }}
       >
         <div
-          className="mb-12 md:mb-[120px] ml-0 md:-ml-[250px]"
+          className="mb-12 md:mb-[120px] ml-0 md:-ml-[150px]"
           style={{
             ...revealStyle(revealed, "heroTag"),
             fontFamily: "var(--font-ibm-plex-mono), monospace",
@@ -530,7 +258,7 @@ export default function Home() {
             display: "flex",
             alignItems: "center",
             gap: 16,
-            maxWidth: 1400,
+            maxWidth: 1600,
             margin: "0 auto 8px",
           }}
         >
@@ -551,7 +279,7 @@ export default function Home() {
         </div>
 
         <div
-          style={{ maxWidth: 1400, margin: "0 auto", paddingBottom: "10vh" }}
+          style={{ maxWidth: 1600, margin: "0 auto", paddingBottom: "10vh" }}
         >
           {PROJECTS.map((proj, i) => {
             const wrapperStyle: CSSProperties = {
@@ -739,7 +467,7 @@ export default function Home() {
         style={{
           position: "relative",
           zIndex: 2,
-          maxWidth: 1400,
+          maxWidth: 1600,
           margin: "0 auto",
         }}
       >
@@ -825,6 +553,27 @@ export default function Home() {
               desafiadores — da análise de requisitos até a implementação e
               manutenção.
             </p>
+
+            <div style={{ marginTop: 40 }}>
+              <Link
+                href="/about"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 12,
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  padding: "16px 28px",
+                  color: "rgba(255,255,255,0.7)",
+                  textDecoration: "none",
+                  fontFamily: "var(--font-ibm-plex-mono), monospace",
+                  fontSize: 14,
+                  transition: "all 0.3s ease",
+                }}
+                className="hover:bg-white/5 hover:border-white/30 hover:text-white"
+              >
+                sobre mim ↗
+              </Link>
+            </div>
           </div>
 
           <div
@@ -857,7 +606,7 @@ export default function Home() {
         style={{
           position: "relative",
           zIndex: 2,
-          maxWidth: 1400,
+          maxWidth: 1600,
           margin: "0 auto",
         }}
       >
@@ -1009,7 +758,7 @@ export default function Home() {
         style={{
           position: "relative",
           zIndex: 2,
-          maxWidth: 1400,
+          maxWidth: 1600,
           margin: "0 auto",
         }}
       >

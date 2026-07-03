@@ -8,14 +8,27 @@ const inter = Inter({
   weight: ['400', '500', '600']
 });
 
-const spaceGrotesk = Space_Grotesk({ 
-  subsets: ['latin'], 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
   variable: '--font-space-grotesk',
-  weight: ['400', '700'] 
+  weight: ['400', '500', '600', '700']
 });
 
-import { Orbitron, VT323 } from 'next/font/google';
+import { Orbitron, VT323, Instrument_Serif, IBM_Plex_Mono } from 'next/font/google';
 import { cn } from "@/lib/utils";
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  variable: '--font-instrument-serif',
+  weight: ['400'],
+  style: ['normal', 'italic'],
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  variable: '--font-ibm-plex-mono',
+  weight: ['300', '400', '500'],
+});
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -46,7 +59,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={cn("dark", inter.variable, spaceGrotesk.variable, orbitron.variable, vt323.variable, "font-sans", geist.variable)}>
+    <html lang="pt-BR" className={cn("dark", inter.variable, spaceGrotesk.variable, orbitron.variable, vt323.variable, instrumentSerif.variable, ibmPlexMono.variable, "font-sans", geist.variable)}>
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
       </head>

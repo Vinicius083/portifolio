@@ -11,6 +11,7 @@ import emailjs from "@emailjs/browser";
 import BorderGlow from "../components/BorderGlow";
 import Galaxy from "../components/Galaxy";
 import Lanyard from "../components/Lanyard";
+import MagicBento from '../components/MagicBento';
 
 const SpaceGame = dynamic(() => import("./components/SpaceGame"), {
   ssr: false,
@@ -262,7 +263,7 @@ export default function Home() {
           className={`z-10 flex flex-col space-y-6 transition-all duration-700 ease-in-out w-full ${isGameActive ? "md:w-1/2 items-start text-left md:pr-8" : "md:w-full items-center text-center max-w-4xl"}`}
         >
           <div className="inline-block px-3 py-1 rounded-full glass-panel border border-primary/30 text-primary text-xs font-bold tracking-widest mb-4">
-            SISTEMA ONLINE
+            DISPONIVEL PARA PROJETOS
           </div>
           <h1
             className={`font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight ${!isGameActive ? "md:whitespace-nowrap" : ""}`}
@@ -367,7 +368,7 @@ export default function Home() {
               <span className="material-symbols-outlined text-primary">
                 person_outline
               </span>
-              Sobre o Piloto
+              Sobre Mim
             </h2>
             <div className="pointer-events-auto">
               <BorderGlow
@@ -401,7 +402,7 @@ export default function Home() {
                         2+
                       </span>
                       <span className="text-xs text-gray-500 uppercase tracking-wider">
-                        Anos em Órbita
+                        Anos de Experiência
                       </span>
                     </div>
                     <div className="bg-black/40 p-4 rounded-lg border border-white/5 flex-1 text-center">
@@ -429,10 +430,10 @@ export default function Home() {
             <span className="material-symbols-outlined text-secondary">
               memory
             </span>
-            Arsenal Tecnológico
+            Stacks - Tecnologias
           </h2>
           <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-            Sistemas dominados para construção de módulos estelares.
+            Tecnologias dominadas para a construção de sistemas.
           </p>
         </div>
         <div className="flex flex-col lg:flex-row items-center justify-center gap-16">
@@ -487,7 +488,7 @@ export default function Home() {
           <div className="w-full max-w-md glass-panel p-6 rounded-xl border border-gray-800">
             <div className="flex items-center justify-between mb-6 border-b border-gray-800 pb-2">
               <span className="text-xs text-gray-500 font-display tracking-widest">
-                NÍVEIS_DE_ENERGIA
+                NÍVEIS DE CONHECIMENTO
               </span>
               <span className="material-symbols-outlined text-primary text-sm">
                 bar_chart
@@ -624,169 +625,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="w-full lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* BPet System */}
-              <a
-                href="https://www.b-pet.app.br"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hologram-card glass-panel rounded-xl border border-gray-800 p-1 group flex flex-col h-full cursor-pointer"
-              >
-                <div className="bg-gray-900 rounded-t-lg h-48 relative overflow-hidden flex items-center justify-center">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 to-black"></div>
-                  <span className="font-display text-3xl text-white/50 font-bold mix-blend-overlay group-hover:scale-110 transition-transform duration-500">
-                    B-Pet
-                  </span>
-                  <div className="absolute inset-0 bg-primary/90 translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex flex-col items-center justify-center p-6 text-background-dark">
-                    <span className="font-display font-bold mb-2">
-                      Acessar Sistema
-                    </span>
-                    <div className="flex gap-2 text-xs font-bold">
-                      <span className="px-2 py-1 bg-black/20 rounded">
-                        NestJS
-                      </span>
-                      <span className="px-2 py-1 bg-black/20 rounded">
-                        Next.js
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-xl text-white font-bold mb-2 group-hover:text-primary transition-colors">
-                    B-Pet{" "}
-                  </h3>
-                  <p className="text-sm text-gray-400 mb-4 flex-1">
-                    Plataforma de gestão para petshops: clientes, empresas e
-                    fornecedores. APIs com NestJS e front Next.js.
-                  </p>
-                  <div className="flex justify-between items-center text-xs text-gray-500 border-t border-gray-800 pt-4 mt-auto">
-                    <span className="text-green-400">● Operacional</span>
-                    <span className="material-symbols-outlined text-sm">
-                      open_in_new
-                    </span>
-                  </div>
-                </div>
-              </a>
-              {/* Meets */}
-              <a
-                href="https://meets.com.br/pt-br"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hologram-card glass-panel rounded-xl border border-gray-800 p-1 group flex flex-col h-full cursor-pointer"
-              >
-                <div className="bg-gray-900 rounded-t-lg h-48 relative overflow-hidden flex items-center justify-center">
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-900/40 to-black"></div>
-                  <span className="font-display text-3xl text-white/50 font-bold mix-blend-overlay group-hover:scale-110 transition-transform duration-500">
-                    Meets
-                  </span>
-                  <div className="absolute inset-0 bg-secondary/90 translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex flex-col items-center justify-center p-6 text-white">
-                    <span className="font-display font-bold mb-2">
-                      Acessar Sistema
-                    </span>
-                    <div className="flex gap-2 text-xs font-bold">
-                      <span className="px-2 py-1 bg-black/20 rounded">PHP</span>
-                      <span className="px-2 py-1 bg-black/20 rounded">
-                        React
-                      </span>
-                      <span className="px-2 py-1 bg-black/20 rounded">
-                        NestJS
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-xl text-white font-bold mb-2 group-hover:text-secondary transition-colors">
-                    Meets CRM
-                  </h3>
-                  <p className="text-sm text-gray-400 mb-4 flex-1">
-                    CRM e central de atendimento com chatbot e IA.
-                  </p>
-                  <div className="flex justify-between items-center text-xs text-gray-500 border-t border-gray-800 pt-4 mt-auto">
-                    <span className="text-green-400">● Produção</span>
-                    <span className="material-symbols-outlined text-sm">
-                      open_in_new
-                    </span>
-                  </div>
-                </div>
-              </a>
-              {/* Smart Lumen */}
-              <a
-                href="https://smart-lumen.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hologram-card glass-panel rounded-xl border border-gray-800 p-1 group flex flex-col h-full cursor-pointer"
-              >
-                <div className="bg-gray-900 rounded-t-lg h-48 relative overflow-hidden flex items-center justify-center">
-                  <div className="absolute inset-0 bg-gradient-to-br from-yellow-900/30 to-black"></div>
-                  <span className="font-display text-3xl text-white/50 font-bold mix-blend-overlay group-hover:scale-110 transition-transform duration-500">
-                    Sentinela
-                  </span>
-                  <div className="absolute inset-0 bg-primary/90 translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex flex-col items-center justify-center p-6 text-background-dark">
-                    <span className="font-display font-bold mb-2">
-                      Ver Projeto
-                    </span>
-                    <div className="flex gap-2 text-xs font-bold">
-                      <span className="px-2 py-1 bg-black/20 rounded">IoT</span>
-                      <span className="px-2 py-1 bg-black/20 rounded">
-                        Dashboard
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-xl text-white font-bold mb-2 group-hover:text-primary transition-colors">
-                    Sentinela Elétrica
-                  </h3>
-                  <p className="text-sm text-gray-400 mb-4 flex-1">
-                    Dashboard IoT para monitorar redes elétricas em tempo real.
-                    Alertas, previsões e mapa interativo de sensores. IdeaTown
-                    Energisa 2024.
-                  </p>
-                  <div className="flex justify-between items-center text-xs text-gray-500 border-t border-gray-800 pt-4 mt-auto">
-                    <span className="text-primary">● Projeto Pessoal</span>
-                    <span className="material-symbols-outlined text-sm">
-                      open_in_new
-                    </span>
-                  </div>
-                </div>
-              </a>
-              {/* ESP-PB */}
-              <div className="hologram-card glass-panel rounded-xl border border-gray-800 p-1 group flex flex-col h-full cursor-default">
-                <div className="bg-gray-900 rounded-t-lg h-48 relative overflow-hidden flex items-center justify-center">
-                  <div className="absolute inset-0 bg-gradient-to-br from-green-900/30 to-black"></div>
-                  <span className="font-display text-3xl text-white/50 font-bold mix-blend-overlay group-hover:scale-110 transition-transform duration-500">
-                    ESP-PB
-                  </span>
-                  <div className="absolute inset-0 bg-secondary/90 translate-y-full group-hover:translate-y-0 transition-transform duration-300 flex flex-col items-center justify-center p-6 text-white">
-                    <span className="font-display font-bold mb-2">
-                      Em Prod.
-                    </span>
-                    <div className="flex gap-2 text-xs font-bold">
-                      <span className="px-2 py-1 bg-black/20 rounded">
-                        Django
-                      </span>
-                      <span className="px-2 py-1 bg-black/20 rounded">
-                        React
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-xl text-white font-bold mb-2 group-hover:text-secondary transition-colors">
-                    Escola de Saúde Pública PB
-                  </h3>
-                  <p className="text-sm text-gray-400 mb-4 flex-1">
-                    Sistema de gestão de vagas de estágio para órgão público.
-                    DRF, React, Docker, PostgreSQL. Squad Leader back-end.
-                  </p>
-                  <div className="flex justify-between items-center text-xs text-gray-500 border-t border-gray-800 pt-4 mt-auto">
-                    <span className="text-yellow-500">● Em Produção</span>
-                    <span className="material-symbols-outlined text-sm">
-                      lock
-                    </span>
-                  </div>
-                </div>
-              </div>
+            <div className="w-full lg:w-2/3">
+              <MagicBento />
             </div>
           </div>
         </div>

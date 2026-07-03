@@ -644,13 +644,19 @@ export default function Home() {
                 ? "jobImgSlideIn"
                 : "jobImgSlideOut"
               : "none";
+            const Tag = job.link ? "a" : "div";
             return (
-              <div
+              <Tag
                 key={job.id}
                 data-reveal-id={job.id}
+                href={job.link}
+                target={job.link ? "_blank" : undefined}
+                rel={job.link ? "noreferrer" : undefined}
                 className="flex items-center justify-between gap-4 md:gap-6 py-6 md:py-9 border-b border-white/15 cursor-pointer relative"
                 style={{
                   ...revealStyle(revealed, job.id, 24),
+                  textDecoration: "none",
+                  display: "flex",
                 }}
               >
                 <div
@@ -743,9 +749,9 @@ export default function Home() {
                     flexShrink: 0,
                   }}
                 >
-                  {isHovered ? "→" : "↗"}
+                  {job.link ? (isHovered ? "→" : "↗") : (isHovered ? "Em progresso" : "")}
                 </div>
-              </div>
+              </Tag>
             );
           })}
         </div>

@@ -62,6 +62,7 @@ export type Job = {
   company: string;
   desc: string;
   photo: string;
+  link?: string;
 };
 
 export const JOBS: Job[] = [
@@ -73,6 +74,7 @@ export const JOBS: Job[] = [
     company: "Meets Tecnologia",
     desc: "CRM e centrais de atendimento com chatbot e IA. Manutenção de sistemas legados, PHP (Zend) e React no front, NestJS no back. Destaque: módulo de Coexistência WhatsApp com Meta Graph API.",
     photo: "/projetos/meets.png",
+    link: "https://meets.com.br/pt-br",
   },
   {
     id: "job1",
@@ -82,6 +84,7 @@ export const JOBS: Job[] = [
     company: "BPet System",
     desc: "Plataforma de gestão para petshops. Back-end em NestJS (APIs e regras de negócio) e contribuições em Next.js no front-end.",
     photo: "/projetos/bpet.png",
+    link: "https://www.b-pet.app.br",
   },
   {
     id: "job2",

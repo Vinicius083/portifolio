@@ -9,6 +9,7 @@ export default function ExperiencesPage() {
       location: "Remoto",
       period: "Atual",
       desc: "Empresa especializada em soluções de CRM e centrais de atendimento com integração de chatbot e IA.",
+      link: "https://meets.com.br/pt-br",
       bullets: [
         "Atuação em um ambiente 100% remoto, colaborando com equipes de desenvolvimento, QA e suporte.",
         "Manutenção de sistemas legados, correção de bugs críticos e evolução de funcionalidades de produção.",
@@ -22,6 +23,7 @@ export default function ExperiencesPage() {
       location: "Remoto",
       period: "Novembro 2025 – Atual",
       desc: "Plataforma de gestão para petshops (controle de clientes, empresas e fornecedores).",
+      link: "https://www.b-pet.app.br",
       bullets: [
         "Desenvolvimento focado no back-end utilizando NestJS, criando APIs, regras de negócio e integrações.",
         "Contribuições no front-end com Next.js, consolidando a atuação Full Stack e lidando com requisitos reais de negócio."
@@ -134,6 +136,7 @@ export default function ExperiencesPage() {
                     listStyle: "none",
                     padding: 0,
                     margin: 0,
+                    marginBottom: 32,
                   }}
                 >
                   {exp.bullets.map((bullet, j) => (
@@ -163,6 +166,43 @@ export default function ExperiencesPage() {
                     </li>
                   ))}
                 </ul>
+                {exp.link ? (
+                  <a
+                    href={exp.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hover:bg-white/5 hover:border-white/30 transition-all duration-300"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 12,
+                      border: "1px solid rgba(255,255,255,0.15)",
+                      padding: "12px 24px",
+                      color: "rgba(255,255,255,0.9)",
+                      textDecoration: "none",
+                      fontFamily: "var(--font-ibm-plex-mono), monospace",
+                      fontSize: 14,
+                    }}
+                  >
+                    ver site ↗
+                  </a>
+                ) : (
+                  <div
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 12,
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      padding: "12px 24px",
+                      color: "rgba(255,255,255,0.4)",
+                      fontFamily: "var(--font-ibm-plex-mono), monospace",
+                      fontSize: 14,
+                      cursor: "not-allowed",
+                    }}
+                  >
+                    em progresso
+                  </div>
+                )}
               </div>
             </section>
           ))}

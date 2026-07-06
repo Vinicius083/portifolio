@@ -144,18 +144,6 @@ export default function Home() {
         .vinicius-cursor-area ::selection { background: ${ACCENT}; color: #07060a; }
       `}</style>
 
-      {/* vertical grid guides */}
-      <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          pointerEvents: "none",
-          zIndex: 1,
-          backgroundImage:
-            "repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.19) 0px, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 12.5%)",
-          opacity: 0.5,
-        }}
-      />
 
       <div style={{ height: 81 }} />
 
@@ -355,22 +343,24 @@ export default function Home() {
                       {proj.name}
                     </h2>
                     <div style={{ display: "flex", gap: 14, marginTop: 14 }}>
-                      <a
-                        href={proj.github}
-                        target="_blank"
-                        rel="noreferrer"
-                        style={{
-                          border: "1px solid currentColor",
-                          color: "inherit",
-                          textDecoration: "none",
-                          fontFamily: "var(--font-ibm-plex-mono), monospace",
-                          fontSize: 13,
-                          padding: "12px 20px",
-                          whiteSpace: "nowrap",
-                        }}
-                      >
-                        código ↗
-                      </a>
+                      {proj.github && (
+                        <a
+                          href={proj.github}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{
+                            border: "1px solid currentColor",
+                            color: "inherit",
+                            textDecoration: "none",
+                            fontFamily: "var(--font-ibm-plex-mono), monospace",
+                            fontSize: 13,
+                            padding: "12px 20px",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          código ↗
+                        </a>
+                      )}
                       {proj.live && (
                         <a
                           href={proj.live}
@@ -429,19 +419,40 @@ export default function Home() {
                     ))}
                   </div>
 
-                  <div
-                    style={{
-                      flex: 1,
-                      minHeight: 220,
-                      backgroundImage:
-                        "repeating-linear-gradient(135deg, currentColor 0px, currentColor 1px, transparent 1px, transparent 14px)",
-                      opacity: 0.14,
-                      borderTop: "1px solid currentColor",
-                      display: "flex",
-                      alignItems: "flex-end",
-                      justifyContent: "flex-start",
-                    }}
-                  />
+                  {proj.image ? (
+                    <div
+                      style={{
+                        flex: 1,
+                        minHeight: 220,
+                        position: "relative",
+                        borderTop: "1px solid currentColor",
+                        overflow: "hidden",
+                        opacity: 0.85,
+                        marginTop: 10,
+                      }}
+                    >
+                      <Image
+                        src={proj.image}
+                        alt={`Screenshot do projeto ${proj.name}`}
+                        fill
+                        style={{ objectFit: "cover", objectPosition: "top" }}
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      style={{
+                        flex: 1,
+                        minHeight: 220,
+                        backgroundImage:
+                          "repeating-linear-gradient(135deg, currentColor 0px, currentColor 1px, transparent 1px, transparent 14px)",
+                        opacity: 0.14,
+                        borderTop: "1px solid currentColor",
+                        display: "flex",
+                        alignItems: "flex-end",
+                        justifyContent: "flex-start",
+                      }}
+                    />
+                  )}
                   <div
                     style={{
                       fontFamily: "var(--font-ibm-plex-mono), monospace",
@@ -826,62 +837,6 @@ export default function Home() {
         </a>
       </section>
 
-      {/* FOOTER */}
-      <footer
-        data-reveal-id="footer"
-        className="flex flex-col sm:flex-row justify-between items-center px-6 py-8 md:px-8 md:py-8 gap-5 border-t border-white/15"
-        style={{
-          ...revealStyle(revealed, "footer"),
-          position: "relative",
-          zIndex: 2,
-        }}
-      >
-        <div
-          style={{
-            fontFamily: "var(--font-instrument-serif), serif",
-            fontSize: 20,
-          }}
-        >
-          Vinícius Almeida
-        </div>
-        <div
-          style={{
-            display: "flex",
-            gap: 28,
-            fontFamily: "var(--font-ibm-plex-mono), monospace",
-            fontSize: 12,
-            color: "rgba(242,240,236,0.5)",
-            flexWrap: "wrap",
-          }}
-        >
-          <a
-            href="#trabalhos"
-            style={{ color: "inherit", textDecoration: "none" }}
-          >
-            trabalhos
-          </a>
-          <a href="#sobre" style={{ color: "inherit", textDecoration: "none" }}>
-            sobre
-          </a>
-          <a
-            href="#projetos"
-            style={{ color: "inherit", textDecoration: "none" }}
-          >
-            projetos
-          </a>
-          <a
-            href="https://github.com/Vinicius083"
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: "inherit", textDecoration: "none" }}
-          >
-            github
-          </a>
-          <a href="#" style={{ color: "inherit", textDecoration: "none" }}>
-            linkedin
-          </a>
-        </div>
-      </footer>
     </div>
   );
 }

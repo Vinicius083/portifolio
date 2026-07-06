@@ -1,33 +1,8 @@
 import React from "react";
 import Link from "next/link";
+import { PROJECTS as projects } from "@/data/portfolio";
 
 export default function ProjectsPage() {
-  const projects = [
-    {
-      name: "Smart Lumen",
-      year: "2024",
-      desc: "Painel de controle (dashboard) IoT desenvolvido para monitorar a saúde e o desempenho de redes de distribuição de energia elétrica.",
-      link: "https://smart-lumen.vercel.app",
-    },
-    {
-      name: "Dialoga",
-      year: "2024",
-      desc: "Plataforma moderna e interativa desenvolvida para conectar pessoas e promover discussões sobre diversos temas.",
-      link: "https://github.com/Vinicius083/Forum-project",
-    },
-    {
-      name: "DueCheck",
-      year: "2025",
-      desc: "Aplicação desenvolvida para gerenciar consultas e usuários de forma eficiente com Node.js, Prisma e PostgreSQL.",
-      link: "https://github.com/Vinicius083/duecheck-project",
-    },
-    {
-      name: "BookCommerce",
-      year: "2025",
-      desc: "Plataforma de e-commerce desenvolvida para a venda de livros, utilizando backend em Node.js e banco de dados relacional.",
-      link: "https://github.com/douglasmeneses/book-commerce",
-    },
-  ];
 
   return (
     <div
@@ -70,7 +45,7 @@ export default function ProjectsPage() {
           {projects.map((proj, i) => (
             <a
               key={i}
-              href={proj.link}
+              href={proj.live || proj.github || "#"}
               target="_blank"
               rel="noreferrer"
               className="group block border-b border-white/10 pb-8 hover:border-white/40 transition-colors"
@@ -111,18 +86,33 @@ export default function ProjectsPage() {
                 >
                   {proj.year}
                 </div>
-                <p
-                  style={{
-                    fontFamily: "var(--font-space-grotesk), sans-serif",
-                    fontSize: 18,
-                    lineHeight: 1.6,
-                    opacity: 0.8,
-                    maxWidth: 700,
-                    margin: 0,
-                  }}
-                >
-                  {proj.desc}
-                </p>
+                <div style={{ maxWidth: 700 }}>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-space-grotesk), sans-serif",
+                      fontSize: 18,
+                      lineHeight: 1.6,
+                      opacity: 0.8,
+                      margin: 0,
+                    }}
+                  >
+                    {proj.desc}
+                  </p>
+                  {proj.details && (
+                    <p
+                      style={{
+                        fontFamily: "var(--font-space-grotesk), sans-serif",
+                        fontSize: 15,
+                        lineHeight: 1.6,
+                        opacity: 0.6,
+                        marginTop: 12,
+                        marginBottom: 0,
+                      }}
+                    >
+                      {proj.details}
+                    </p>
+                  )}
+                </div>
               </div>
             </a>
           ))}

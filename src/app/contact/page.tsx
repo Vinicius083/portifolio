@@ -121,10 +121,10 @@ export default function ContactPage() {
     setFeedback(null);
     emailjs
       .sendForm(
-        "YOUR_SERVICE_ID",
-        "YOUR_TEMPLATE_ID",
+        "service_8pric3c",
+        "template_ysg00dj",
         formRef.current,
-        "YOUR_PUBLIC_KEY",
+        "Y0_YhIcOJxz9-OOwO",
       )
       .then(
         () => {
@@ -209,7 +209,7 @@ export default function ContactPage() {
                 <input
                   type="email"
                   name="user_email"
-                  placeholder="Email"
+                  placeholder="Seu email"
                   required
                   style={inputStyle}
                 />

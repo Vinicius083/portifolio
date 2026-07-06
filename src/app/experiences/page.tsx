@@ -1,46 +1,9 @@
 import React from "react";
 import Link from "next/link";
 
+import { JOBS as experiences } from "@/data/portfolio";
+
 export default function ExperiencesPage() {
-  const experiences = [
-    {
-      role: "Desenvolvedor Full Stack Júnior",
-      company: "Meets Tecnologia",
-      location: "Remoto",
-      period: "Atual",
-      desc: "Empresa especializada em soluções de CRM e centrais de atendimento com integração de chatbot e IA.",
-      link: "https://meets.com.br/pt-br",
-      bullets: [
-        "Atuação em um ambiente 100% remoto, colaborando com equipes de desenvolvimento, QA e suporte.",
-        "Manutenção de sistemas legados, correção de bugs críticos e evolução de funcionalidades de produção.",
-        "Desenvolvimento focado em PHP (Zend Framework) no back e front (CRM), React (JS/TS) no front-end, e NestJS no back-end.",
-        "Destaque recente: Desenvolvimento e troubleshooting do módulo de 'Coexistência WhatsApp' para a plataforma CRM, envolvendo roteamento de back-end complexo e tokens da Meta Graph API."
-      ]
-    },
-    {
-      role: "Desenvolvedor Full Stack (Freelancer)",
-      company: "BPet System",
-      location: "Remoto",
-      period: "Novembro 2025 – Atual",
-      desc: "Plataforma de gestão para petshops (controle de clientes, empresas e fornecedores).",
-      link: "https://www.b-pet.app.br",
-      bullets: [
-        "Desenvolvimento focado no back-end utilizando NestJS, criando APIs, regras de negócio e integrações.",
-        "Contribuições no front-end com Next.js, consolidando a atuação Full Stack e lidando com requisitos reais de negócio."
-      ]
-    },
-    {
-      role: "Estagiário & Squad Leader (Back-end)",
-      company: "Fábrica de Software UBTech Office",
-      location: "João Pessoa, PB",
-      period: "2024",
-      desc: "Atuação em projetos reais voltados ao setor público:",
-      bullets: [
-        "Escola de Saúde Pública da Paraíba (ESP-PB): Sistema com regras de negócio complexas para gestão de vagas de estágio. Atuação com Django REST Framework, React, Docker e PostgreSQL. Exerci o papel de Squad Leader do time de back-end, orientando colegas, revisando código, conduzindo decisões técnicas e participando de reuniões com clientes.",
-        "Polícia Militar da Paraíba (Projeto Sigiloso): Desenvolvimento de funcionalidades de geoprocessamento e visualização de dados espaciais utilizando Django Template, GDAL e Leaflet."
-      ]
-    }
-  ];
 
   return (
     <div
@@ -119,53 +82,73 @@ export default function ExperiencesPage() {
               </div>
 
               <div className="md:w-2/3">
-                <p
-                  style={{
-                    fontFamily: "var(--font-space-grotesk), sans-serif",
-                    fontSize: 20,
-                    lineHeight: 1.6,
-                    opacity: 0.9,
-                    marginBottom: 24,
-                  }}
-                >
-                  {exp.desc}
-                </p>
-                <ul
-                  className="flex flex-col gap-4"
-                  style={{
-                    listStyle: "none",
-                    padding: 0,
-                    margin: 0,
-                    marginBottom: 32,
-                  }}
-                >
-                  {exp.bullets.map((bullet, j) => (
-                    <li
-                      key={j}
+                <div>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-space-grotesk), sans-serif",
+                      fontSize: 20,
+                      lineHeight: 1.6,
+                      opacity: 0.9,
+                      marginBottom: exp.details ? 12 : 24,
+                    }}
+                  >
+                    {exp.desc}
+                  </p>
+                  {/* @ts-ignore - Caso o portfolio.ts contenha um novo campo de details */}
+                  {exp.details && (
+                    <p
                       style={{
                         fontFamily: "var(--font-space-grotesk), sans-serif",
                         fontSize: 16,
                         lineHeight: 1.6,
                         opacity: 0.7,
-                        position: "relative",
-                        paddingLeft: 24,
+                        marginBottom: 24,
                       }}
                     >
-                      <span
+                      {exp.details}
+                    </p>
+                  )}
+                </div>
+                {/* @ts-ignore - Em caso de querermos suportar bullets futuramente no portfolio.ts */}
+                {(exp.bullets && exp.bullets.length > 0) && (
+                  <ul
+                    className="flex flex-col gap-4"
+                    style={{
+                      listStyle: "none",
+                      padding: 0,
+                      margin: 0,
+                      marginBottom: 32,
+                    }}
+                  >
+                    {/* @ts-ignore */}
+                    {exp.bullets.map((bullet, j) => (
+                      <li
+                        key={j}
                         style={{
-                          position: "absolute",
-                          left: 0,
-                          top: 8,
-                          width: 6,
-                          height: 6,
-                          background: "currentColor",
-                          borderRadius: "50%",
+                          fontFamily: "var(--font-space-grotesk), sans-serif",
+                          fontSize: 16,
+                          lineHeight: 1.6,
+                          opacity: 0.7,
+                          position: "relative",
+                          paddingLeft: 24,
                         }}
-                      />
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
+                      >
+                        <span
+                          style={{
+                            position: "absolute",
+                            left: 0,
+                            top: 8,
+                            width: 6,
+                            height: 6,
+                            background: "currentColor",
+                            borderRadius: "50%",
+                          }}
+                        />
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                )}
                 {exp.link ? (
                   <a
                     href={exp.link}

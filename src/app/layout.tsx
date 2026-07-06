@@ -55,6 +55,8 @@ export const metadata: Metadata = {
   },  
 };
 
+import Footer from '@/components/Footer';
+
 export default function RootLayout({
   children,
 }: {
@@ -66,9 +68,22 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
       </head>
       <body className="bg-background text-on-surface antialiased overflow-x-hidden selection:bg-primary-container selection:text-white font-body">
+        {/* vertical grid guides globais */}
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            pointerEvents: "none",
+            zIndex: 1,
+            backgroundImage:
+              "repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.19) 0px, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 12.5%)",
+            opacity: 0.5,
+          }}
+        />
         <CustomCursor />
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

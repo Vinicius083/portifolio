@@ -19,7 +19,7 @@ export default function Footer() {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
 
     io.observe(el);
@@ -33,7 +33,8 @@ export default function Footer() {
       style={{
         opacity: revealed ? 1 : 0,
         transform: revealed ? "translateY(0)" : "translateY(28px)",
-        transition: "opacity 0.9s cubic-bezier(.16,.8,.24,1), transform 0.9s cubic-bezier(.16,.8,.24,1)",
+        transition:
+          "opacity 0.9s cubic-bezier(.16,.8,.24,1), transform 0.9s cubic-bezier(.16,.8,.24,1)",
         position: "relative",
         zIndex: 2,
       }}
@@ -56,13 +57,19 @@ export default function Footer() {
           flexWrap: "wrap",
         }}
       >
-        <a href="/experiences" style={{ color: "inherit", textDecoration: "none" }}>
+        <a
+          href="/experiences"
+          style={{ color: "inherit", textDecoration: "none" }}
+        >
           trabalhos
         </a>
         <a href="/about" style={{ color: "inherit", textDecoration: "none" }}>
           sobre
         </a>
-        <a href="/projects" style={{ color: "inherit", textDecoration: "none" }}>
+        <a
+          href="/projects"
+          style={{ color: "inherit", textDecoration: "none" }}
+        >
           projetos
         </a>
         <a
@@ -73,7 +80,10 @@ export default function Footer() {
         >
           github
         </a>
-        <a href="#" style={{ color: "inherit", textDecoration: "none" }}>
+        <a
+          href="https://www.linkedin.com/in/viniciusalmeidabe/"
+          style={{ color: "inherit", textDecoration: "none" }}
+        >
           linkedin
         </a>
       </div>

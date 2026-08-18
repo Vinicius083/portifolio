@@ -65,9 +65,9 @@ export default function AboutPage() {
           >
             Valorizo o desenvolvimento contínuo e a construção de soluções com
             impacto real. Meu perfil combina uma base técnica sólida,
-            experiência prática em produção e maturidade profissional para
-            atuar em ambientes desafiadores, desde a análise de requisitos até
-            a implementação e manutenção.
+            experiência prática em produção e maturidade profissional para atuar
+            em ambientes desafiadores, desde a análise de requisitos até a
+            implementação e manutenção.
           </p>
         </section>
 
@@ -114,7 +114,8 @@ export default function AboutPage() {
                   opacity: 0.8,
                 }}
               >
-                Participação em projetos acadêmicos e consultoria privada com professores, unindo teoria e visão de mercado.
+                Participação em projetos acadêmicos e consultoria privada com
+                professores, unindo teoria e visão de mercado.
               </p>
             </div>
 
@@ -127,7 +128,7 @@ export default function AboutPage() {
                   marginBottom: 8,
                 }}
               >
-                Cibersegurança
+                Mentoria Full-stack
               </h3>
               <div
                 style={{
@@ -137,8 +138,25 @@ export default function AboutPage() {
                   marginBottom: 12,
                 }}
               >
-                Cisco Maratona CiberEducação | Iniciado em Setembro de 2025
+                Mentoria completa em desenvolvimento full-stack | Iniciado em
+                Novembro de 2024
               </div>
+              <p
+                style={{
+                  fontFamily: "var(--font-space-grotesk), sans-serif",
+                  fontSize: 16,
+                  lineHeight: 1.6,
+                  opacity: 0.8,
+                }}
+              >
+                Aprendizado prático em desenvolvimento full-stack, incluindo
+                front-end, back-end, banco de dados e integração de sistemas.
+                Desenvolvimento de projetos reais com foco em qualidade e
+                performance. Escalabilidade, segurança e boas práticas de
+                desenvolvimento são enfatizadas. System Design, arquitetura de
+                software e metodologias ágeis são abordadas para preparar o
+                aluno para desafios do mercado.
+              </p>
             </div>
           </section>
 
@@ -167,19 +185,30 @@ export default function AboutPage() {
                 }}
               >
                 <li style={{ fontSize: 16, opacity: 0.8, lineHeight: 1.6 }}>
-                  <strong style={{ color: "white" }}>Comunicação:</strong> Clara e objetiva, tanto com equipes técnicas quanto com clientes.
+                  <strong style={{ color: "white" }}>Comunicação:</strong> Clara
+                  e objetiva, tanto com equipes técnicas quanto com clientes.
                 </li>
                 <li style={{ fontSize: 16, opacity: 0.8, lineHeight: 1.6 }}>
-                  <strong style={{ color: "white" }}>Liderança Técnica:</strong> Adquirida na prática durante a atuação como squad leader.
+                  <strong style={{ color: "white" }}>Liderança Técnica:</strong>{" "}
+                  Adquirida na prática durante a atuação como squad leader.
                 </li>
                 <li style={{ fontSize: 16, opacity: 0.8, lineHeight: 1.6 }}>
-                  <strong style={{ color: "white" }}>Resolução de Problemas:</strong> Senso analítico forte, principalmente no troubleshooting de bugs e entendimento de sistemas complexos.
+                  <strong style={{ color: "white" }}>
+                    Resolução de Problemas:
+                  </strong>{" "}
+                  Senso analítico forte, principalmente no troubleshooting de
+                  bugs e entendimento de sistemas complexos.
                 </li>
                 <li style={{ fontSize: 16, opacity: 0.8, lineHeight: 1.6 }}>
-                  <strong style={{ color: "white" }}>Trabalho em Equipe:</strong> Forte espírito colaborativo em ambientes ágeis e remotos.
+                  <strong style={{ color: "white" }}>
+                    Trabalho em Equipe:
+                  </strong>{" "}
+                  Forte espírito colaborativo em ambientes ágeis e remotos.
                 </li>
                 <li style={{ fontSize: 16, opacity: 0.8, lineHeight: 1.6 }}>
-                  <strong style={{ color: "white" }}>Proatividade:</strong> Busca constante por antecipar problemas, propor soluções e adotar novas tecnologias.
+                  <strong style={{ color: "white" }}>Proatividade:</strong>{" "}
+                  Busca constante por antecipar problemas, propor soluções e
+                  adotar novas tecnologias.
                 </li>
               </ul>
             </div>
@@ -209,7 +238,9 @@ export default function AboutPage() {
                   <strong style={{ color: "white" }}>Português:</strong> Nativo
                 </li>
                 <li style={{ fontSize: 16, opacity: 0.8 }}>
-                  <strong style={{ color: "white" }}>Inglês:</strong> Intermediário (Leitura técnica avançada e comunicação em evolução)
+                  <strong style={{ color: "white" }}>Inglês:</strong>{" "}
+                  Intermediário (Leitura técnica avançada e comunicação em
+                  evolução)
                 </li>
               </ul>
             </div>

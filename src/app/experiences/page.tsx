@@ -94,7 +94,6 @@ export default function ExperiencesPage() {
                   >
                     {exp.desc}
                   </p>
-                  {/* @ts-ignore - Caso o portfolio.ts contenha um novo campo de details */}
                   {exp.details && (
                     <p
                       style={{
@@ -109,7 +108,6 @@ export default function ExperiencesPage() {
                     </p>
                   )}
                 </div>
-                {/* @ts-ignore - Em caso de querermos suportar bullets futuramente no portfolio.ts */}
                 {(exp.bullets && exp.bullets.length > 0) && (
                   <ul
                     className="flex flex-col gap-4"
@@ -120,7 +118,6 @@ export default function ExperiencesPage() {
                       marginBottom: 32,
                     }}
                   >
-                    {/* @ts-ignore */}
                     {exp.bullets.map((bullet, j) => (
                       <li
                         key={j}

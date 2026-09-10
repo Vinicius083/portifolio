@@ -68,53 +68,76 @@ export type Job = {
   photo: string;
   link?: string;
   details?: string;
+  bullets?: string[];
 };
 
 export const JOBS: Job[] = [
   {
     id: "job0",
     period: "Setembro 2025 - Atual",
-    location: "Remoto",
+    location: "Remoto (Portugal)",
     role: "Desenvolvedor Full Stack",
     company: "Meets Tecnologia",
-    desc: "CRM e Central de atendimento com chatbot e IA. Manutenção de sistemas legados, PHP (Zend e Laravel), React no front, NestJS no back. Criação de novos módulos e funcionalidades.",
+    desc: "CRM corporativo e central de atendimento com chatbot e IA integrada. Atuação full stack com PHP (Zend e Laravel), React no front-end e NestJS no back-end.",
     photo: "/projetos/meets.png",
     link: "https://meets.com.br/pt-br",
     details:
-      "Atuação em um ambiente 100% remoto, colaborando com equipes de desenvolvimento, QA e suporte. Manutenção de sistemas legados, correção de bugs críticos e evolução de funcionalidades de produção. Desenvolvimento focado em PHP (Zend Framework) no back e front (CRM), React (JS/TS) no front-end, e NestJS no back-end. Destaque recente: Desenvolvimento e troubleshooting do módulo de 'Coexistência WhatsApp' para a plataforma CRM, envolvendo roteamento de back-end complexo e tokens da Meta Graph API.",
+      "Refatorei o módulo de agenda legado (PHP/Zend) para React + NestJS, com lembretes automáticos via WhatsApp e integração com Google Calendar — hoje em uso ativo pelos clientes. Desenvolvi integrações com ERPs (Bexio, SSPlus) e Google Cloud, com contato técnico direto com equipes parceiras. Contribuí na Antonnia, assistente de IA para atendimento via WhatsApp, e criei a API pública da central de atendimento para integrações de parceiros externos.",
+    bullets: [
+      "Refatoração do módulo de agenda legado (PHP/Zend) para React + NestJS, com lembretes via WhatsApp e Google Calendar.",
+      "Integrações com ERPs (Bexio, SSPlus) e Google Cloud, em contato direto com equipes parceiras.",
+      "Contribuição na Antonnia, assistente de IA para atendimento via WhatsApp.",
+      "Criação da API pública da central de atendimento para parceiros externos.",
+    ],
   },
   {
     id: "job1",
     period: "Novembro 2025 - Atual",
-    location: "Freelancer",
-    role: "Desenvolvedor Full Stack",
+    location: "Freelancer / Remoto",
+    role: "Desenvolvedor Full Stack (Freelancer)",
     company: "B-Pet",
-    desc: "Plataforma de gestão para petshops. Back-end em NestJS (APIs e regras de negócio) e Next.js no front-end. Atuando também no deploy dos ambientes.",
+    desc: "Plataforma de gestão para petshops. Assumi o projeto sozinho no meio da primeira fase, após a saída do desenvolvedor anterior, incluindo o deploy manual em produção via SSH.",
     photo: "/projetos/bpet.png",
     link: "https://www.b-pet.app.br",
     details:
-      "Desenvolvimento focado no back-end utilizando NestJS, criando APIs, regras de negócio e integrações. Contribuições no front-end com Next.js, consolidando a atuação Full Stack e lidando com requisitos reais de negócio.",
+      "Refatorei a lógica de cadastro (usuário → endereço → perfil → plano), que era desnecessariamente complexa e gerava cadastros incompletos e erros — a refatoração reduziu esses erros. Respondi sozinho a dois incidentes de segurança (ataques de mineração de criptomoeda) no servidor de produção.",
+    bullets: [
+      "Projeto assumido sozinho no meio da primeira fase, com deploy manual em produção via SSH.",
+      "Refatoração da lógica de cadastro (usuário → endereço → perfil → plano), reduzindo cadastros incompletos e erros.",
+      "Resposta a dois incidentes de segurança (mineração de criptomoeda) no servidor de produção.",
+    ],
   },
   {
     id: "job2",
-    period: "Julho 2024 - Junho 2025",
+    period: "Março 2025 - Julho 2025",
     location: "Remoto",
     role: "Squad Leader (Back-end)",
     company: "UBTech Office",
-    desc: "ESP-PB: gestão de estágios com Django REST Framework, React, Docker e PostgreSQL — Squad Leader do back-end.",
+    desc: "Sistema de gestão de estágios e contrapartidas entre instituições de ensino e unidades de saúde. Entrei no meio do projeto, com o backend praticamente inexistente, e decidi reconstruí-lo do zero — depois, também o frontend.",
     photo: "/projetos/esppb.png",
     details:
-      "Escola de Saúde Pública da Paraíba (ESP-PB): Sistema com regras de negócio complexas para gestão de vagas de estágio. Atuação com Django REST Framework, React, Docker e PostgreSQL. Exerci o papel de Squad Leader do time de back-end, orientando colegas, revisando código, conduzindo decisões técnicas e participando de reuniões com clientes.",
+      "Introduzi Git Flow e gestão de tarefas via Jira/Trello, inexistentes na equipe até então. Liderei as sprints de um time de 6 a 7 desenvolvedores — orientação, code review e acompanhamento de tasks — enquanto também desenvolvia. Entreguei o projeto no prazo acordado, com o cliente (ESP-PB) satisfeito; saí ao entrar na Meets e o projeto seguiu depois disso.",
+    bullets: [
+      "Reconstrução do back-end (e depois do frontend) a partir de uma base praticamente inexistente.",
+      "Introdução de Git Flow e gestão de tarefas via Jira/Trello no time.",
+      "Liderança das sprints de um time de 6 a 7 desenvolvedores, com code review e mentoria, sem deixar de desenvolver.",
+      "Entrega no prazo acordado, com o cliente satisfeito.",
+    ],
   },
   {
     id: "job3",
-    period: "Julho 2024 - Junho 2025",
+    period: "Setembro 2024 - Fevereiro 2025",
     location: "Remoto",
-    role: "Estagiário",
+    role: "Desenvolvedor de Software",
     company: "UBTech Office",
-    desc: "PM-PB: geoprocessamento com Django, GDAL e Leaflet.",
+    desc: "Sistema geoespacial para a Polícia Militar da Paraíba (projeto confidencial). Funcionalidades de geoprocessamento e visualização de dados espaciais.",
     photo: "/projetos/pmpb.png",
     details:
-      "Polícia Militar da Paraíba (Projeto Sigiloso): Desenvolvimento de funcionalidades de geoprocessamento e visualização de dados espaciais utilizando Django Template, GDAL e Leaflet.",
+      "Resolvi a configuração da biblioteca GDAL via Docker — meu primeiro contato com Docker — depois de venv e Anaconda falharem. Desenvolvi a feature de heatmap para visualização de dados no mapa. O projeto foi avaliado pela PM-PB como um dos favoritos do semestre, com garantia de implementação real para monitoramento em grandes eventos.",
+    bullets: [
+      "Configuração da biblioteca GDAL via Docker (primeiro contato com Docker), após venv e Anaconda falharem.",
+      "Desenvolvimento da feature de heatmap para visualização de dados no mapa.",
+      "Projeto apontado pela PM-PB como um dos favoritos do semestre, com garantia de implementação real.",
+    ],
   },
 ];

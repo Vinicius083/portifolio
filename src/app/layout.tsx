@@ -49,7 +49,7 @@ const vt323 = VT323({
 
 export const metadata: Metadata = {
   title: 'Vinícius Almeida | Portifolio',
-  description: 'Portfólio de Vinícius Almeida - Desenvolvedor Full Stack Júnior',
+  description: 'Portfólio de Vinícius Almeida - Desenvolvedor Full Stack',
   icons: {
     icon: '/logo.svg',
   },  

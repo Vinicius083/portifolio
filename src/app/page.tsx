@@ -144,7 +144,6 @@ export default function Home() {
         .vinicius-cursor-area ::selection { background: ${ACCENT}; color: #07060a; }
       `}</style>
 
-
       <div style={{ height: 81 }} />
 
       {/* HERO */}
@@ -169,8 +168,8 @@ export default function Home() {
           }}
           data-reveal-id="heroTag"
         >
-          Desenvolvimento full stack para times que não podem se dar ao luxo de
-          produtos quebrados.
+          Desenvolvedor full stack. Entro em código que não escrevi, entendo
+          como funciona e faço evoluir
         </div>
 
         <h1
@@ -525,11 +524,11 @@ export default function Home() {
                 margin: "0 0 40px",
               }}
             >
-              Desenvolvedor Full Stack com experiência prática em ambientes
-              reais de desenvolvimento de software, atuando tanto no back-end
-              quanto no front-end. Minha trajetória é marcada por evolução
-              constante, aprendizado contínuo e participação ativa em projetos
-              com impacto direto em usuários e clientes.
+              Minha trajetória foi construída em contextos bem diferentes entre
+              si: um sistema geoespacial para segurança pública, uma plataforma
+              de gestão de estágios entre instituições de ensino e saúde, um CRM
+              corporativo com atendimento e IA, e projetos freelance que conduzi
+              sozinho de ponta a ponta.
             </p>
 
             <blockquote
@@ -546,8 +545,9 @@ export default function Home() {
                 borderLeft: `2px solid ${ACCENT}`,
               }}
             >
-              &ldquo;Valorizo o desenvolvimento contínuo e a construção de
-              soluções com impacto real.&rdquo;
+              &ldquo;O que se repete nesses projetos não é a stack, é entrar num
+              código que eu não escrevi e entender rápido como ele funciona
+              antes de mexer.&rdquo;
             </blockquote>
 
             <p
@@ -559,10 +559,10 @@ export default function Home() {
                 maxWidth: 560,
               }}
             >
-              Meu perfil combina base técnica sólida, experiência prática em
-              produção e maturidade profissional para atuar em ambientes
-              desafiadores — da análise de requisitos até a implementação e
-              manutenção.
+              Já assumi backends praticamente inexistentes, módulos legados em
+              PHP/Zend, projetos herdados no meio da primeira fase e ferramentas
+              que eu nunca tinha usado. Trabalho com JavaScript, TypeScript e
+              PHP como base, e Python/Django quando o contexto pede.
             </p>
 
             <div style={{ marginTop: 40 }}>
@@ -760,7 +760,13 @@ export default function Home() {
                     flexShrink: 0,
                   }}
                 >
-                  {job.link ? (isHovered ? "→" : "↗") : (isHovered ? "Em progresso" : "")}
+                  {job.link
+                    ? isHovered
+                      ? "→"
+                      : "↗"
+                    : isHovered
+                      ? "Em progresso"
+                      : ""}
                 </div>
               </Tag>
             );
@@ -836,7 +842,6 @@ export default function Home() {
           me contrate ↗
         </a>
       </section>
-
     </div>
   );
 }

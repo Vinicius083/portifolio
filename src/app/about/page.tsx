@@ -49,11 +49,12 @@ export default function AboutPage() {
               marginBottom: 24,
             }}
           >
-            Desenvolvedor Full Stack com experiência prática em ambientes reais
-            de desenvolvimento de software, atuando tanto no back-end quanto no
-            front-end. Minha trajetória é marcada por evolução constante,
-            aprendizado contínuo e participação ativa em projetos com impacto
-            direto em usuários e clientes.
+            Desenvolvedor Full Stack com experiência em ambientes reais de
+            produção, no back-end e no front-end. Minha trajetória passou por um
+            sistema geoespacial para a Polícia Militar da Paraíba, uma
+            plataforma de gestão de estágios entre instituições de ensino e
+            saúde, um CRM corporativo com chatbot e IA, e projetos freelance
+            conduzidos sozinho.
           </p>
           <p
             style={{
@@ -63,11 +64,11 @@ export default function AboutPage() {
               opacity: 0.9,
             }}
           >
-            Valorizo o desenvolvimento contínuo e a construção de soluções com
-            impacto real. Meu perfil combina uma base técnica sólida,
-            experiência prática em produção e maturidade profissional para atuar
-            em ambientes desafiadores, desde a análise de requisitos até a
-            implementação e manutenção.
+            O fio condutor não é uma stack específica, é a capacidade de entrar
+            em código que não escrevi, entender rápido como funciona e evoluir
+            sistemas legados, projetos herdados no meio do caminho e ferramentas
+            novas. JavaScript, TypeScript e PHP são o foco principal; Python e
+            Django, a stack secundária.
           </p>
         </section>
 
@@ -104,7 +105,8 @@ export default function AboutPage() {
                   marginBottom: 12,
                 }}
               >
-                UNIPÊ (Centro Universitário de João Pessoa) | Dezembro de 2025
+                UNIPÊ (Centro Universitário de João Pessoa) | Fevereiro 2024 –
+                Dezembro 2025
               </div>
               <p
                 style={{
@@ -114,8 +116,9 @@ export default function AboutPage() {
                   opacity: 0.8,
                 }}
               >
-                Participação em projetos acadêmicos e consultoria privada com
-                professores, unindo teoria e visão de mercado.
+                Tecnólogo em Análise e Desenvolvimento de Sistemas. Alguns
+                projetos acadêmicos chegaram a clientes reais, como o sistema
+                geoespacial avaliado pela PM-PB.
               </p>
             </div>
 
@@ -138,8 +141,7 @@ export default function AboutPage() {
                   marginBottom: 12,
                 }}
               >
-                Mentoria completa em desenvolvimento full-stack | Iniciado em
-                Novembro de 2024
+                Mentoria particular | Desde Novembro 2024
               </div>
               <p
                 style={{
@@ -149,13 +151,10 @@ export default function AboutPage() {
                   opacity: 0.8,
                 }}
               >
-                Aprendizado prático em desenvolvimento full-stack, incluindo
-                front-end, back-end, banco de dados e integração de sistemas.
-                Desenvolvimento de projetos reais com foco em qualidade e
-                performance. Escalabilidade, segurança e boas práticas de
-                desenvolvimento são enfatizadas. System Design, arquitetura de
-                software e metodologias ágeis são abordadas para preparar o
-                aluno para desafios do mercado.
+                Mentoria criada por um professor da faculdade, que considerava o
+                conteúdo do curso superficial. Cobre padrões de projeto,
+                arquitetura de software, system design, Redis, RabbitMQ, filas,
+                escolas arquiteturais e soft skills técnicas.
               </p>
             </div>
           </section>
